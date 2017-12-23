@@ -13,16 +13,17 @@
   },
   "scripts": {
     "postinstall": "typings install --global --save dt~core-js",
-    "transpile": "tsc --rootDir src --outDir dist",
-    "webpack": "",
-    "run": "",
-    "distro": ""
+    "transpile": "D:\\Repositories\\github\\angular-inline-edit\\angular-inline-editor\\node_modules\\.bin\\tsc --rootDir src --outDir dist",
+    "package": "D:\\Repositories\\github\\angular-inline-edit\\angular-inline-editor\\node_modules\\.bin\\webpack --progress",
+    "serve": "webpack-dev-server --inline --progress"
   },
   "dependencies": {
     "@angular/common": "^5.1.2",
+    "@angular/compiler": "^5.1.2",
     "@angular/core": "^5.1.2",
     "@angular/forms": "^5.1.2",
     "@angular/platform-browser": "^5.1.2",
+    "@angular/platform-browser-dynamic": "^5.1.2",
     "core-js": "^2.5.3",
     "reflect-metadata": "^0.1.10",
     "rxjs": "^5.5.6",
@@ -31,10 +32,18 @@
   "devDependencies": {
     "angular2-template-loader": "^0.6.2",
     "awesome-typescript-loader": "^3.4.1",
+    "copy-webpack-plugin": "^4.3.1",
+    "css-loader": "^0.28.7",
+    "extract-text-webpack-plugin": "^3.0.2",
+    "html-loader": "^0.5.1",
     "html-webpack-plugin": "^2.30.1",
     "rollup": "^0.53.0",
+    "style-loader": "^0.19.1",
+    "to-string-loader": "^1.1.5",
+    "ts-loader": "^3.2.0",
     "typescript": "^2.6.2",
     "typings": "^2.1.1",
+    "uglify-js": "^3.2.2",
     "webpack": "^3.10.0",
     "webpack-dev-server": "^2.9.7"
   }
