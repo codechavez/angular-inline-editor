@@ -3,19 +3,23 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 const INLINE_EDIT_CONTROL_VALUE_ACCESSOR = {
   provide: NG_VALUE_ACCESSOR,
-  useExisting: forwardRef(() => InputInlineComponent),
+  useExisting: forwardRef(() => InputEditorComponent),
   multi: true
 };
 
 @Component({
-  selector: 'input-inline',
-  templateUrl: 'input-inline.component.html',
+  selector: 'input-editor',
+  templateUrl: 'input-editor.component.html',
+  styles: [
+    '.col-form-label { padding-bottom: 0px !important; }',
+    '.inline-edit { text-decoration: none; border-bottom: #A8B9CE dashed 1px; cursor: pointer; width: auto;}'
+  ],
   providers: [INLINE_EDIT_CONTROL_VALUE_ACCESSOR]
 })
 
-export class InputInlineComponent implements ControlValueAccessor, OnInit {
+export class InputEditorComponent implements ControlValueAccessor, OnInit {
 
-  @ViewChild('inputInlineControl') inputInlineControl: ElementRef; // input DOM element
+  @ViewChild('inputEditorControl') inputInlineControl: ElementRef; // input DOM element
   @Input() label: string = '';  // Label value for input element
   @Input() type: string = 'text'; // The type of input element
   @Input() required: boolean = false; // Is input requried?

@@ -15,7 +15,6 @@ module.exports = {
             { test: /\.component.ts$/, loaders: 'angular2-template-loader'},
             { test: /\.ts$/,loaders:'awesome-typescript-loader'},
             { test: /\.html$/, loaders:'html-loader'},
-            { test: /\.css$/, loader: "css-loader" },
             { test: /\.css$/, use: ExtractTextPlugin.extract({fallback:"style-loader",use: "css-loader"}) },
             { test: /\.(jpg|png|gif|svg)$/, loader: 'file-loader' }
         ]
@@ -26,6 +25,7 @@ module.exports = {
     plugins:[
         new HtmlWebpackPlugin({
             template:'./src/index.html'
-        })
+        }),
+        new ExtractTextPlugin("app.[hash].css"),
     ]
 };

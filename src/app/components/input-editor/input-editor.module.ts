@@ -1,20 +1,20 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { InputInlineComponent } from './input-inline.component';
+import { InputEditorComponent } from './input-editor.component';
 
 
 @NgModule({
   imports: [CommonModule, FormsModule],
   declarations: [
-    InputInlineComponent
+    InputEditorComponent
   ],
-  exports: [InputInlineComponent]
+  exports: [InputEditorComponent]
 })
-export class InputInlineModule {
+export class InputEditorModule {
   static forRoot(): ModuleWithProviders {
     return {
-      ngModule: InputInlineModule,
+      ngModule: InputEditorModule,
     }
   }
 }

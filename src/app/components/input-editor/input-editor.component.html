@@ -1,0 +1,15 @@
+<div *ngIf="editing">
+    <div class="form-group">
+        <label class="col-form-label">{{label}}</label>
+        <input #inputEditorControl [required]="required" class="form-control" [name]="value" [(ngModel)]="value" [type]="type" [placeholder]="label">
+        <span class="input-group-btn">
+            <button class="btn btn-secondary" type="button" (click)="onClickComplete()">Go!</button>
+        </span>
+    </div>
+</div>
+<div *ngIf="!editing">
+    <div class="form-group">
+        <label class="col-form-label">{{label}}</label>
+        <div (click)="edit(value)" (focus)="edit(value);" tabindex="0" class="inline-edit">{{value}}&nbsp;</div>
+    </div>
+</div>
