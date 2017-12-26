@@ -16,26 +16,34 @@ const INLINE_EDIT_CONTROL_VALUE_ACCESSOR = {
   ],
   providers: [INLINE_EDIT_CONTROL_VALUE_ACCESSOR]
 })
-
 export class InputEditorComponent implements ControlValueAccessor, OnInit {
 
-  @ViewChild('inputEditorControl') inputInlineControl: ElementRef; // input DOM element
+  @ViewChild('inputEditorControl') inputEditorControl: ElementRef; // input DOM element
   @Input() label: string = '';  // Label value for input element
+  @Input() placeholder: string = ''; // Placeholder value ofr input element
   @Input() type: string = 'text'; // The type of input element
   @Input() required: boolean = false; // Is input requried?
   @Input() disabled: boolean = false; // Is input disabled?
+  @Input() id:string = ''
+  @Input() stringlength: string = ''
+  @Output() onSave: EventEmitter<string> = new EventEmitter();
+  @Output() onCancel: EventEmitter<string> = new EventEmitter();
+
+
   private _value: string = ''; // Private variable for input value
   private preValue: string = ''; // The value before clicking to edit
   private editing: boolean = false; // Is Component in edit mode?
   public onChange: any = Function.prototype; // Trascend the onChange event
   public onTouched: any = Function.prototype; // Trascend the onTouch event
 
+  constructor(element: ElementRef, private _renderer: Renderer) { }
 
-  @Output()
-  onClick: EventEmitter<string> = new EventEmitter();
+  onSaveComplete() {
+    this.onSave.emit('clicked save');
+  }
 
-  onClickComplete() {
-    this.onClick.emit('clicked');
+  onCancelComplete(){
+    this.onCancel.emit('clicked cancel');
   }
 
   // Control Value Accessors for ngModel
@@ -48,9 +56,6 @@ export class InputEditorComponent implements ControlValueAccessor, OnInit {
       this._value = v;
       this.onChange(v);
     }
-  }
-
-  constructor(element: ElementRef, private _renderer: Renderer) {
   }
 
   // Required for ControlValueAccessor interface
@@ -82,10 +87,11 @@ export class InputEditorComponent implements ControlValueAccessor, OnInit {
     this.preValue = value;
     this.editing = true;
     // Focus on the input element just as the editing begins
-    setTimeout(() => this._renderer.invokeElementMethod(this.inputInlineControl,
+    setTimeout(() => this._renderer.invokeElementMethod(this.inputEditorControl,
       'focus', []));
   }
 
   ngOnInit() {
+
   }
 }

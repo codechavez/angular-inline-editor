@@ -1,5 +1,20 @@
 <!-- <input-inline [(ngModel)]="name" label="Name" [required]="true" type="text" (onClick)="sampleClick()">
 </input-inline> -->
 
-<input-editor [(ngModel)]="name" label="Name" [required]="true" type="text" (onClick)="sampleClick()">
+<input-editor label="Inline Editor Demo" [(ngModel)]="name" type="text" placeholder="Test placeholder" (onSave)="sampleClick()"
+    id="txtInline">
 </input-editor>
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <input-editor label="First Name" id="txtname" [(ngModel)]="name" type="text" placeholder="Enter First Name" (onSave)="sampleClick()">
+            </input-editor>
+        </div>
+        <div class="col-md-6">
+            <input-editor label="Last Name" id="txtlast" [(ngModel)]="lastname" type="text" placeholder="Enter Last Name" (onSave)="sampleClick()">
+            </input-editor>
+        </div>
+    </div>
+</div>
