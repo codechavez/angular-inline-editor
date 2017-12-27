@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { GeneratedFile } from '@angular/compiler';
 
 
 @Component({
@@ -10,7 +11,8 @@ export class AppComponent implements OnInit {
 
     name: string = 'HOLA WOLRD';
     genderOptions: Gender[]=[ new Gender("F","Female"), new Gender("M","Male")];
-
+    selectedGender: Gender = new Gender("M","Male");
+    selected:any;
 
     constructor() { 
     }
@@ -20,6 +22,7 @@ export class AppComponent implements OnInit {
 
     sampleClick(){
         console.log("you clicked me!");
+        console.log(this.selectedGender);
     }
 }
 

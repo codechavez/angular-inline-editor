@@ -1,7 +1,8 @@
 <div *ngIf="editing">
     <label class="col-form-label">{{label}}</label>
     <div class="input-group">
-        <select #selectEditorControl class="form-control" [(ngModel)]="selectedOption">
+        <select #selectEditorControl class="form-control" [(ngModel)]="value">
+            <!-- <option [ngValue]="value">{{value[dataValue]}}</option> -->
             <option *ngFor="let opt of options" [ngValue]="opt">  
                 {{opt[displayValue]}}
             </option>
@@ -19,6 +20,6 @@
 <div *ngIf="!editing">
     <div class="form-group">
         <label class="col-form-label">{{label}}</label>
-        <div (click)="edit(value)" (focus)="edit(value);" tabindex="0" class="inline-edit">{{value}}&nbsp;</div>
+        <div (click)="edit(value)" (focus)="edit(value);" tabindex="0" class="inline-edit">{{value[displayValue]}}&nbsp;</div>
     </div>
 </div>
