@@ -1,0 +1,24 @@
+<div *ngIf="editing">
+    <label class="col-form-label">{{label}}</label>
+    <div class="input-group">
+        <select #selectEditorControl class="form-control" [(ngModel)]="selectedOption">
+            <option *ngFor="let opt of options" [ngValue]="opt">  
+                {{opt[displayValue]}}
+            </option>
+        </select>  
+        <span class="input-group-btn">
+                <button class="btn btn-sm btn-success" type="button" (click)="onSaveComplete()">
+                    <i class="fa fa-check" aria-hidden="true"></i>
+                </button>
+                <button class="btn btn-sm btn-danger" type="button" (click)="onCancelComplete()">
+                    <i class="fa fa-times" aria-hidden="true"></i>
+                </button>
+            </span>
+    </div>
+</div>
+<div *ngIf="!editing">
+    <div class="form-group">
+        <label class="col-form-label">{{label}}</label>
+        <div (click)="edit(value)" (focus)="edit(value);" tabindex="0" class="inline-edit">{{value}}&nbsp;</div>
+    </div>
+</div>

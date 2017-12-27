@@ -1,12 +1,5 @@
-<!-- <input-inline [(ngModel)]="name" label="Name" [required]="true" type="text" (onClick)="sampleClick()">
-</input-inline> -->
-
-<input-editor label="Inline Editor Demo" [(ngModel)]="name" type="text" placeholder="Test placeholder" (onSave)="sampleClick()"
-    id="txtInline">
-</input-editor>
-
-
 <div class="container">
+    <h3>input editor</h3>
     <div class="row">
         <div class="col-md-6">
             <input-editor label="First Name" id="txtname" [(ngModel)]="name" type="text" placeholder="Enter First Name" (onSave)="sampleClick()">
@@ -16,5 +9,17 @@
             <input-editor label="Last Name" id="txtlast" [(ngModel)]="lastname" type="text" placeholder="Enter Last Name" (onSave)="sampleClick()">
             </input-editor>
         </div>
+    </div>
+    <h3>select editor</h3>
+    <div class="row">
+       
+        <div class="col-md-6">
+            <select-editor label="Gender" id="dpGener" [options]="genderOptions" displayValue="longName" dataValue="shortName" [(ngModel)]="selectedValue" (onSave)="sampleClick()">
+            </select-editor>
+        </div>
+        <div class="col-md-6">
+                <!-- <select-editor label="First Name" id="txtname" [(ngModel)]="name" type="text" placeholder="Enter First Name" (onSave)="sampleClick()">
+                </select-editor> -->
+            </div>
     </div>
 </div>
