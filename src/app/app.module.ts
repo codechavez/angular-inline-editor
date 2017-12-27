@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 
 import { InputEditorModule } from "../app/components/input-editor/input-editor.module";
 import { SelectEditorModule } from "../app/components/select-editor/select-editor.module";
+import { TextAreaEditorModule } from "../app/components/textarea-editor/textarea-editor.module";
 import { AppComponent } from './app.component';
 
 @NgModule({
@@ -12,6 +13,7 @@ import { AppComponent } from './app.component';
     FormsModule,
     InputEditorModule.forRoot(),
     SelectEditorModule.forRoot(),
+    TextAreaEditorModule.forRoot(),
   ],
   declarations: [AppComponent],
   bootstrap: [AppComponent]

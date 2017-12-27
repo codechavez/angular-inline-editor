@@ -12,15 +12,23 @@
     </div>
     <h3>select editor</h3>
     <div class="row">
-       
+
         <div class="col-md-6">
-            <select-editor label="Gender" id="dpGener" [(ngModel)]="selectedGender" 
-            [options]="genderOptions" displayValue="longName" dataValue="shortName" (onSave)="sampleClick()">
+            <select-editor label="Gender" id="dpGener" [(ngModel)]="selectedGender" [options]="genderOptions" displayValue="longName"
+                dataValue="shortName" (onSave)="sampleClick()">
             </select-editor>
         </div>
         <div class="col-md-6">
-                <!-- <select-editor label="First Name" id="txtname" [(ngModel)]="name" type="text" placeholder="Enter First Name" (onSave)="sampleClick()">
-                </select-editor> -->
-            </div>
+            
+        </div>
+    </div>
+    <h3>textarea editor</h3>
+    <div class="row">
+        <div class="col-md-6">
+            <textarea-editor [(ngModel)]="textArea" stringlength="300" label="Bio" maxheight="200px" minheight="100px" (onSave)="sampleClick()" ></textarea-editor>
+        </div>
+        <div class="col-md-6">
+            
+        </div>
     </div>
 </div>
