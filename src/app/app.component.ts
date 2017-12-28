@@ -10,9 +10,10 @@ import { GeneratedFile } from '@angular/compiler';
 export class AppComponent implements OnInit {
 
     name: string = 'HOLA WOLRD';
-    genderOptions: Gender[]=[ new Gender("F","Female"), new Gender("M","Male")];
+    genderOptions: Gender[]=[ new Gender("F","Female"), new Gender("M","Male"), new Gender("T", "Trans"), new Gender("G","Gay")];
     selectedGender: Gender = new Gender("M","Male");
     textArea:string="We print a wide selection of eye-catching materials, including copies, documents, presentations, brochures, flyers, postcards and business cards. You can also count on us for all your banner and graphic printing, as well as signs, posters and engineering prints."
+    selectedGenders: string[]=[ "M","F"];
 
     constructor() { 
     }
@@ -22,7 +23,9 @@ export class AppComponent implements OnInit {
 
     sampleClick(){
         console.log("you clicked me!");
-        console.log(this.selectedGender);
+        for(var i=0; i < this.selectedGenders.length; i++){
+            console.log(this.selectedGenders[i]);
+        }
     }
 }
 

@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { InputEditorModule } from "../app/components/input-editor/input-editor.module";
 import { SelectEditorModule } from "../app/components/select-editor/select-editor.module";
 import { TextAreaEditorModule } from "../app/components/textarea-editor/textarea-editor.module";
+import { CheckListEditorModule } from "../app/components/checklist-editor/checklist-editor.module";
 import { AppComponent } from './app.component';
 
 @NgModule({
@@ -14,6 +15,7 @@ import { AppComponent } from './app.component';
     InputEditorModule.forRoot(),
     SelectEditorModule.forRoot(),
     TextAreaEditorModule.forRoot(),
+    CheckListEditorModule.forRoot(),
   ],
   declarations: [AppComponent],
   bootstrap: [AppComponent]

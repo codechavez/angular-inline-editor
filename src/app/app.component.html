@@ -31,4 +31,14 @@
                 <textarea-editor [(ngModel)]="textArea" stringlength="300" id="nondisable" label="Bio" maxheight="200px" minheight="100px" (onSave)="sampleClick()" ></textarea-editor>
         </div>
     </div>
+    <h3>checklist editor</h3>
+    <div class="row">
+        <div class="col-md-6">
+                <checklist-editor [options]="genderOptions" [(ngModel)]="selectedGenders" label="Gender" displayValue="longName" dataValue="shortName" (onSave)="sampleClick()"></checklist-editor>
+        </div>
+        <div class="col-md-6">
+
+        </div>
+    </div>
+
 </div>
