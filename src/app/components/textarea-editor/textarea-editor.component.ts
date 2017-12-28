@@ -12,7 +12,8 @@ const TEXTAREA_EDIT_VALUE_ACCESSOR = {
     templateUrl: 'textarea-editor.component.html',
     styles: [
         '.col-form-label { padding-bottom: 0px !important; }',
-        '.inline-edit { text-decoration: none; border-bottom: #A8B9CE dashed 1px; cursor: pointer; width: auto;}'
+        '.inline-edit { text-decoration: none; border-bottom: #007bff dashed 1px; cursor: pointer; width: auto;}',
+        '.inline-no-edit { text-decoration: none; border-bottom: #959596 dashed 1px; cursor: pointer; width: auto;}'
     ],
     providers: [TEXTAREA_EDIT_VALUE_ACCESSOR]
 })
@@ -21,7 +22,7 @@ export class TextAreaEditorComponent implements ControlValueAccessor, OnInit {
     @ViewChild('textareaEditorControl') textareaEditorControl: ElementRef;
     @Input() label: string = '';
     @Input() required: boolean = false;
-    @Input() disabled: boolean = false;
+    @Input() disabled: string = "false";
     @Input() id: string = '';
     @Input() stringlength: string = '';
     @Input() maxheight: string = 'auto';
@@ -80,7 +81,8 @@ export class TextAreaEditorComponent implements ControlValueAccessor, OnInit {
 
     // Start the editting process for the input element
     edit(value: any) {
-        if (this.disabled) {
+        debugger;
+        if (this.disabled === "true") {
             return;
         }
 

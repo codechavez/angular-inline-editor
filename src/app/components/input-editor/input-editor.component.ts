@@ -12,7 +12,8 @@ const INLINE_EDIT_CONTROL_VALUE_ACCESSOR = {
   templateUrl: 'input-editor.component.html',
   styles: [
     '.col-form-label { padding-bottom: 0px !important; }',
-    '.inline-edit { text-decoration: none; border-bottom: #A8B9CE dashed 1px; cursor: pointer; width: auto;}'
+    '.inline-edit { text-decoration: none; border-bottom: #A8B9CE dashed 1px; cursor: pointer; width: auto;}',
+    '.inline-no-edit { text-decoration: none; border-bottom: #959596 dashed 1px; cursor: pointer; width: auto;}'
   ],
   providers: [INLINE_EDIT_CONTROL_VALUE_ACCESSOR]
 })
@@ -80,9 +81,9 @@ export class InputEditorComponent implements ControlValueAccessor, OnInit {
 
   // Start the editting process for the input element
   edit(value: any) {
-    if (this.disabled) {
+    if (this.disabled==true) {
       return;
-    }
+  }
 
     this.preValue = value;
     this.editing = true;

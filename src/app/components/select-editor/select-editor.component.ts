@@ -74,10 +74,9 @@ export class SelectEditorComponent implements ControlValueAccessor, OnInit {
 
   // Start the editting process for the input element
   edit(value: any) {
-    if (this.disabled) {
+    if (this.disabled==true) {
       return;
-    }
-
+  }
     this.preValue = value;
     this.editing = true;
     // Focus on the input element just as the editing begins

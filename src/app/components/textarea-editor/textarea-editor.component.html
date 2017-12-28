@@ -1,7 +1,7 @@
 <div *ngIf="editing">
     <label class="col-form-label">{{label}}</label>
     <div class="input-group">
-        <textarea [id]="id" [disabled]="disabled" [(ngModel)]="value" [maxlength]="stringlength" [style.height]="maxheight" class="form-control"
+        <textarea [id]="id" [(ngModel)]="value" [maxlength]="stringlength" [style.height]="maxheight" class="form-control"
             wrap="hard">
             </textarea>
         <span class="input-group-btn">
@@ -21,6 +21,6 @@
 <div *ngIf="!editing">
     <div class="form-group">
         <label class="col-form-label">{{label}}</label>
-        <div (click)="edit(value)" (focus)="edit(value);" [style.height]="minheight" tabindex="0" class="inline-edit">{{value}}&nbsp;</div>
+        <div (click)="edit(value)" (focus)="edit(value);" [style.height]="minheight" tabindex="0" [ngClass]="disabled == 'true' ? 'inline-no-edit' : 'inline-edit'">{{value}}&nbsp;</div>
     </div>
 </div>
