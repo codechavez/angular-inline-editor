@@ -14,6 +14,8 @@ export class AppComponent implements OnInit {
     selectedGender: Gender = new Gender("M","Male");
     textArea:string="We print a wide selection of eye-catching materials, including copies, documents, presentations, brochures, flyers, postcards and business cards. You can also count on us for all your banner and graphic printing, as well as signs, posters and engineering prints."
     selectedGenders: string[]=[ "M","F"];
+    radioSelectedGenders: string[]=["M"];
+    emptySelectedGenders:string[]=[];
 
     constructor() { 
     }

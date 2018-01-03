@@ -14,7 +14,7 @@
     <div class="row">
 
         <div class="col-md-6">
-            <select-editor label="Gender" id="dpGener" [(ngModel)]="selectedGender" [options]="genderOptions" displayValue="longName"
+            <select-editor label="Gender" id="dpGener" [(ngModel)]="selectedGenders" [options]="genderOptions" displayValue="longName"
                 dataValue="shortName" (onSave)="sampleClick()">
             </select-editor>
         </div>
@@ -38,6 +38,16 @@
         </div>
         <div class="col-md-6">
 
+        </div>
+    </div>
+
+    <h3>radiolist editor</h3>
+    <div class="row">
+        <div class="col-md-6">
+                <radiolist-editor [options]="genderOptions" [(ngModel)]="radioSelectedGenders" label="Gender" displayValue="longName" dataValue="shortName" (onSave)="sampleClick()"></radiolist-editor>
+        </div>
+        <div class="col-md-6">
+            <radiolist-editor [options]="genderOptions" [(ngModel)]="emptySelectedGenders" label="Gender" displayValue="longName" dataValue="shortName" (onSave)="sampleClick()"></radiolist-editor>
         </div>
     </div>
 
