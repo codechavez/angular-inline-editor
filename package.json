@@ -15,7 +15,7 @@
   },
   "scripts": {
     "postinstall": "typings install --global --save dt~core-js",
-    "compile":"D:\\Repositories\\github\\angular-inline-edit\\angular-inline-editor\\node_modules\\.bin\\tsc --rootDir lib --outDir dist",
+    "compile":"tsc --rootDir lib --outDir dist",
     "html":"XCOPY /S /y .\\lib\\*.html .\\dist",
     "css":"XCOPY /S /y .\\lib\\*.css .\\dist",
     "serve": "webpack-dev-server --host localhost --port 3030 --inline --progress",
