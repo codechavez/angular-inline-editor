@@ -9,7 +9,7 @@ const INLINE_EDIT_CONTROL_VALUE_ACCESSOR = {
 
 @Component({
   selector: 'input-editor',
-  templateUrl: 'input-editor.component.html',
+  templateUrl: './input-editor.component.html',
   styles: [
     '.col-form-label { padding-bottom: 0px !important; }',
     '.inline-edit { text-decoration: none; border-bottom: #A8B9CE dashed 1px; cursor: pointer; width: auto;}',
