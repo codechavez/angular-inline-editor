@@ -5,7 +5,7 @@ var ExtractTextPlugin = require("extract-text-webpack-plugin");
 var CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
-    entry:path.resolve(__dirname,'src/main.ts'),
+    entry:path.resolve(__dirname,'demo/main.ts'),
     output:{
         path: path.resolve(__dirname,'dist'),
         filename:'app.[hash].bundle.js'
@@ -24,7 +24,7 @@ module.exports = {
     },
     plugins:[
         new HtmlWebpackPlugin({
-            template:'./src/index.html'
+            template:'./demo/index.html'
         }),
         new ExtractTextPlugin("app.[hash].css"),
     ]

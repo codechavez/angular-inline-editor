@@ -1,0 +1,54 @@
+<div class="container">
+    <h3>input editor</h3>
+    <div class="row">
+        <div class="col-md-6">
+            <input-editor label="First Name" id="txtname" [(ngModel)]="name" type="text" placeholder="Enter First Name" (onSave)="sampleClick()">
+            </input-editor>
+        </div>
+        <div class="col-md-6">
+            <input-editor label="Last Name" id="txtlast" [(ngModel)]="lastname" type="text" placeholder="Enter Last Name" (onSave)="sampleClick()">
+            </input-editor>
+        </div>
+    </div>
+    <h3>select editor</h3>
+    <div class="row">
+
+        <div class="col-md-6">
+            <select-editor label="Gender" id="dpGener" [(ngModel)]="selectedGenders" [options]="genderOptions" displayValue="longName"
+                dataValue="shortName" (onSave)="sampleClick()">
+            </select-editor>
+        </div>
+        <div class="col-md-6">
+            
+        </div>
+    </div>
+    <h3>textarea editor</h3>
+    <div class="row">
+        <div class="col-md-6">
+            <textarea-editor [(ngModel)]="textArea" disabled="true" id="disabled" stringlength="300" label="Bio" maxheight="200px" minheight="100px" (onSave)="sampleClick()" ></textarea-editor>
+        </div>
+        <div class="col-md-6">
+                <textarea-editor [(ngModel)]="textArea" stringlength="300" id="nondisable" label="Bio" maxheight="200px" minheight="100px" (onSave)="sampleClick()" ></textarea-editor>
+        </div>
+    </div>
+    <h3>checklist editor</h3>
+    <div class="row">
+        <div class="col-md-6">
+                <checklist-editor [options]="genderOptions" [(ngModel)]="selectedGenders" label="Gender" displayValue="longName" dataValue="shortName" (onSave)="sampleClick()"></checklist-editor>
+        </div>
+        <div class="col-md-6">
+
+        </div>
+    </div>
+
+    <h3>radiolist editor</h3>
+    <div class="row">
+        <div class="col-md-6">
+                <radiolist-editor [options]="genderOptions" [(ngModel)]="radioSelectedGenders" label="Gender" displayValue="longName" dataValue="shortName" (onSave)="sampleClick()"></radiolist-editor>
+        </div>
+        <div class="col-md-6">
+            <radiolist-editor [options]="genderOptions" [(ngModel)]="emptySelectedGenders" label="Gender" displayValue="longName" dataValue="shortName" (onSave)="sampleClick()"></radiolist-editor>
+        </div>
+    </div>
+
+</div>

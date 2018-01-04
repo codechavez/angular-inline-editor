@@ -15,10 +15,8 @@
   },
   "scripts": {
     "postinstall": "typings install --global --save dt~core-js",
-    "transpile": "D:\\Repositories\\github\\angular-inline-edit\\angular-inline-editor\\node_modules\\.bin\\tsc --rootDir src --outDir dist",
-    "package": "D:\\Repositories\\github\\angular-inline-edit\\angular-inline-editor\\node_modules\\.bin\\webpack --progress",
-    "serve": "webpack-dev-server --inline --progress",
-    "distro": "npm run transpile && npm run package"
+    "compile":"D:\\Repositories\\github\\angular-inline-edit\\angular-inline-editor\\node_modules\\.bin\\tsc --rootDir lib --outDir dist",
+    "serve": "webpack-dev-server --host localhost --port 3030 --inline --progress"
   },
   "dependencies": {
     "@angular/common": "^5.1.2",

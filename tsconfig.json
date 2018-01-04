@@ -11,5 +11,8 @@
         "declaration": true,
         "suppressImplicitAnyIndexErrors": true,
         "forceConsistentCasingInFileNames": true
-    }
+    },
+    "exclude": [
+        "demo/**/*"
+    ]
 }
