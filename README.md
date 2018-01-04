@@ -34,7 +34,7 @@ Following the principle of Angular is based on Modules and you use what you want
 ## How to use
 #### Add the module
 ``` typescript
-import {InputEditorModule} from '@codechavez/angular-inline-editor';
+import {InputEditorModule} from 'angular-inline-editor';
 
 @NgModule({
   imports: [
@@ -45,8 +45,8 @@ import {InputEditorModule} from '@codechavez/angular-inline-editor';
 
 #### Add more
 ``` typescript
-import {InputEditorModule} from '@codechavez/angular-inline-editor';
-import { SelectEditorModule } from '@codechavez/angular-inline-editor';
+import {InputEditorModule} from 'angular-inline-editor';
+import { SelectEditorModule } from 'angular-inline-editor';
 
 @NgModule({
   imports: [
