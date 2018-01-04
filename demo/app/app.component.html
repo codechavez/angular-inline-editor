@@ -10,7 +10,8 @@
             </input-editor>
         </div>
         <div class="col-md-4">
-            <input-editor label="Last Name" id="txtlast" [(ngModel)]="last" type="text" stringlength="10" placeholder="Enter Last Name" (onSave)="sampleClick()">
+            <input-editor label="Last Name" id="txtlast" [(ngModel)]="last" type="text" stringlength="10" placeholder="Enter Last Name"
+                (onSave)="sampleClick()">
             </input-editor>
         </div>
     </div>
@@ -27,24 +28,28 @@
             </select-editor>
         </div>
         <div class="col-md-4">
-            <select-editor label="Country" id="dpGener" [(ngModel)]="emptyselectedCountry" [options]="countryOptions" placeholder="Select a country" displayValue="longName"
-                dataValue="shortName">
+            <select-editor label="Country" id="dpGener" [(ngModel)]="emptyselectedCountry" [options]="countryOptions" placeholder="Select a country"
+                displayValue="longName" dataValue="shortName">
             </select-editor>
         </div>
     </div>
     <h3>textarea editor</h3>
     <div class="row">
-        <div class="col-md-6">
-            <textarea-editor [(ngModel)]="textArea" disabled="true" id="disabled" stringlength="300" label="Bio" maxheight="200px" minheight="100px" (onSave)="sampleClick()" ></textarea-editor>
+        <div class="col-md-4">
+            <textarea-editor [(ngModel)]="textArea" stringlength="300" id="nondisable" label="Bio" maxheight="200px" (onSave)="sampleClick()"></textarea-editor>
         </div>
-        <div class="col-md-6">
-                <textarea-editor [(ngModel)]="textArea" stringlength="300" id="nondisable" label="Bio" maxheight="200px" minheight="100px" (onSave)="sampleClick()" ></textarea-editor>
+        <div class="col-md-4">
+            <textarea-editor [(ngModel)]="textArea" disabled="true" id="disabled" stringlength="300" label="Bio" maxheight="200px" (onSave)="sampleClick()"></textarea-editor>
+        </div>
+        <div class="col-md-4">
+            <textarea-editor [(ngModel)]="emptyTextArea" id="taempty" stringlength="300" label="Bio" maxheight="300px" placeholder="Enter Bio"></textarea-editor>
         </div>
     </div>
     <h3>checklist editor</h3>
     <div class="row">
         <div class="col-md-6">
-                <checklist-editor [options]="genderOptions" [(ngModel)]="selectedGenders" label="Gender" displayValue="longName" dataValue="shortName" (onSave)="sampleClick()"></checklist-editor>
+            <checklist-editor [options]="genderOptions" [(ngModel)]="selectedGenders" label="Gender" displayValue="longName" dataValue="shortName"
+                (onSave)="sampleClick()"></checklist-editor>
         </div>
         <div class="col-md-6">
 
@@ -54,10 +59,12 @@
     <h3>radiolist editor</h3>
     <div class="row">
         <div class="col-md-6">
-                <radiolist-editor [options]="genderOptions" [(ngModel)]="radioSelectedGenders" label="Gender" displayValue="longName" dataValue="shortName" (onSave)="sampleClick()"></radiolist-editor>
+            <radiolist-editor [options]="genderOptions" [(ngModel)]="radioSelectedGenders" label="Gender" displayValue="longName" dataValue="shortName"
+                (onSave)="sampleClick()"></radiolist-editor>
         </div>
         <div class="col-md-6">
-            <radiolist-editor [options]="genderOptions" [(ngModel)]="emptySelectedGenders" label="Gender" displayValue="longName" dataValue="shortName" (onSave)="sampleClick()"></radiolist-editor>
+            <radiolist-editor [options]="genderOptions" [(ngModel)]="emptySelectedGenders" label="Gender" displayValue="longName" dataValue="shortName"
+                (onSave)="sampleClick()"></radiolist-editor>
         </div>
     </div>
 

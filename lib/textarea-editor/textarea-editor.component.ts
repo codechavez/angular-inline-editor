@@ -13,7 +13,8 @@ const TEXTAREA_EDIT_VALUE_ACCESSOR = {
     styles: [
         '.col-form-label { padding-bottom: 0px !important; }',
         '.inline-edit { text-decoration: none; border-bottom: #007bff dashed 1px; cursor: pointer; width: auto;}',
-        '.inline-no-edit { text-decoration: none; border-bottom: #959596 dashed 1px; cursor: pointer; width: auto;}'
+        '.inline-no-edit { text-decoration: none; border-bottom: #959596 dashed 1px; cursor: not-allowed; width: auto;}',
+        '.inline-edit-empty{ text-decoration: none; border-bottom: red dashed 1px; cursor: pointer; width: auto; color: #b9b8b8;}'
     ],
     providers: [TEXTAREA_EDIT_VALUE_ACCESSOR]
 })
@@ -27,6 +28,7 @@ export class TextAreaEditorComponent implements ControlValueAccessor, OnInit {
     @Input() stringlength: string = '';
     @Input() maxheight: string = 'auto';
     @Input() minheight: string = 'auto';
+    @Input() placeholder:string='';
     @Output() onSave: EventEmitter<string> = new EventEmitter();
     @Output() onCancel: EventEmitter<string> = new EventEmitter();
 
@@ -91,6 +93,10 @@ export class TextAreaEditorComponent implements ControlValueAccessor, OnInit {
         setTimeout(() => this._renderer.invokeElementMethod(this.textareaEditorControl,
             'focus', []));
     }
+
+    IsEmpty(): Boolean{
+        return (this._value === undefined || this._value == '');
+      }
 
     ngOnInit() {
 
