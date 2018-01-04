@@ -4,7 +4,7 @@ angular-inline-editor is a small Angular library that allows the experience to u
 Follow me @ http://codechavez.com
 
 ## angular-inline-editor  
-[![Build Status](https://travis-ci.org/codechavez/angular-inline-editor.svg?branch=master)](https://travis-ci.org/codechavez/angular-inline-editor)  [![npm version](https://badge.fury.io/js/angular-inline-editors.svg)](https://badge.fury.io/js/angular-inline-editors)
+[![Build Status](https://travis-ci.org/codechavez/angular-inline-editor.svg?branch=master)](https://travis-ci.org/codechavez/angular-inline-editor) 
 ### Dependencies
 angular-inline-editor was built to work with Angular 4+, current dependencies are Bootstrap (3.3.7+) and FontAwesome. 
 ### Road Map - Inline Editors
