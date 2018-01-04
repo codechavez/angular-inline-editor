@@ -56,18 +56,23 @@
                 dataValue="shortName" (onSave)="sampleClick()"></checklist-editor>
         </div>
         <div class="col-md-4">
-            <checklist-editor [options]="langOptions" [(ngModel)]="emptySelectedLang" label="Speaks" displayValue="longName" dataValue="shortName" placeholder="Select languages"></checklist-editor>
+            <checklist-editor [options]="langOptions" [(ngModel)]="emptySelectedLang" label="Speaks" displayValue="longName" dataValue="shortName"
+                placeholder="Select languages"></checklist-editor>
         </div>
     </div>
 
     <h3>radiolist editor</h3>
     <div class="row">
-        <div class="col-md-6">
-            <radiolist-editor [options]="genderOptions" [(ngModel)]="radioSelectedGenders" label="Gender" displayValue="longName" dataValue="shortName"
+        <div class="col-md-4">
+            <radiolist-editor [options]="genderOptions" [(ngModel)]="selectedGender" label="Gender" displayValue="longName" dataValue="shortName"
                 (onSave)="sampleClick()"></radiolist-editor>
         </div>
-        <div class="col-md-6">
-            <radiolist-editor [options]="genderOptions" [(ngModel)]="emptySelectedGenders" label="Gender" displayValue="longName" dataValue="shortName"
+        <div class="col-md-4">
+            <radiolist-editor [options]="genderOptions" [(ngModel)]="selectedGender" label="Gender" displayValue="longName" dataValue="shortName" disabled="true"
+                (onSave)="sampleClick()"></radiolist-editor>
+        </div>
+        <div class="col-md-4">
+            <radiolist-editor [options]="genderOptions" [(ngModel)]="emptySelectedGender" label="Gender" displayValue="longName" dataValue="shortName" placeholder="Select gender"
                 (onSave)="sampleClick()"></radiolist-editor>
         </div>
     </div>

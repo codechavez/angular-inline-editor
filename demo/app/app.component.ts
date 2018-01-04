@@ -20,13 +20,10 @@ export class AppComponent implements OnInit {
     // checklist
     langOptions: Language[] = [new Language("en","English"), new Language("sp","Spanish"), new Language("it","Italian")];
     selectedLang: string[]=['en','sp'];
-
-    genderOptions: Gender[]=[ new Gender("F","Female"), new Gender("M","Male"), new Gender("T", "Trans"), new Gender("G","Gay")];
-    selectedGender: Gender = new Gender("M","Male");
-    
-    selectedGenders: string[]=[ "M","F"];
-    radioSelectedGenders: string[]=["M"];
-    emptySelectedGenders:string[]=[];
+    // radiolist
+    genderOptions: Gender[]=[ new Gender("F","Female"), new Gender("M","Male"), new Gender("T", "Transexual")];
+    selectedGender: string='M';
+    emptySelectedGender:string;
 
     constructor() { }
 
@@ -34,9 +31,6 @@ export class AppComponent implements OnInit {
 
     sampleClick(){
         console.log("you clicked me!");
-        for(var i=0; i < this.selectedGenders.length; i++){
-            console.log(this.selectedGenders[i]);
-        }
     }
 }
 

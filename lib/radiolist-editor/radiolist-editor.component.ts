@@ -12,9 +12,9 @@ const RADIOLIST_EDIT_CONTROL_VALUE_ACCESSOR = {
     templateUrl: './radiolist-editor.component.html',
     styles: [
         '.col-form-label { padding-bottom: 0px !important; }',
-        '.inline-edit { text-decoration: none; border-bottom: #A8B9CE dashed 1px; cursor: pointer; width: auto;}',
-        '.inline-no-edit { text-decoration: none; border-bottom: #959596 dashed 1px; cursor: pointer; width: auto;}',
-        '.inline-edit-empty{ text-decoration: none; border-bottom: red dashed 1px; cursor: pointer; width: auto;}'
+        '.inline-edit { text-decoration: none; border-bottom: #007bff dashed 1px; cursor: pointer; width: auto;}',
+        '.inline-no-edit { text-decoration: none; border-bottom: #959596 dashed 1px; cursor: not-allowed; width: auto;}',
+        '.inline-edit-empty{ text-decoration: none; border-bottom: red dashed 1px; cursor: pointer; width: auto; color: #b9b8b8;}'
     ],
     providers: [RADIOLIST_EDIT_CONTROL_VALUE_ACCESSOR]
 })
@@ -23,15 +23,16 @@ export class RadioListEditorComponent implements ControlValueAccessor, OnInit {
     @ViewChild('radiolistEditorControl') radiolistEditorControl: ElementRef; // input DOM element
     @Input() label: string = '';  // Label value for input element
     @Input() required: boolean = false; // Is input requried?
-    @Input() disabled: boolean = false; // Is input disabled?
+    @Input() disabled: string = 'false'; // Is input disabled?
     @Input() id: string = ''
     @Input() options: any[] = [];
     @Input() displayValue: string = '';
     @Input() dataValue: string = '';
+    @Input() placeholder: string = '';
     @Output() onSave: EventEmitter<string> = new EventEmitter();
     @Output() onCancel: EventEmitter<string> = new EventEmitter();
 
-    public isEmpty:boolean = true;
+    public isEmpty: boolean = true;
     private _value: any[] = []; // Private variable for input value
     private preValue: string = ''; // The value before clicking to edit
     private editing: boolean = false; // Is Component in edit mode?
@@ -83,34 +84,34 @@ export class RadioListEditorComponent implements ControlValueAccessor, OnInit {
 
     // Start the editting process for the input element
     edit(value: any) {
-        if (this.disabled == true) {
+        if (this.disabled === 'true') {
             return;
         }
 
         this.preValue = value;
         this.editing = true;
-        
+
         // Focus on the input element just as the editing begins
         setTimeout(() => this._renderer.invokeElementMethod(this.radiolistEditorControl,
             'focus', []));
     }
 
-    IsEmpty(): Boolean{
-        return this.isEmpty = this._value.length <= 0;
+    IsEmpty(): Boolean {
+        return (this._value == undefined || this._value.length <= 0);
     }
     updateSelectedChecks(event: any) {
         debugger;
         if (event.target.checked) {
-          if (this._value.indexOf(event.target.value) < 0) {
+            if (this._value.indexOf(event.target.value) < 0) {
                 this._value = [];
                 this._value.push(event.target.value);
-          }
+            }
         } else {
-          if (this._value.indexOf(event.target.name) > -1) {
-            this._value.splice(this._value.indexOf(event.target.value), 1);
-          }
+            if (this._value.indexOf(event.target.name) > -1) {
+                this._value.splice(this._value.indexOf(event.target.value), 1);
+            }
         }
-      }
+    }
 
     GetDisplayText(c: any): string {
         for (var i = 0; i < this.options.length; i++) {
