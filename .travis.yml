@@ -1,1 +1,5 @@
-language:"typescript"
+language:"nodejs"
+
+before_script:
+  - npm run compile
+
