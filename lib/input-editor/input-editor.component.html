@@ -1,8 +1,8 @@
 <div *ngIf="editing">
     <label class="col-form-label">{{label}}</label>
     <div class="input-group">
-        <input #inputEditorControl class="form-control" [required]="required" [id]="id" [(ngModel)]="value" [disabled]="disabled"
-            [type]="type" [placeholder]="placeholder" [maxlength]="stringlength">
+        <input #inputEditorControl class="form-control" [required]="required" [id]="id" [(ngModel)]="value" [type]="type" [placeholder]="placeholder"
+            [maxlength]="stringlength">
         <span class="input-group-btn">
             <button class="btn btn-sm btn-success" type="button" (click)="onSaveComplete()">
                 <i class="fa fa-check" aria-hidden="true"></i>
@@ -16,6 +16,9 @@
 <div *ngIf="!editing">
     <div class="form-group">
         <label class="col-form-label">{{label}}</label>
-        <div (click)="edit(value)" (focus)="edit(value);" tabindex="0" class="inline-edit">{{value}}&nbsp;</div>
+        <div *ngIf="IsEmpty()" (click)="edit(value)" (focus)="edit(value);" tabindex="0" class="inline-edit-empty">
+            {{placeholder}}&nbsp;
+        </div>
+        <div *ngIf="!IsEmpty()" (click)="edit(value)" (focus)="edit(value);" tabindex="0" [ngClass]="disabled == 'true' ? 'inline-no-edit' : 'inline-edit'">{{value}}&nbsp;</div>
     </div>
 </div>

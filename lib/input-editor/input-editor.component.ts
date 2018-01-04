@@ -9,31 +9,12 @@ const INLINE_EDIT_CONTROL_VALUE_ACCESSOR = {
 
 @Component({
   selector: 'input-editor',
-  template: '<div *ngIf="editing">'+
-  '<label class="col-form-label">{{label}}</label>'+
-  '<div class="input-group">'+
-      '<input #inputEditorControl class="form-control" [required]="required" [id]="id" [(ngModel)]="value" [disabled]="disabled"'+
-          '[type]="type" [placeholder]="placeholder" [maxlength]="stringlength">'+
-      '<span class="input-group-btn">'+
-          '<button class="btn btn-sm btn-success" type="button" (click)="onSaveComplete()">'+
-              '<i class="fa fa-check" aria-hidden="true"></i>'+
-          '</button>'+
-          '<button class="btn btn-sm btn-danger" type="button" (click)="onCancelComplete()">'+
-              '<i class="fa fa-times" aria-hidden="true"></i>'+
-          '</button>'+
-      '</span>'+
-  '</div>'+
-'</div>'+
-'<div *ngIf="!editing">'+
-  '<div class="form-group">'+
-      '<label class="col-form-label">{{label}}</label>'+
-      '<div (click)="edit(value)" (focus)="edit(value);" tabindex="0" class="inline-edit">{{value}}&nbsp;</div>'+
-  '</div>'+
-'</div>',
+  templateUrl: './input-editor.component.html' ,
   styles: [
     '.col-form-label { padding-bottom: 0px !important; }',
-    '.inline-edit { text-decoration: none; border-bottom: #A8B9CE dashed 1px; cursor: pointer; width: auto;}',
-    '.inline-no-edit { text-decoration: none; border-bottom: #959596 dashed 1px; cursor: pointer; width: auto;}'
+    '.inline-edit { text-decoration: none; border-bottom: #007bff dashed 1px; cursor: pointer; width: auto;}',
+    '.inline-no-edit { text-decoration: none; border-bottom: #959596 dashed 1px; cursor: not-allowed; width: auto;}',
+    '.inline-edit-empty{ text-decoration: none; border-bottom: red dashed 1px; cursor: pointer; width: auto; color: #b9b8b8;}'
   ],
   providers: [INLINE_EDIT_CONTROL_VALUE_ACCESSOR]
 })
@@ -44,8 +25,8 @@ export class InputEditorComponent implements ControlValueAccessor, OnInit {
   @Input() placeholder: string = ''; // Placeholder value ofr input element
   @Input() type: string = 'text'; // The type of input element
   @Input() required: boolean = false; // Is input requried?
-  @Input() disabled: boolean = false; // Is input disabled?
-  @Input() id:string = ''
+  @Input() disabled: string = 'false'; // Is input disabled?
+  @Input() id: string = ''
   @Input() stringlength: string = ''
   @Output() onSave: EventEmitter<string> = new EventEmitter();
   @Output() onCancel: EventEmitter<string> = new EventEmitter();
@@ -63,7 +44,7 @@ export class InputEditorComponent implements ControlValueAccessor, OnInit {
     this.onSave.emit('clicked save');
   }
 
-  onCancelComplete(){
+  onCancelComplete() {
     this.onCancel.emit('clicked cancel');
   }
 
@@ -101,15 +82,19 @@ export class InputEditorComponent implements ControlValueAccessor, OnInit {
 
   // Start the editting process for the input element
   edit(value: any) {
-    if (this.disabled==true) {
+    if (this.disabled === "true") {
       return;
-  }
+    }
 
     this.preValue = value;
     this.editing = true;
     // Focus on the input element just as the editing begins
     setTimeout(() => this._renderer.invokeElementMethod(this.inputEditorControl,
       'focus', []));
+  }
+
+  IsEmpty(): Boolean{
+    return (this._value === undefined || this._value == '');
   }
 
   ngOnInit() {

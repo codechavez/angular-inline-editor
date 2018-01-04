@@ -6,7 +6,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AppComponent implements OnInit {
 
-    name: string = 'HOLA WOLRD';
+    name: string = 'John';
+    middle: string = 'D.';
+    last:string;
     genderOptions: Gender[]=[ new Gender("F","Female"), new Gender("M","Male"), new Gender("T", "Trans"), new Gender("G","Gay")];
     selectedGender: Gender = new Gender("M","Male");
     textArea:string="We print a wide selection of eye-catching materials, including copies, documents, presentations, brochures, flyers, postcards and business cards. You can also count on us for all your banner and graphic printing, as well as signs, posters and engineering prints."

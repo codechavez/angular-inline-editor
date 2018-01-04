@@ -9,7 +9,7 @@ const TEXTAREA_EDIT_VALUE_ACCESSOR = {
 
 @Component({
     selector: 'textarea-editor',
-    templateUrl: 'textarea-editor.component.html',
+    templateUrl: './textarea-editor.component.html',
     styles: [
         '.col-form-label { padding-bottom: 0px !important; }',
         '.inline-edit { text-decoration: none; border-bottom: #007bff dashed 1px; cursor: pointer; width: auto;}',
@@ -81,7 +81,6 @@ export class TextAreaEditorComponent implements ControlValueAccessor, OnInit {
 
     // Start the editting process for the input element
     edit(value: any) {
-        debugger;
         if (this.disabled === "true") {
             return;
         }

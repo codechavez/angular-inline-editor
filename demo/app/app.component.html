@@ -1,12 +1,16 @@
 <div class="container">
     <h3>input editor</h3>
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-4">
             <input-editor label="First Name" id="txtname" [(ngModel)]="name" type="text" placeholder="Enter First Name" (onSave)="sampleClick()">
             </input-editor>
         </div>
-        <div class="col-md-6">
-            <input-editor label="Last Name" id="txtlast" [(ngModel)]="lastname" type="text" placeholder="Enter Last Name" (onSave)="sampleClick()">
+        <div class="col-md-4">
+            <input-editor label="Middle Name" id="txtmiddlename" [(ngModel)]="middle" type="text" disabled="true" (onSave)="sampleClick()">
+            </input-editor>
+        </div>
+        <div class="col-md-4">
+            <input-editor label="Last Name" id="txtlast" [(ngModel)]="last" type="text" stringlength="10" placeholder="Enter Last Name" (onSave)="sampleClick()">
             </input-editor>
         </div>
     </div>

@@ -1,6 +1,6 @@
 {
   "name": "angular-inline-editors",
-  "version": "1.0.0-beta.20",
+  "version": "1.0.0-beta.22",
   "private": false,
   "license": "MIT",
   "main": "./dist/index.js",
@@ -16,7 +16,10 @@
   "scripts": {
     "postinstall": "typings install --global --save dt~core-js",
     "compile":"D:\\Repositories\\github\\angular-inline-edit\\angular-inline-editor\\node_modules\\.bin\\tsc --rootDir lib --outDir dist",
-    "serve": "webpack-dev-server --host localhost --port 3030 --inline --progress"
+    "html":"XCOPY /S /y .\\lib\\*.html .\\dist",
+    "css":"XCOPY /S /y .\\lib\\*.css .\\dist",
+    "serve": "webpack-dev-server --host localhost --port 3030 --inline --progress",
+    "distro": "npm run compile && npm run html && npm run css"
   },
   "dependencies": {
     "@angular/common": "^5.1.2",

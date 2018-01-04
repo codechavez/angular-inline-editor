@@ -24,12 +24,12 @@
 <div *ngIf="!editing">
     <div class="form-group">
         <label class="col-form-label">{{label}}</label>
-        <div *ngIf="IsEmpty()" (click)="edit(value)" (focus)="edit(value);" tabindex="0" class="row">    
-                <div class="col-md-1">
-                        <span class="inline-edit-empty">Empty</span>
-                </div>
+        <div *ngIf="IsEmpty()" (click)="edit(value)" (focus)="edit(value);" tabindex="0" class="row">
+            <div class="col-md-1">
+                <span class="inline-edit-empty">Empty</span>
             </div>
-        <div *ngIf="!IsEmpty()" (click)="edit(value)" (focus)="edit(value);" tabindex="0" class="row">    
+        </div>
+        <div *ngIf="!IsEmpty()" (click)="edit(value)" (focus)="edit(value);" tabindex="0" class="row">
             <div *ngFor="let c of value" class="col-md-1">
                 <span class="inline-edit">{{GetDisplayText(c)}}</span>
             </div>
