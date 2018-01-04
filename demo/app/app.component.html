@@ -47,12 +47,16 @@
     </div>
     <h3>checklist editor</h3>
     <div class="row">
-        <div class="col-md-6">
-            <checklist-editor [options]="genderOptions" [(ngModel)]="selectedGenders" label="Gender" displayValue="longName" dataValue="shortName"
+        <div class="col-md-4">
+            <checklist-editor [options]="langOptions" [(ngModel)]="selectedLang" label="Speaks" displayValue="longName" dataValue="shortName"
                 (onSave)="sampleClick()"></checklist-editor>
         </div>
-        <div class="col-md-6">
-
+        <div class="col-md-4">
+            <checklist-editor [options]="langOptions" [(ngModel)]="selectedLang" label="Speaks" disabled="true" displayValue="longName"
+                dataValue="shortName" (onSave)="sampleClick()"></checklist-editor>
+        </div>
+        <div class="col-md-4">
+            <checklist-editor [options]="langOptions" [(ngModel)]="emptySelectedLang" label="Speaks" displayValue="longName" dataValue="shortName" placeholder="Select languages"></checklist-editor>
         </div>
     </div>
 

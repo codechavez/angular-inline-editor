@@ -17,8 +17,9 @@ export class AppComponent implements OnInit {
     // TextArea
     textArea:string="We print a wide selection of eye-catching materials, including copies, documents, presentations, brochures, flyers, postcards and business cards. You can also count on us for all your banner and graphic printing, as well as signs, posters and engineering prints."
     emptyTextArea:string;
-
-
+    // checklist
+    langOptions: Language[] = [new Language("en","English"), new Language("sp","Spanish"), new Language("it","Italian")];
+    selectedLang: string[]=['en','sp'];
 
     genderOptions: Gender[]=[ new Gender("F","Female"), new Gender("M","Male"), new Gender("T", "Trans"), new Gender("G","Gay")];
     selectedGender: Gender = new Gender("M","Male");
@@ -42,6 +43,15 @@ export class AppComponent implements OnInit {
 
 export class Gender{
 
+    constructor(short:string, long:string){
+        this.shortName = short;
+        this.longName = long;
+    }
+    shortName:string;
+    longName:string;
+}
+
+export class Language{
     constructor(short:string, long:string){
         this.shortName = short;
         this.longName = long;

@@ -12,8 +12,9 @@ const CHECKLIST_EDIT_CONTROL_VALUE_ACCESSOR = {
   templateUrl: './checklist-editor.component.html',
   styles: [
     '.col-form-label { padding-bottom: 0px !important; }',
-    '.inline-edit { text-decoration: none; border-bottom: #A8B9CE dashed 1px; cursor: pointer; width: auto;}',
-    '.inline-no-edit { text-decoration: none; border-bottom: #959596 dashed 1px; cursor: pointer; width: auto;}'
+    '.inline-edit { text-decoration: none; border-bottom: #007bff dashed 1px; cursor: pointer; width: auto;}',
+    '.inline-no-edit { text-decoration: none; border-bottom: #959596 dashed 1px; cursor: not-allowed; width: auto;}',
+    '.inline-edit-empty{ text-decoration: none; border-bottom: red dashed 1px; cursor: pointer; width: auto; color: #b9b8b8;}'
   ],
   providers: [CHECKLIST_EDIT_CONTROL_VALUE_ACCESSOR]
 })
@@ -24,7 +25,7 @@ export class CheckListEditorComponent implements ControlValueAccessor, OnInit {
   @Input() placeholder: string = ''; // Placeholder value ofr input element
   @Input() type: string = 'text'; // The type of input element
   @Input() required: boolean = false; // Is input requried?
-  @Input() disabled: boolean = false; // Is input disabled?
+  @Input() disabled: string = 'false'; // Is input disabled?
   @Input() id: string = ''
   @Input() options: any[] = [];
   @Input() displayValue: string = '';
@@ -84,7 +85,7 @@ export class CheckListEditorComponent implements ControlValueAccessor, OnInit {
 
   // Start the editting process for the input element
   edit(value: any) {
-    if (this.disabled == true) {
+    if (this.disabled === 'true') {
       return;
     }
 
@@ -96,7 +97,6 @@ export class CheckListEditorComponent implements ControlValueAccessor, OnInit {
   }
 
   updateSelectedChecks(event: any) {
-    debugger;
     if (event.target.checked) {
       if (this.value.indexOf(event.target.value) < 0) {
         this.value.push(event.target.value);
@@ -109,16 +109,18 @@ export class CheckListEditorComponent implements ControlValueAccessor, OnInit {
   }
 
 
-  GetDisplayText(c:any):string{
-    for(var i=0;i<this.options.length;i++){
-      if(this.options[i][this.dataValue]==c){
+  GetDisplayText(c: any): string {
+    for (var i = 0; i < this.options.length; i++) {
+      if (this.options[i][this.dataValue] == c) {
         console.log(this.options[i][this.displayValue]);
         return this.options[i][this.displayValue];
       }
-    } 
+    }
   }
 
-
+  IsEmpty(): Boolean {
+    return (this._value == undefined || this._value.length < 0);
+  }
 
 
   ngOnInit() {
