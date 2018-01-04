@@ -6,9 +6,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AppComponent implements OnInit {
 
+    // Input 
     name: string = 'John';
     middle: string = 'D.';
     last:string;
+    // Select
+    countryOptions: Country[]=[new Country("US","United States"), new Country("FR","France"), new Country("IT","Italy")];
+    selectedCountry: string="US";
+    emptyselectedCountry:string;
+
+
+
     genderOptions: Gender[]=[ new Gender("F","Female"), new Gender("M","Male"), new Gender("T", "Trans"), new Gender("G","Gay")];
     selectedGender: Gender = new Gender("M","Male");
     textArea:string="We print a wide selection of eye-catching materials, including copies, documents, presentations, brochures, flyers, postcards and business cards. You can also count on us for all your banner and graphic printing, as well as signs, posters and engineering prints."
@@ -31,6 +39,15 @@ export class AppComponent implements OnInit {
 
 export class Gender{
 
+    constructor(short:string, long:string){
+        this.shortName = short;
+        this.longName = long;
+    }
+    shortName:string;
+    longName:string;
+}
+
+export class Country{
     constructor(short:string, long:string){
         this.shortName = short;
         this.longName = long;

@@ -16,14 +16,20 @@
     </div>
     <h3>select editor</h3>
     <div class="row">
-
-        <div class="col-md-6">
-            <select-editor label="Gender" id="dpGener" [(ngModel)]="selectedGenders" [options]="genderOptions" displayValue="longName"
+        <div class="col-md-4">
+            <select-editor label="Country" id="dpGener" [(ngModel)]="selectedCountry" [options]="countryOptions" displayValue="longName"
                 dataValue="shortName" (onSave)="sampleClick()">
             </select-editor>
         </div>
-        <div class="col-md-6">
-            
+        <div class="col-md-4">
+            <select-editor label="Country" id="dpGener" [(ngModel)]="selectedCountry" [options]="countryOptions" displayValue="longName"
+                dataValue="shortName" disabled="true">
+            </select-editor>
+        </div>
+        <div class="col-md-4">
+            <select-editor label="Country" id="dpGener" [(ngModel)]="emptyselectedCountry" [options]="countryOptions" placeholder="Select a country" displayValue="longName"
+                dataValue="shortName">
+            </select-editor>
         </div>
     </div>
     <h3>textarea editor</h3>

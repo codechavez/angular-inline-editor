@@ -1,5 +1,5 @@
-import { Component, Input, ElementRef, ViewChild,Renderer, forwardRef, Output, EventEmitter, OnInit } from '@angular/core';
-import { ControlValueAccessor,NG_VALUE_ACCESSOR } from '@angular/forms';
+import { Component, Input, ElementRef, ViewChild, Renderer, forwardRef, Output, EventEmitter, OnInit } from '@angular/core';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 const SELECT_CONTROL_VALUE_ACCESSOR = {
   provide: NG_VALUE_ACCESSOR,
@@ -12,20 +12,23 @@ const SELECT_CONTROL_VALUE_ACCESSOR = {
   templateUrl: './select-editor.component.html',
   styles: [
     '.col-form-label { padding-bottom: 0px !important; }',
-    '.inline-edit { text-decoration: none; border-bottom: #A8B9CE dashed 1px; cursor: pointer; width: auto;}'
+    '.inline-edit { text-decoration: none; border-bottom: #007bff dashed 1px; cursor: pointer; width: auto;}',
+    '.inline-no-edit { text-decoration: none; border-bottom: #959596 dashed 1px; cursor: not-allowed; width: auto;}',
+    '.inline-edit-empty{ text-decoration: none; border-bottom: red dashed 1px; cursor: pointer; width: auto; color: #b9b8b8;}'
   ],
   providers: [SELECT_CONTROL_VALUE_ACCESSOR]
 })
 
-export class SelectEditorComponent implements ControlValueAccessor, OnInit {  
+export class SelectEditorComponent implements ControlValueAccessor, OnInit {
   @ViewChild('selectEditorControl') selectEditorControl: ElementRef;
   @Input() label: string = '';  // Label value for input element
   @Input() required: boolean = false; // Is input requried?
-  @Input() disabled: boolean = false; // Is input disabled?
-  @Input() id:string = '';
-  @Input() options:any[]=[];
-  @Input() displayValue:string='';
-  @Input() dataValue:string='';
+  @Input() disabled: string = 'false'; // Is input disabled?
+  @Input() id: string = '';
+  @Input() options: any[] = [];
+  @Input() displayValue: string = '';
+  @Input() dataValue: string = '';
+  @Input() placeholder:string='';
   @Output() onSave: EventEmitter<string> = new EventEmitter();
   @Output() onCancel: EventEmitter<string> = new EventEmitter();
 
@@ -35,16 +38,16 @@ export class SelectEditorComponent implements ControlValueAccessor, OnInit {
   public onChange: any = Function.prototype; // Trascend the onChange event
   public onTouched: any = Function.prototype; // Trascend the onTouch event
 
-  constructor(private _elementRef: ElementRef,private _renderer: Renderer) { }
+  constructor(private _elementRef: ElementRef, private _renderer: Renderer) { }
 
   onSaveComplete() {
     this.onSave.emit('clicked save');
   }
 
-  onCancelComplete(){
+  onCancelComplete() {
     this.onCancel.emit('clicked cancel');
   }
-  
+
   // Control Value Accessors for ngModel
   get value(): any {
     return this._value;
@@ -74,9 +77,9 @@ export class SelectEditorComponent implements ControlValueAccessor, OnInit {
 
   // Start the editting process for the input element
   edit(value: any) {
-    if (this.disabled==true) {
+    if (this.disabled === 'true') {
       return;
-  }
+    }
     this.preValue = value;
     this.editing = true;
     // Focus on the input element just as the editing begins
@@ -84,12 +87,25 @@ export class SelectEditorComponent implements ControlValueAccessor, OnInit {
       'focus', []));
   }
 
-  isSelected(opt:any):boolean{
-    return opt[this.dataValue]===this.value[this.dataValue]
+  isSelected(opt: any): boolean {
+    return opt[this.dataValue] === this.value[this.dataValue]
   }
 
   ngOnInit() {
-    
+
   }
-  
+
+  GetDisplayText(c: any): string {
+    for (var i = 0; i < this.options.length; i++) {
+      if (this.options[i][this.dataValue] == c) {
+        console.log(this.options[i][this.displayValue]);
+        return this.options[i][this.displayValue];
+      }
+    }
+  }
+
+  IsEmpty(): Boolean{
+    return (this._value === undefined || this._value == '');
+  }
+
 }
