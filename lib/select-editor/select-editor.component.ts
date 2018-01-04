@@ -9,7 +9,31 @@ const SELECT_CONTROL_VALUE_ACCESSOR = {
 
 @Component({
   selector: 'select-editor',
-  templateUrl: './select-editor.component.html',
+  template: '<div *ngIf="editing">'+
+  '<label class="col-form-label">{{label}}</label>'+
+  '<div class="input-group">'+
+      '<select #selectEditorControl class="form-control" [(ngModel)]="value">'+
+          '<option *ngFor="let opt of options" [ngValue]="opt">'+  
+              '{{opt[displayValue]}}'+
+          '</option>'+
+      '</select>'+
+      '<span class="input-group-btn">'+
+              '<button class="btn btn-sm btn-success" type="button" (click)="onSaveComplete()">'+
+                  '<i class="fa fa-check" aria-hidden="true"></i>'+
+              '</button>'+
+              '<button class="btn btn-sm btn-danger" type="button" (click)="onCancelComplete()">'+
+                  '<i class="fa fa-times" aria-hidden="true"></i>'+
+              '</button>'+
+          '</span>'+
+  '</div>'+
+'</div>'+
+'<div *ngIf="!editing">'+
+  '<div class="form-group">'+
+      '<label class="col-form-label">{{label}}</label>'+
+      '<div *ngIf="IsEmpty()" (click)="edit(value)" (focus)="edit(value);" tabindex="0" class="inline-edit-empty">{{placeholder}}&nbsp;  </div>'+
+      '<div *ngIf="!IsEmpty()" (click)="edit(value)" (focus)="edit(value);" tabindex="0" [ngClass]="disabled == \'true\' ? \'inline-no-edit\' : \'inline-edit\'">{{GetDisplayText(value)}}&nbsp;</div>'+
+  '</div>'+
+'</div>',
   styles: [
     '.col-form-label { padding-bottom: 0px !important; }',
     '.inline-edit { text-decoration: none; border-bottom: #007bff dashed 1px; cursor: pointer; width: auto;}',
@@ -18,7 +42,6 @@ const SELECT_CONTROL_VALUE_ACCESSOR = {
   ],
   providers: [SELECT_CONTROL_VALUE_ACCESSOR]
 })
-
 export class SelectEditorComponent implements ControlValueAccessor, OnInit {
   @ViewChild('selectEditorControl') selectEditorControl: ElementRef;
   @Input() label: string = '';  // Label value for input element
