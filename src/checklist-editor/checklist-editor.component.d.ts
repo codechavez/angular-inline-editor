@@ -1,0 +1,35 @@
+import { ElementRef, Renderer, OnInit, EventEmitter } from '@angular/core';
+import { ControlValueAccessor } from '@angular/forms';
+export declare class CheckListEditorComponent implements ControlValueAccessor, OnInit {
+    private _renderer;
+    checklistEditorControl: ElementRef;
+    label: string;
+    placeholder: string;
+    type: string;
+    required: boolean;
+    disabled: boolean;
+    id: string;
+    options: any[];
+    displayValue: string;
+    dataValue: string;
+    stringlength: string;
+    onSave: EventEmitter<string>;
+    onCancel: EventEmitter<string>;
+    private _value;
+    private preValue;
+    private editing;
+    onChange: any;
+    onTouched: any;
+    constructor(element: ElementRef, _renderer: Renderer);
+    onSaveComplete(): void;
+    onCancelComplete(): void;
+    value: any;
+    writeValue(value: any): void;
+    registerOnChange(fn: (_: any) => {}): void;
+    registerOnTouched(fn: () => {}): void;
+    onBlur($event: Event): void;
+    edit(value: any): void;
+    updateSelectedChecks(event: any): void;
+    GetDisplayText(c: any): string;
+    ngOnInit(): void;
+}

@@ -8,6 +8,7 @@
         "experimentalDecorators": true,
         "lib": ["es2016", "dom"],
         "noImplicitAny": true,
+        "declaration": true,
         "suppressImplicitAnyIndexErrors": true,
         "forceConsistentCasingInFileNames": true
     }

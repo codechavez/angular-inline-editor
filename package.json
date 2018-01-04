@@ -1,8 +1,10 @@
 {
   "name": "angular-inline-editors",
-  "version": "1.0.0-beta.10",
-  "private": true,
+  "version": "1.0.0-beta.17",
+  "private": false,
   "license": "MIT",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "author": {
     "name": "Victor A Chavez",
     "email": "codechavez@outlook.com"
@@ -15,7 +17,8 @@
     "postinstall": "typings install --global --save dt~core-js",
     "transpile": "D:\\Repositories\\github\\angular-inline-edit\\angular-inline-editor\\node_modules\\.bin\\tsc --rootDir src --outDir dist",
     "package": "D:\\Repositories\\github\\angular-inline-edit\\angular-inline-editor\\node_modules\\.bin\\webpack --progress",
-    "serve": "webpack-dev-server --inline --progress"
+    "serve": "webpack-dev-server --inline --progress",
+    "distro": "npm run transpile && npm run package"
   },
   "dependencies": {
     "@angular/common": "^5.1.2",
