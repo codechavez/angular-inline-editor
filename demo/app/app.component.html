@@ -68,12 +68,27 @@
                 (onSave)="sampleClick()"></radiolist-editor>
         </div>
         <div class="col-md-4">
-            <radiolist-editor [options]="genderOptions" [(ngModel)]="selectedGender" label="Gender" displayValue="longName" dataValue="shortName" disabled="true"
-                (onSave)="sampleClick()"></radiolist-editor>
+            <radiolist-editor [options]="genderOptions" [(ngModel)]="selectedGender" label="Gender" displayValue="longName" dataValue="shortName"
+                disabled="true" (onSave)="sampleClick()"></radiolist-editor>
         </div>
         <div class="col-md-4">
-            <radiolist-editor [options]="genderOptions" [(ngModel)]="emptySelectedGender" label="Gender" displayValue="longName" dataValue="shortName" placeholder="Select gender"
-                (onSave)="sampleClick()"></radiolist-editor>
+            <radiolist-editor [options]="genderOptions" [(ngModel)]="emptySelectedGender" label="Gender" displayValue="longName" dataValue="shortName"
+                placeholder="Select gender" (onSave)="sampleClick()"></radiolist-editor>
+        </div>
+    </div>
+
+    <h3>checkbox editor</h3>
+    <div class="row">
+        <div class="col-md-4">
+            <checkbox-editor checkedDisplayValue="Remember Me!!" uncheckedDisplayValue="Don't Remember Me" [(ngModel)]="checkboxValue"
+                label="Remember me?" (onSave)="sampleClick()"></checkbox-editor>
+        </div>
+        <div class="col-md-4">
+            <checkbox-editor checkedDisplayValue="F*ck Yeah!!" uncheckedDisplayValue="Oh, maybe?" [(ngModel)]="checkedboxValue" label="Are you awesome?"
+                disabled="true"></checkbox-editor>
+        </div>
+        <div class="col-md-4">
+            <checkbox-editor checkedDisplayValue="F*ck Yeah!!" uncheckedDisplayValue="Oh, maybe?" [(ngModel)]="checkedboxValue" label="Are you awesome?"></checkbox-editor>
         </div>
     </div>
 

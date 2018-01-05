@@ -25,12 +25,16 @@ export class AppComponent implements OnInit {
     selectedGender: string='M';
     emptySelectedGender:string;
 
+    checkboxValue:boolean = false;
+    checkedboxValue:boolean = true;
+
     constructor() { }
 
     ngOnInit() { }  
 
     sampleClick(){
         console.log("you clicked me!");
+        console.log(this.checkboxValue);
     }
 }
 

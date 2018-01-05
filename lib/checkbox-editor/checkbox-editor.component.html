@@ -1,0 +1,24 @@
+<div *ngIf="editing">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-check">
+                <label #checkboxEditorControl class="form-check-label">
+                    <input type="checkbox" class="form-check-input" [(checked)]="value" (change)="checkedChange($event)" />&nbsp;{{label}}
+                </label>
+            </div>
+        </div>
+        <div class="col-md-6 text-right">
+            <button class="btn btn-sm btn-success" type="button" (click)="onSaveComplete()">
+                <i class="fa fa-check" aria-hidden="true"></i>
+            </button>
+            <button class="btn btn-sm btn-danger" type="button" (click)="onCancelComplete()">
+                <i class="fa fa-times" aria-hidden="true"></i>
+            </button>
+        </div>
+    </div>
+</div>
+<div *ngIf="!editing">
+    <div class="form-group">
+        <div (click)="edit(value)" (focus)="edit(value);" tabindex="0" [ngClass]="disabled == 'true' ? 'inline-no-edit' : 'inline-edit'">{{value == true ? checkedDisplayValue : uncheckedDisplayValue}}&nbsp;</div>
+    </div>
+</div>

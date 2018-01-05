@@ -7,6 +7,8 @@ import { SelectEditorModule } from "../../lib/select-editor/select-editor.module
 import { TextAreaEditorModule } from "../../lib/textarea-editor/textarea-editor.module";
 import { CheckListEditorModule } from "../../lib/checklist-editor/checklist-editor.module";
 import { RadioListEditorModule } from "../../lib/radiolist-editor/radiolist-editor.module";
+import { CheckBoxEditorModule } from "../../lib/checkbox-editor/checkbox-editor.module";
+
 import { AppComponent } from './app.component';
 
 @NgModule({
@@ -17,7 +19,8 @@ import { AppComponent } from './app.component';
     SelectEditorModule.forRoot(),
     TextAreaEditorModule.forRoot(),
     CheckListEditorModule.forRoot(),
-    RadioListEditorModule.forRoot()
+    RadioListEditorModule.forRoot(),
+    CheckBoxEditorModule.forRoot()
   ],
   declarations: [AppComponent],
   bootstrap: [AppComponent]

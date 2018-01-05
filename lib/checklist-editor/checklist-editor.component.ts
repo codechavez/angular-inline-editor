@@ -61,7 +61,6 @@ export class CheckListEditorComponent implements ControlValueAccessor, OnInit {
   @Input() options: any[] = [];
   @Input() displayValue: string = '';
   @Input() dataValue: string = '';
-  @Input() stringlength: string = ''
   @Output() onSave: EventEmitter<string> = new EventEmitter();
   @Output() onCancel: EventEmitter<string> = new EventEmitter();
 
