@@ -65,7 +65,6 @@ export class TagsEditorComponent implements ControlValueAccessor, OnInit {
   @ViewChild('tagsEditorControl') tagsEditorControl: ElementRef; // input DOM element
   @Input() label: string = '';  // Label value for input element
   @Input() placeholder: string = ''; // Placeholder value ofr input element
-  @Input() type: string = 'text'; // The type of input element
   @Input() required: boolean = false; // Is input requried?
   @Input() disabled: string = 'false'; // Is input disabled?
   @Input() id: string = ''
@@ -135,7 +134,17 @@ export class TagsEditorComponent implements ControlValueAccessor, OnInit {
   }
 
   IsTagsEmpty(value:string[]): Boolean{
-    return (this.value === null || this.value === undefined);
+    debugger;
+    var r: boolean;
+
+    r =  (this.value === null || this.value === undefined);
+    if(r===false){
+      if(value.length <= 0){
+        r=true;
+      }
+    }
+
+    return r;
   }
 
   removeTagItem(i:number){

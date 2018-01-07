@@ -42,7 +42,6 @@ export class AppComponent implements OnInit {
 
     sampleClick(){
         console.log("you clicked me!");
-        console.log(this.tags);
     }
 }
 
