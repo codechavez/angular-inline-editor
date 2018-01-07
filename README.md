@@ -1,8 +1,9 @@
 # angular-inline-editor | Straigth Forward Native UI Controls
 angular-inline-editor is a small Angular library that allows the experience to use editable elements (click-to-edit) with out the pain and/or hassle. 
 
-Follow me @ http://codechavez.com
-DEMO @ http://angularinlineeditorsdemo.azurewebsites.net
+* Follow me @ http://codechavez.com 
+* DEMO @ http://angularinlineeditorsdemo.azurewebsites.net
+* source code demo @ https://github.com/codechavez/angular-inline-editor-demo
 
 ## angular-inline-editor  
 [![npm version](https://badge.fury.io/js/angular-inline-editors.svg)](https://badge.fury.io/js/angular-inline-editors) [![Build Status](https://travis-ci.org/codechavez/angular-inline-editor.svg?branch=master)](https://travis-ci.org/codechavez/angular-inline-editor) 
