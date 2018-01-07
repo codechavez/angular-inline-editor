@@ -10,7 +10,38 @@ const CHECKLIST_EDIT_CONTROL_VALUE_ACCESSOR = {
 
 @Component({
   selector: 'checklist-editor',
-  templateUrl: 'checklist-editor.component.html',
+  template: '<div *ngIf="editing">'+
+  '<label class="col-form-label">{{label}}</label>'+
+  '<div class="row">'+
+      '<div class="form-check">'+
+          '<label #checklistEditorControl *ngFor="let item of options" class="form-check-label">'+
+              '<input type="checkbox" class="form-check-input" [value]="item[dataValue]" [name]="item[displayValue]" (change)="updateSelectedChecks($event)"'+
+                  '[checked]="(value && (-1 !== value.indexOf(item[dataValue])) ? \'checked\' : \'\')" />&nbsp;{{item[displayValue]}}&nbsp;&nbsp;'+
+          '</label>'+
+      '</div>'+
+  '</div>'+
+  '<div class="text-right">'+
+      '<button class="btn btn-sm btn-success" type="button" (click)="onSaveComplete()">'+
+          '<i class="fa fa-check" aria-hidden="true"></i>'+
+      '</button>'+
+      '<button class="btn btn-sm btn-danger" type="button" (click)="onCancelComplete()">'+
+          '<i class="fa fa-times" aria-hidden="true"></i>'+
+      '</button>'+
+  '</div>'+
+'</div>'+
+'<div *ngIf="!editing">'+
+  '<div class="form-group">'+
+     '<label class="col-form-label">{{label}}</label>'+
+      '<div *ngIf="IsChecklistEmpty()" (click)="edit(value)" (focus)="edit(value);" tabindex="0" class="inline-edit-empty">'+
+          '{{placeholder}}&nbsp;'+
+      '</div>'+
+      '<div *ngIf="!IsChecklistEmpty()" (click)="edit(value)" (focus)="edit(value);" tabindex="0" class="form-inline">'+
+          '<div *ngFor="let c of value">'+
+              '<span [ngClass]="disabled == \'true\' ? \'inline-no-edit\' : \'inline-edit\'">{{GetDisplayText(c)}}</span>&nbsp;&nbsp;'+
+          '</div>'+
+      '</div>'+
+  '</div>'+
+'</div>',
   styles: [
     '.col-form-label { padding-bottom: 0px !important; }',
     '.inline-edit { text-decoration: none; border-bottom: #007bff dashed 1px; cursor: pointer; width: auto;}',
