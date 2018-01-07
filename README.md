@@ -1,5 +1,5 @@
-# angular-inline-editor | Simple and easy to use.
-angular-inline-editor is a small Angular library that allows the experience to use editable elements (click-to-edit) without the pain and/or hassle. 
+# angular-inline-editors | Simple and easy to use.
+angular-inline-editors is a small Angular library that allows the experience to use editable elements (click-to-edit) without the pain and/or hassle. 
 
 * Follow me @ http://codechavez.com 
 * DEMO @ http://angularinlineeditorsdemo.azurewebsites.net
@@ -8,7 +8,7 @@ angular-inline-editor is a small Angular library that allows the experience to u
 ## angular-inline-editor  
 [![npm version](https://badge.fury.io/js/angular-inline-editors.svg)](https://badge.fury.io/js/angular-inline-editors) [![Build Status](https://travis-ci.org/codechavez/angular-inline-editor.svg?branch=master)](https://travis-ci.org/codechavez/angular-inline-editor) 
 ### Dependencies
-angular-inline-editor was built to work with Angular 4+, current dependencies are Bootstrap (3.3.7+) and FontAwesome. 
+angular-inline-editors was built to work with Angular 4+, current dependencies are Bootstrap (3.3.7+) and FontAwesome. 
 ### Road Map - Inline Editors
 * [x] input - text
 * [x] textarea
@@ -27,14 +27,14 @@ angular-inline-editor was built to work with Angular 4+, current dependencies ar
 * [ ] customize css/themes
 
 ## Getting Started
-1. install ***angular-inline-editor*** through [npm](https://www.npmjs.com/search?q=angular-inline-editor) package using the following command:
+1. install ***angular-inline-editors*** through [npm](https://www.npmjs.com/search?q=angular-inline-editor) package using the following command:
 
-        `npm install @codechavez/angular-inline-editor --save`
+        `npm install @codechavez/angular-inline-editors --save`
 
 2. Include Bootstrap (3.3.7+) and FontAwesome in your project. 
 
-### Adding angular-inline-editor to your Module
-Following the principle of Angular is based on Modules and you use what you want when you want to use it. You can add each angular-inline-editor separate. This means you add Modules based on what you need.
+### Adding angular-inline-editors to your Module
+Following the principle of Angular is based on Modules and you use what you want when you want to use it. You can add each angular-inline-editors separate. This means you add Modules based on what you need.
 
 ## How to use
 #### Add the module
@@ -70,11 +70,11 @@ import { SelectEditorModule } from 'angular-inline-editor';
 name:string;
 
 sampleClick(){
-  console.log(name);
+  console.log('clicked!!');
 }
 ```
 
-## angular-inline-editor API
+## angular-inline-editors API
 
 
 
