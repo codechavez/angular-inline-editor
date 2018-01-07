@@ -54,7 +54,7 @@ export class InputEditorComponent implements ControlValueAccessor, OnInit {
   @Output() onSave: EventEmitter<string> = new EventEmitter();
   @Output() onCancel: EventEmitter<string> = new EventEmitter();
 
-
+  private _originalValue:any;
   private _value: string = ''; // Private variable for input value
   private preValue: string = ''; // The value before clicking to edit
   private editing: boolean = false; // Is Component in edit mode?
@@ -70,6 +70,7 @@ export class InputEditorComponent implements ControlValueAccessor, OnInit {
 
   onCancelComplete() {
     this.editing=false;
+    this._value=this._originalValue;
     this.onCancel.emit('clicked cancel');
   }
   // Control Value Accessors for ngModel
@@ -112,9 +113,7 @@ export class InputEditorComponent implements ControlValueAccessor, OnInit {
 
     this.preValue = value;
     this.editing = true;
-    // Focus on the input element just as the editing begins
-    setTimeout(() => this._renderer.invokeElementMethod(this.inputEditorControl,
-      'focus', []));
+    this._originalValue=value;
   }
 
   IsInputTextEmpty(): Boolean{

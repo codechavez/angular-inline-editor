@@ -1,14 +1,14 @@
-<div *ngIf="editing">
+<div  #tagsEditorControl *ngIf="editing">
     <label class="col-form-label">{{label}}</label>
     <div class="input-group">
         <div class=tags>
             <ul class="tag-list">
-                <li class="tag-item" *ngFor="let t of tags; let i = index">
+                <li class="tag-item" *ngFor="let t of value; let i = index">
                     <span>{{t}}</span>
                     <a class="tag-remove-button" (click)="removeTagItem(i)">×</a>
                 </li>
             </ul>
-            <input #tagsEditorControl id="ngtags-control" type="text" class="tag-input" autocomplete="off" (keydown.enter)="addTag($event)" [placeholder]="placeholder">
+            <input id="ngtags-control" type="text" class="tag-input" autocomplete="off" (keydown.enter)="addTag($event)" [placeholder]="placeholder">
         </div>
     </div>
     <div class="text-right">

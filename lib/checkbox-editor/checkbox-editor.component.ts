@@ -53,6 +53,7 @@ export class CheckBoxEditorComponent implements ControlValueAccessor, OnInit {
     @Output() onSave: EventEmitter<string> = new EventEmitter();
     @Output() onCancel: EventEmitter<string> = new EventEmitter();
 
+    private _originalValue:any;
     display:string='';
     private _value: true; // Private variable for input value
     private preValue: string = ''; // The value before clicking to edit
@@ -69,6 +70,7 @@ export class CheckBoxEditorComponent implements ControlValueAccessor, OnInit {
     
       onCancelComplete() {
         this.editing=false;
+        this._value=this._originalValue;
         this.onCancel.emit('clicked cancel');
       }
 
@@ -110,6 +112,7 @@ export class CheckBoxEditorComponent implements ControlValueAccessor, OnInit {
 
         this.preValue = value;
         this.editing = true;
+        this._originalValue=value;
     }
 
     checkedChange(event:any){

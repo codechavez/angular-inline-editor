@@ -23,7 +23,7 @@
             </select-editor>
         </div>
         <div class="col-md-4">
-            <select-editor label="Country" id="dpGener" [(ngModel)]="selectedCountry" [options]="countryOptions" displayValue="longName"
+            <select-editor label="Country" id="dpGener" [(ngModel)]="disselectedCountry" [options]="countryOptions" displayValue="longName"
                 dataValue="shortName" disabled="true">
             </select-editor>
         </div>
@@ -39,7 +39,7 @@
             <textarea-editor [(ngModel)]="textArea" stringlength="300" id="nondisable" label="Bio" maxheight="200px" (onSave)="sampleClick()"></textarea-editor>
         </div>
         <div class="col-md-4">
-            <textarea-editor [(ngModel)]="textArea" disabled="true" id="disabled" stringlength="300" label="Bio" maxheight="200px" (onSave)="sampleClick()"></textarea-editor>
+            <textarea-editor [(ngModel)]="distextArea" disabled="true" id="disabled" stringlength="300" label="Bio" maxheight="200px" (onSave)="sampleClick()"></textarea-editor>
         </div>
         <div class="col-md-4">
             <textarea-editor [(ngModel)]="emptyTextArea" id="taempty" stringlength="300" label="Bio" maxheight="300px" placeholder="Enter Bio"></textarea-editor>
@@ -52,7 +52,7 @@
                 (onSave)="sampleClick()"></checklist-editor>
         </div>
         <div class="col-md-4">
-            <checklist-editor [options]="langOptions" [(ngModel)]="selectedLang" label="Speaks" disabled="true" displayValue="longName"
+            <checklist-editor [options]="langOptions" [(ngModel)]="disselectedLang" label="Speaks" disabled="true" displayValue="longName"
                 dataValue="shortName" (onSave)="sampleClick()"></checklist-editor>
         </div>
         <div class="col-md-4">

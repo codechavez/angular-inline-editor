@@ -74,6 +74,7 @@ export class TagsEditorComponent implements ControlValueAccessor, OnInit {
   @Output() onCancel: EventEmitter<string> = new EventEmitter();
 
   tags:string[]=[];
+  private _originalValue:any;
   private _value: string[] = []; // Private variable for input value
   private preValue: string[] = []; // The value before clicking to edit
   private editing: boolean = false; // Is Component in edit mode?
@@ -88,7 +89,9 @@ export class TagsEditorComponent implements ControlValueAccessor, OnInit {
   }
 
   onCancelComplete() {
+    debugger;
     this.editing=false;
+    this.value=this._originalValue;
     this.onCancel.emit('clicked cancel');
   }
 
@@ -124,14 +127,11 @@ export class TagsEditorComponent implements ControlValueAccessor, OnInit {
     if (this.disabled === "true") {
       return;
     }
-
-    var txt = 
+    debugger;
     this.preValue = value;
     this.editing = true;
     this.tags = this.value;
-    
-    // Focus on the input element just as the editing begins
-    setTimeout(() => this._renderer.invokeElementMethod(this.tagsEditorControl, 'focus', []));
+    if(value != null || value != undefined) this._originalValue=value.slice(0);
   }
 
   IsTagsEmpty(value:string[]): Boolean{
@@ -140,7 +140,7 @@ export class TagsEditorComponent implements ControlValueAccessor, OnInit {
 
   removeTagItem(i:number){
     this.tags.splice(i,1);
-    this.value=this.tags;
+    this._value=this.tags;
   }
 
   addTag(event:any){

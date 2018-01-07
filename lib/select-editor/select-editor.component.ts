@@ -60,16 +60,19 @@ export class SelectEditorComponent implements ControlValueAccessor, OnInit {
   private editing: boolean = false; // Is Component in edit mode?
   public onChange: any = Function.prototype; // Trascend the onChange event
   public onTouched: any = Function.prototype; // Trascend the onTouch event
+  private _originalValue:any;
 
   constructor(private _elementRef: ElementRef, private _renderer: Renderer) { }
 
   onSaveComplete() {
+    console.log(this.value);
     this.onSave.emit('clicked save');
     this.editing=false;
   }
 
   onCancelComplete() {
     this.editing=false;
+    this._value=this._originalValue;
     this.onCancel.emit('clicked cancel');
   }
 
@@ -107,9 +110,8 @@ export class SelectEditorComponent implements ControlValueAccessor, OnInit {
     }
     this.preValue = value;
     this.editing = true;
-    // Focus on the input element just as the editing begins
-    setTimeout(() => this._renderer.invokeElementMethod(this.selectEditorControl,
-      'focus', []));
+    this._originalValue=value;
+  
   }
 
   isSelected(opt: any): boolean {
@@ -121,11 +123,13 @@ export class SelectEditorComponent implements ControlValueAccessor, OnInit {
   }
 
   GetDisplayText(c: any): string {
-    for (var i = 0; i < this.options.length; i++) {
-      if (this.options[i][this.dataValue] == c) {
-        return this.options[i][this.displayValue];
-      }
-    }
+    return c[this.displayValue];
+
+    // for (var i = 0; i < this.options.length; i++) {
+    //   if (this.options[i][this.dataValue] == c) {
+    //     return this.options[i][this.displayValue];
+    //   }
+    // }
   }
 
   IsSelectEmpty(): Boolean{

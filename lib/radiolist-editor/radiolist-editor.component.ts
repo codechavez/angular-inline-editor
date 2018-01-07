@@ -60,6 +60,7 @@ export class RadioListEditorComponent implements ControlValueAccessor, OnInit {
     @Output() onCancel: EventEmitter<string> = new EventEmitter();
 
     public isEmpty: boolean = true;
+    private _originalValue:any;
     private _value: any[] = []; // Private variable for input value
     private preValue: string = ''; // The value before clicking to edit
     private editing: boolean = false; // Is Component in edit mode?
@@ -75,6 +76,7 @@ export class RadioListEditorComponent implements ControlValueAccessor, OnInit {
     
       onCancelComplete() {
         this.editing=false;
+        this._value=this._originalValue;
         this.onCancel.emit('clicked cancel');
       }
 
@@ -119,16 +121,14 @@ export class RadioListEditorComponent implements ControlValueAccessor, OnInit {
 
         this.preValue = value;
         this.editing = true;
-
-        // Focus on the input element just as the editing begins
-        setTimeout(() => this._renderer.invokeElementMethod(this.radiolistEditorControl,
-            'focus', []));
+        this._originalValue=value;
     }
 
     IsRadioListEmpty(): Boolean {
         return (this._value == undefined || this._value.length <= 0);
     }
     updateSelectedChecks(event: any) {
+        if(this._value===null || this._value === undefined) this._value = [];
         if (event.target.checked) {
             if (this._value.indexOf(event.target.value) < 0) {
                 this._value = [];

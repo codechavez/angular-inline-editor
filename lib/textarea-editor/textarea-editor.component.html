@@ -1,7 +1,7 @@
 <div *ngIf="editing">
     <label class="col-form-label">{{label}}</label>
     <div class="input-group">
-        <textarea [id]="id" [(ngModel)]="value" [maxlength]="stringlength" [style.height]="maxheight" class="form-control"
+        <textarea [id]="id" [(ngModel)]="value" style="word-wrap: break-word;" [maxlength]="stringlength" [style.height]="maxheight" class="form-control"
             wrap="hard">
             </textarea>
         <span class="input-group-btn">
