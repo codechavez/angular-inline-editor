@@ -64,12 +64,13 @@ export class CheckBoxEditorComponent implements ControlValueAccessor, OnInit {
 
     onSaveComplete() {
         this.onSave.emit('clicked save');
-        this.editing = false;
-    }
-
-    onCancelComplete() {
+        this.editing=false;
+      }
+    
+      onCancelComplete() {
+        this.editing=false;
         this.onCancel.emit('clicked cancel');
-    }
+      }
 
     // Control Value Accessors for ngModel
     get value(): any {

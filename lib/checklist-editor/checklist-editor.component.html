@@ -20,10 +20,10 @@
 <div *ngIf="!editing">
     <div class="form-group">
         <label class="col-form-label">{{label}}</label>
-        <div *ngIf="IsEmpty()" (click)="edit(value)" (focus)="edit(value);" tabindex="0" class="inline-edit-empty">
+        <div *ngIf="IsChecklistEmpty()" (click)="edit(value)" (focus)="edit(value);" tabindex="0" class="inline-edit-empty">
             {{placeholder}}&nbsp;
         </div>
-        <div *ngIf="!IsEmpty()" (click)="edit(value)" (focus)="edit(value);" tabindex="0" class="form-inline">
+        <div *ngIf="!IsChecklistEmpty()" (click)="edit(value)" (focus)="edit(value);" tabindex="0" class="form-inline">
             <div *ngFor="let c of value">
                 <span [ngClass]="disabled == 'true' ? 'inline-no-edit' : 'inline-edit'">{{GetDisplayText(c)}}</span>&nbsp;&nbsp;
             </div>

@@ -31,10 +31,10 @@ const RADIOLIST_EDIT_CONTROL_VALUE_ACCESSOR = {
 '<div *ngIf="!editing">'+
     '<div class="form-group">'+
         '<label class="col-form-label">{{label}}</label>'+
-        '<div *ngIf="IsEmpty()" (click)="edit(value)" (focus)="edit(value);" tabindex="0" class="inline-edit-empty">'+
+        '<div *ngIf="IsRadioListEmpty()" (click)="edit(value)" (focus)="edit(value);" tabindex="0" class="inline-edit-empty">'+
             '{{placeholder}}&nbsp;'+
         '</div>'+
-        '<div *ngIf="!IsEmpty()" (click)="edit(value)" (focus)="edit(value);" tabindex="0" [ngClass]="disabled == \'true\' ? \'inline-no-edit\' : \'inline-edit\'">{{GetDisplayText(value)}}&nbsp;</div>'+
+        '<div *ngIf="!IsRadioListEmpty()" (click)="edit(value)" (focus)="edit(value);" tabindex="0" [ngClass]="disabled == \'true\' ? \'inline-no-edit\' : \'inline-edit\'">{{GetDisplayText(value)}}&nbsp;</div>'+
     '</div>'+
 '</div>',
     styles: [
@@ -70,11 +70,13 @@ export class RadioListEditorComponent implements ControlValueAccessor, OnInit {
 
     onSaveComplete() {
         this.onSave.emit('clicked save');
-    }
-
-    onCancelComplete() {
+        this.editing=false;
+      }
+    
+      onCancelComplete() {
+        this.editing=false;
         this.onCancel.emit('clicked cancel');
-    }
+      }
 
     // Control Value Accessors for ngModel
     get value(): any {
@@ -123,11 +125,10 @@ export class RadioListEditorComponent implements ControlValueAccessor, OnInit {
             'focus', []));
     }
 
-    IsEmpty(): Boolean {
+    IsRadioListEmpty(): Boolean {
         return (this._value == undefined || this._value.length <= 0);
     }
     updateSelectedChecks(event: any) {
-        debugger;
         if (event.target.checked) {
             if (this._value.indexOf(event.target.value) < 0) {
                 this._value = [];
@@ -143,7 +144,6 @@ export class RadioListEditorComponent implements ControlValueAccessor, OnInit {
     GetDisplayText(c: any): string {
         for (var i = 0; i < this.options.length; i++) {
             if (this.options[i][this.dataValue] == c) {
-                console.log(this.options[i][this.displayValue]);
                 return this.options[i][this.displayValue];
             }
         }

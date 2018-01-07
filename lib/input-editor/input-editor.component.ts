@@ -27,10 +27,10 @@ const INLINE_EDIT_CONTROL_VALUE_ACCESSOR = {
 '<div *ngIf="!editing">'+
   '<div class="form-group">'+
       '<label class="col-form-label">{{label}}</label>'+
-      '<div *ngIf="IsEmpty()" (click)="edit(value)" (focus)="edit(value);" tabindex="0" class="inline-edit-empty">'+
+      '<div *ngIf="IsInputTextEmpty()" (click)="edit(value)" (focus)="edit(value);" tabindex="0" class="inline-edit-empty">'+
           '{{placeholder}}&nbsp;'+
       '</div>'+
-      '<div *ngIf="!IsEmpty()" (click)="edit(value)" (focus)="edit(value);" tabindex="0" [ngClass]="disabled == \'true\' ? \'inline-no-edit\' : \'inline-edit\'">{{value}}&nbsp;</div>'+
+      '<div *ngIf="!IsInputTextEmpty()" (click)="edit(value)" (focus)="edit(value);" tabindex="0" [ngClass]="disabled == \'true\' ? \'inline-no-edit\' : \'inline-edit\'">{{value}}&nbsp;</div>'+
   '</div>'+
 '</div>' ,
   styles: [
@@ -62,15 +62,16 @@ export class InputEditorComponent implements ControlValueAccessor, OnInit {
   public onTouched: any = Function.prototype; // Trascend the onTouch event
 
   constructor(element: ElementRef, private _renderer: Renderer) { }
-
+  
   onSaveComplete() {
     this.onSave.emit('clicked save');
+    this.editing=false;
   }
 
   onCancelComplete() {
+    this.editing=false;
     this.onCancel.emit('clicked cancel');
   }
-
   // Control Value Accessors for ngModel
   get value(): any {
     return this._value;
@@ -116,7 +117,7 @@ export class InputEditorComponent implements ControlValueAccessor, OnInit {
       'focus', []));
   }
 
-  IsEmpty(): Boolean{
+  IsInputTextEmpty(): Boolean{
     return (this._value === undefined || this._value == '');
   }
 

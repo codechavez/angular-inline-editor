@@ -88,7 +88,20 @@
                 disabled="true"></checkbox-editor>
         </div>
         <div class="col-md-4">
-            <checkbox-editor checkedDisplayValue="F*ck Yeah!!" uncheckedDisplayValue="Oh, maybe?" [(ngModel)]="checkedboxValue" label="Are you awesome?"></checkbox-editor>
+            <checkbox-editor checkedDisplayValue="F*ck Yeah!!" uncheckedDisplayValue="Oh, maybe?" [(ngModel)]="emptycheckedboxValue" label="Are you awesome?"></checkbox-editor>
+        </div>
+    </div>
+
+    <h3>tags editor</h3>
+    <div class="row">
+        <div class="col-md-4">
+            <tags-editor [(ngModel)]="tags" (onSave)="sampleClick()" label="Categories" placeholder="Enter a category" ></tags-editor>            
+        </div>
+        <div class="col-md-4">
+                <tags-editor [(ngModel)]="distags" (onSave)="sampleClick()" label="Categories" placeholder="Enter a category" disabled="true" ></tags-editor>            
+        </div>
+        <div class="col-md-4">
+                <tags-editor [(ngModel)]="emptytags" (onSave)="sampleClick()" label="Categories" placeholder="Enter a category" ></tags-editor>            
         </div>
     </div>
 

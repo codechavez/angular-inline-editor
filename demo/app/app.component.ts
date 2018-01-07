@@ -27,6 +27,11 @@ export class AppComponent implements OnInit {
 
     checkboxValue:boolean = false;
     checkedboxValue:boolean = true;
+    emptycheckedboxValue:boolean = false;
+
+    tags:string[]=["angular","typescript","VSCode","C#"];
+    distags:string[]=["angular","angular-cli","vscode"];
+    emptytags:string[];
 
     constructor() { }
 
@@ -34,7 +39,7 @@ export class AppComponent implements OnInit {
 
     sampleClick(){
         console.log("you clicked me!");
-        console.log(this.checkboxValue);
+        console.log(this.tags);
     }
 }
 

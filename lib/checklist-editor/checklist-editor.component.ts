@@ -31,10 +31,10 @@ const CHECKLIST_EDIT_CONTROL_VALUE_ACCESSOR = {
 '<div *ngIf="!editing">'+
   '<div class="form-group">'+
       '<label class="col-form-label">{{label}}</label>'+
-      '<div *ngIf="IsEmpty()" (click)="edit(value)" (focus)="edit(value);" tabindex="0" class="inline-edit-empty">'+
+      '<div *ngIf="IsChecklistEmpty()" (click)="edit(value)" (focus)="edit(value);" tabindex="0" class="inline-edit-empty">'+
           '{{placeholder}}&nbsp;'+
       '</div>'+
-      '<div *ngIf="!IsEmpty()" (click)="edit(value)" (focus)="edit(value);" tabindex="0" class="form-inline">'+
+      '<div *ngIf="!IsChecklistEmpty()" (click)="edit(value)" (focus)="edit(value);" tabindex="0" class="form-inline">'+
           '<div *ngFor="let c of value">'+
               '<span [ngClass]="disabled == \'true\' ? \'inline-no-edit\' : \'inline-edit\'">{{GetDisplayText(c)}}</span>&nbsp;&nbsp;'+
           '</div>'+
@@ -75,9 +75,11 @@ export class CheckListEditorComponent implements ControlValueAccessor, OnInit {
 
   onSaveComplete() {
     this.onSave.emit('clicked save');
+    this.editing=false;
   }
 
   onCancelComplete() {
+    this.editing=false;
     this.onCancel.emit('clicked cancel');
   }
 
@@ -142,13 +144,12 @@ export class CheckListEditorComponent implements ControlValueAccessor, OnInit {
   GetDisplayText(c: any): string {
     for (var i = 0; i < this.options.length; i++) {
       if (this.options[i][this.dataValue] == c) {
-        console.log(this.options[i][this.displayValue]);
         return this.options[i][this.displayValue];
       }
     }
   }
 
-  IsEmpty(): Boolean {
+  IsChecklistEmpty(): Boolean {
     return (this._value == undefined || this._value.length < 0);
   }
 

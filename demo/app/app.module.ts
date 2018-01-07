@@ -8,6 +8,7 @@ import { TextAreaEditorModule } from "../../lib/textarea-editor/textarea-editor.
 import { CheckListEditorModule } from "../../lib/checklist-editor/checklist-editor.module";
 import { RadioListEditorModule } from "../../lib/radiolist-editor/radiolist-editor.module";
 import { CheckBoxEditorModule } from "../../lib/checkbox-editor/checkbox-editor.module";
+import { TagsEditorModule } from "../../lib/tags-editor/targs-editor.module";
 
 import { AppComponent } from './app.component';
 
@@ -20,7 +21,8 @@ import { AppComponent } from './app.component';
     TextAreaEditorModule.forRoot(),
     CheckListEditorModule.forRoot(),
     RadioListEditorModule.forRoot(),
-    CheckBoxEditorModule.forRoot()
+    CheckBoxEditorModule.forRoot(),
+    TagsEditorModule.forRoot()
   ],
   declarations: [AppComponent],
   bootstrap: [AppComponent]
