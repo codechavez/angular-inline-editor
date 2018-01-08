@@ -19,9 +19,8 @@ angular-inline-editors was built to work with Angular 4+, current dependencies a
 * [x] checkbox list
 * [x] radio list
 * [x] tags
-* [ ] date
-* [ ] time
-* [ ] datetime
+* [x] date
+* [x] time
 * [ ] html5 inputs
 * [ ] validations
 * [ ] form
