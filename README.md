@@ -5,7 +5,7 @@ angular-inline-editors is a small Angular library that allows the experience to 
 * DEMO @ http://angularinlineeditorsdemo.azurewebsites.net
 * source code demo @ https://github.com/codechavez/angular-inline-editor-demo
 
-## angular-inline-editor  
+## angular-inline-editors  
 [![npm version](https://badge.fury.io/js/angular-inline-editors.svg)](https://badge.fury.io/js/angular-inline-editors) [![Build Status](https://travis-ci.org/codechavez/angular-inline-editor.svg?branch=master)](https://travis-ci.org/codechavez/angular-inline-editor) 
 ### Dependencies
 angular-inline-editors was built to work with Angular 4+, current dependencies are Bootstrap (3.3.7+) and FontAwesome. 
@@ -22,6 +22,7 @@ angular-inline-editors was built to work with Angular 4+, current dependencies a
 * [ ] datetime
 * [ ] html5 inputs
 * [ ] validations
+* [ ] form
 * [ ] special binding
 * [ ] editable data table
 * [ ] customize css/themes
