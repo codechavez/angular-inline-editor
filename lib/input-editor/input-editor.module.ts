@@ -3,7 +3,6 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { InputEditorComponent } from './input-editor.component';
 
-
 @NgModule({
   imports: [CommonModule, FormsModule],
   declarations: [

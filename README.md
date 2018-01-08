@@ -34,7 +34,10 @@ angular-inline-editors was built to work with Angular 4+, current dependencies a
 
         `npm install @codechavez/angular-inline-editors --save`
 
-2. Include Bootstrap (3.3.7+) and FontAwesome in your project. 
+2. Dependencies to be included in your project:
+* Bootstrap (3.3.7+) - Styling. We Recommend **Bootstrap 4** 
+* **FontAwesome** - Icons.
+* **ngx-bootstrap** for date, time, and datetime editors.
 
 ### Adding angular-inline-editors to your Module
 Following the principle of Angular is based on Modules and you use what you want when you want to use it. You can add each angular-inline-editors separate. This means you add Modules based on what you need.

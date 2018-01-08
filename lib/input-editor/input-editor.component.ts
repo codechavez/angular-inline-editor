@@ -49,8 +49,8 @@ export class InputEditorComponent implements ControlValueAccessor, OnInit {
   @Input() type: string = 'text'; // The type of input element
   @Input() required: boolean = false; // Is input requried?
   @Input() disabled: string = 'false'; // Is input disabled?
-  @Input() id: string = ''
-  @Input() stringlength: string = ''
+  @Input() id: string = '';
+  @Input() stringlength: string = '';
   @Output() onSave: EventEmitter<string> = new EventEmitter();
   @Output() onCancel: EventEmitter<string> = new EventEmitter();
 

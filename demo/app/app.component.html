@@ -105,4 +105,24 @@
         </div>
     </div>
 
+    <h3>date editor</h3>
+    <div class="row">
+        <div class="col-md-4">
+            <date-editor [(ngModel)]="defaultdatesample" (onSave)="sampleClick()" label="Date Sample" placeholder="Enter a Date" format="shortDate"></date-editor>
+        </div>
+        <div class="col-md-4">
+                <date-editor [(ngModel)]="disdatesample" (onSave)="sampleClick()" label="Date Sample" placeholder="Enter a Date" format="longDate" disabled="true"></date-editor>
+        </div>
+        <div class="col-md-4">
+                <date-editor [(ngModel)]="emptydatesample" (onSave)="sampleClick()" label="Date Sample" placeholder="Enter a Date" format="fullDate"></date-editor>
+        </div>
+    </div>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
 </div>
