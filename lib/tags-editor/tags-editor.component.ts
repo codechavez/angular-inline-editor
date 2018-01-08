@@ -134,7 +134,6 @@ export class TagsEditorComponent implements ControlValueAccessor, OnInit {
   }
 
   IsTagsEmpty(value:string[]): Boolean{
-    debugger;
     var r: boolean;
 
     r =  (this.value === null || this.value === undefined);

@@ -40,6 +40,10 @@ export class AppComponent implements OnInit {
     disdatesample:Date = new Date();
     emptydatesample:Date;
 
+    timeSample:Date = new Date();
+    distimeSample:Date=new Date();
+    emptytimeSample:Date;
+
     constructor() { }
 
     ngOnInit() { }  

@@ -117,6 +117,21 @@
                 <date-editor [(ngModel)]="emptydatesample" (onSave)="sampleClick()" label="Date Sample" placeholder="Enter a Date" format="fullDate"></date-editor>
         </div>
     </div>
+
+    <h3>time editor</h3>
+    <div class="row">
+        <div class="col-md-4">
+            <time-editor [(ngModel)]="timeSample" label="Time Sample" placeholder="Enter Time" format="shortTime"></time-editor>        
+        </div>
+        <div class="col-md-4">
+                <time-editor [(ngModel)]="distimeSample" label="Time Sample" placeholder="Enter Time" format="shortTime" disabled="true"></time-editor>        
+        </div>
+        <div class="col-md-4">
+                <time-editor [(ngModel)]="emptytimeSample" label="Time Sample" placeholder="Enter Time" format="shortTime"></time-editor>        
+        </div>
+    </div>
+
+    
 <br/>
 <br/>
 <br/>

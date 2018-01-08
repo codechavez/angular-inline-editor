@@ -10,6 +10,7 @@ import { RadioListEditorModule } from "../../lib/radiolist-editor/radiolist-edit
 import { CheckBoxEditorModule } from "../../lib/checkbox-editor/checkbox-editor.module";
 import { TagsEditorModule } from "../../lib/tags-editor/tags-editor.module";
 import { DateEditorModule } from "../../lib/date-editor/date-editor.module";
+import { TimeEditorModule } from "../../lib/time-editor/time-editor.module";
 
 import { AppComponent } from './app.component';
 
@@ -24,7 +25,8 @@ import { AppComponent } from './app.component';
     RadioListEditorModule.forRoot(),
     CheckBoxEditorModule.forRoot(),
     TagsEditorModule.forRoot(),
-    DateEditorModule.forRoot()
+    DateEditorModule.forRoot(),
+    TimeEditorModule.forRoot()
   ],
   declarations: [AppComponent],
   bootstrap: [AppComponent]
