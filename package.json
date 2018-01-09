@@ -1,6 +1,6 @@
 {
   "name": "angular-inline-editors",
-  "version": "1.0.0-beta.49",
+  "version": "1.0.0-beta.50",
   "private": false,
   "license": "MIT",
   "main": "./dist/index.js",

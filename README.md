@@ -29,6 +29,9 @@ angular-inline-editors was built to work with Angular 4+, current dependencies a
 * [ ] customize css/themes
 
 Date and Time uses **ngx-bootstrap**, please make sure to install it when using date and time controls.
+Also, include this style reference into your index.html header
+`<link rel="stylesheet" href="https://unpkg.com/ngx-bootstrap/datepicker/bs-datepicker.css">` 
+NOTE: Working in a solution to remove this dependency.
 
 ## Getting Started
 1. install ***angular-inline-editors*** through [npm](https://www.npmjs.com/search?q=angular-inline-editor) package using the following command:
