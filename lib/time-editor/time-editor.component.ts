@@ -9,7 +9,29 @@ const TIME_EDIT_CONTROL_VALUE_ACCESSOR = {
 
 @Component({
     selector: 'time-editor',
-    templateUrl: 'time-editor.component.html',
+    template: '<div *ngIf="editing">'+
+    '<label class="col-form-label">{{label}}</label>'+
+    '<div>'+
+        '<timepicker #timeEditorControl [(ngModel)]="value" [hourStep]=1 [minuteStep]=1></timepicker>'+
+    '</div>'+
+    '<div class="text-right">'+
+            '<button class="btn btn-sm btn-success" type="button" (click)="onSaveComplete()">'+
+                '<i class="fa fa-check" aria-hidden="true"></i>'+
+            '</button>'+
+            '<button class="btn btn-sm btn-danger" type="button" (click)="onCancelComplete()">'+
+                '<i class="fa fa-times" aria-hidden="true"></i>'+
+            '</button>'+
+        '</div>'+
+'</div>'+
+'<div *ngIf="!editing">'+
+    '<div class="form-group">'+
+        '<label class="col-form-label">{{label}}</label>'+
+        '<div *ngIf="IsDateEmpty()" (click)="edit(value)" (focus)="edit(value);" tabindex="0" class="inline-edit-empty">'+
+            '{{placeholder}}&nbsp;'+
+        '</div>'+
+        '<div *ngIf="!IsDateEmpty()" (click)="edit(value)" (focus)="edit(value);" tabindex="0" [ngClass]="disabled == \'true\' ? \'inline-no-edit\' : \'inline-edit\'">{{value | date:format}}&nbsp;</div>'+
+    '</div>'+
+'</div>',
     styles: [
       '.col-form-label { padding-bottom: 0px !important; }',
       '.inline-edit { text-decoration: none; border-bottom: #007bff dashed 1px; cursor: pointer; width: auto;}',
@@ -86,7 +108,6 @@ const TIME_EDIT_CONTROL_VALUE_ACCESSOR = {
   
     // Start the editting process for the input element
     edit(value: any) {
-     debugger;
       if (this.disabled === "true") {
         return;
       }
