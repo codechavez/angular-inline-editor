@@ -44,12 +44,26 @@ export class AppComponent implements OnInit {
     distimeSample:Date=new Date();
     emptytimeSample:Date;
 
+    
+    states:string[]= ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut', 'Delaware',
+        'Florida', 'Georgia', 'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine', 'Maryland',
+        'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 
+        'New Hampshire', 'New Jersey', 'New Mexico', 'New York', 'North Dakota', 
+        'North Carolina', 'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island', 'South Carolina',
+        'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'];
+
+    countries:Country[] = [new Country("US","United States"), new Country("FR","France"), new Country("IT","Italy"), new Country("Ger","Germany"), new Country("sp","Spain"), new Country("GK","Greek")];
+    selectedTypeahead:Country =  new Country("US","United States");
+    disselectedTypeahead:Country= new Country("GK","Greek");
+    emptyselectedTypeahead:Country;
+
     constructor() { }
 
     ngOnInit() { }  
 
     sampleClick(){
         console.log("you clicked me!");
+        console.log(this.selectedTypeahead);
     }
 }
 

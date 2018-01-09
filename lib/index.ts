@@ -7,3 +7,4 @@ export { CheckBoxEditorModule } from './checkbox-editor/checkbox-editor.module';
 export { TagsEditorModule } from './tags-editor/tags-editor.module';
 export { DateEditorModule } from './date-editor/date-editor.module';
 export { TimeEditorModule } from './time-editor/time-editor.module';
+export { TypeAheadEditorModule } from './typeahead-editor/typeahead-editor.module';

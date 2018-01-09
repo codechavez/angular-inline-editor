@@ -131,6 +131,19 @@
         </div>
     </div>
 
+    <h3>typeahead editor</h3>
+    <div class="row">
+        <div class="col-md-4">
+            <typeahed-editor [(ngModel)]="selectedTypeahead" [options]="countries" displayValue="longName" dataValue="shortName" placeholder="Enter a Country" (onSave)="sampleClick()"></typeahed-editor>        
+        </div>
+        <div class="col-md-4">
+                <typeahed-editor [(ngModel)]="disselectedTypeahead" [options]="countries" displayValue="longName" dataValue="shortName" placeholder="Enter a Country" (onSave)="sampleClick()" disabled="true"></typeahed-editor>        
+        </div>
+        <div class="col-md-4">
+                <typeahed-editor [(ngModel)]="emptyselectedTypeahead" [options]="countries" displayValue="longName" dataValue="shortName" placeholder="Enter a Country" (onSave)="sampleClick()"></typeahed-editor>        
+        </div>
+    </div>
+
     
 <br/>
 <br/>

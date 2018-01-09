@@ -11,6 +11,7 @@ import { CheckBoxEditorModule } from "../../lib/checkbox-editor/checkbox-editor.
 import { TagsEditorModule } from "../../lib/tags-editor/tags-editor.module";
 import { DateEditorModule } from "../../lib/date-editor/date-editor.module";
 import { TimeEditorModule } from "../../lib/time-editor/time-editor.module";
+import { TypeAheadEditorModule } from "../../lib/typeahead-editor/typeahead-editor.module";
 
 import { AppComponent } from './app.component';
 
@@ -26,7 +27,8 @@ import { AppComponent } from './app.component';
     CheckBoxEditorModule.forRoot(),
     TagsEditorModule.forRoot(),
     DateEditorModule.forRoot(),
-    TimeEditorModule.forRoot()
+    TimeEditorModule.forRoot(),
+    TypeAheadEditorModule.forRoot()
   ],
   declarations: [AppComponent],
   bootstrap: [AppComponent]
