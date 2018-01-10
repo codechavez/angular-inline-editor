@@ -153,3 +153,23 @@ displayValue="longName"
 dataValue="shortName">
 </select-editor>
 ```
+### checkbox-editor
+```
+label - string - Label value for input element  
+id - string - Identifier for input element 
+disabled - string - true | false - by defult control is not disabled
+[(ngModel)] - angular two ways binding
+checkedDisplayValue - string - Text to display when checkbox is checked.
+uncheckedDisplayValue - string - Text to display when checkbox is unchecked.
+(onSave) - Bound to the green button - accepts the changes made in the input element - (optional) triggers your save changes function. 
+(onCancel) - Bound to the red button - undo or cancel chnages mde in the input element - (optional) triggers your cancel/undo function.
+```
+Basic use
+``` html
+<checkbox-editor 
+checkedDisplayValue="Remember Me!!" 
+uncheckedDisplayValue="Don't Remember Me" 
+[(ngModel)]="checkboxValue"
+label="Remember me?">
+</checkbox-editor>
+```
