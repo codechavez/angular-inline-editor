@@ -231,3 +231,25 @@ displayValue="longName"
 dataValue="shortName">
 </radiolist-editor>
 ```
+### tags-editor
+```
+label - string - Label value for input element  
+id - string - Identifier for input element 
+disabled - string - true | false - by defult control is not disabled
+placeholder - string - Placeholder value for input element
+[(ngModel)] - angular two ways binding for selected items.
+(onSave) - Bound to the green button - accepts the changes made in the input element - (optional) triggers your save changes function. 
+(onCancel) - Bound to the red button - undo or cancel chnages mde in the input element - (optional) triggers your cancel/undo function.
+```
+Basic Use
+``` html
+<tags-editor 
+[(ngModel)]="tags" 
+label="Categories" 
+placeholder="Enter a category">
+</tags-editor>            
+```
+Return a array
+```
+[ 'test 1', 'test 2', test 3]
+```
