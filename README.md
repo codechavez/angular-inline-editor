@@ -105,11 +105,11 @@ stringlength - string - Set maximun string length for input element
 ```
 Basic use
 ``` html
-<input-editor label="Full Name" id="txtname" [(ngModel)]="fullName" type="text"  placeholder="Enter Full Name"></input-editor>
-```
-Using onSave and onCancel
-``` html
-<input-editor label="Full Name" id="txtname" [(ngModel)]="fullName" type="text"  placeholder="Enter Full Name" (onSave)="YOUR_SAVE_FUNCTION" (onCancel)="YOUR_CANCEL_FUNCTION"></input-editor>
+<input-editor label="Full Name" id="txtname" 
+[(ngModel)]="fullName" 
+type="text"  
+placeholder="Enter Full Name">
+</input-editor>
 ```
 ### textarea-editor
 ```
@@ -125,12 +125,31 @@ maxheight - string - Set max height of the textarea - auto | 100% | pixes | rem
 ```
 Basic use
 ``` html
-<textarea-editor [(ngModel)]="myBio" stringlength="700" label="My Bio" maxheight="200px"></textarea-editor>
+<textarea-editor [(ngModel)]="myBio" 
+stringlength="700" 
+label="My Bio" 
+maxheight="200px">
+</textarea-editor>
 ```
-Using onSave and onCancel
+### select-editor
+```
+label - string - Label value for input element  
+id - string - Identifier for input element 
+disabled - string - true | false - by defult control is not disabled
+placeholder - string - Placeholder value for input element
+[(ngModel)] - angular two ways binding for selected item 
+[options] - binding to a collection/array of objects
+displayValue - string - Set the name of the property to be display;
+dataValue - string - Set the name of the property to get the selected value;
+(onSave) - Bound to the green button - accepts the changes made in the input element - (optional) triggers your save changes function. 
+(onCancel) - Bound to the red button - undo or cancel chnages mde in the input element - (optional) triggers your cancel/undo function.
+```
+Basic use
 ``` html
-<textarea-editor [(ngModel)]="myBio" stringlength="700" label="Bio" maxheight="200px" (onSave)="YOUR_SAVE_FUNCTION" (onCancel)="YOUR_CANCEL_FUNCTION"></textarea-editor>
+<select-editor label="Country" id="dpCountry" 
+[(ngModel)]="selectedCountry" 
+[options]="countryOptions" 
+displayValue="longName"
+dataValue="shortName">
+</select-editor>
 ```
-
-
-
