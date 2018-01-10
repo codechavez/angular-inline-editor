@@ -94,7 +94,7 @@ NOTE: All examples below follow our DEMO code which link you'll find at the top 
 (onSave)="YOUR_SAVE_FUNCTION" 
 (onCancel)="YOUR_CANCEL_FUNCTION"
 ```
-### input-editor API
+### input-editor
 ``` 
 label - string - Label value for input element  
 id - string - Identifier for input element 
@@ -195,6 +195,7 @@ Basic Use
 [options]="langOptions" 
 [(ngModel)]="selectedLang" 
 label="Speaks" 
+placeholder="Select languages"
 displayValue="longName" 
 dataValue="shortName">
 </checklist-editor>
@@ -205,4 +206,28 @@ Returns an array of selected values.
    'en',
    'sp'       
 ]
+```
+### radiolist-editor
+```
+label - string - Label value for input element  
+id - string - Identifier for input element 
+disabled - string - true | false - by defult control is not disabled
+placeholder - string - Placeholder value for input element
+displayValue - string - Set the name of the property to be display;
+dataValue - string - Set the name of the property to get the selected value;
+[options] - binding to a collection/array of objects
+[(ngModel)] - angular two ways binding for selected items. It will return the selected dataValue. 
+(onSave) - Bound to the green button - accepts the changes made in the input element - (optional) triggers your save changes function. 
+(onCancel) - Bound to the red button - undo or cancel chnages mde in the input element - (optional) triggers your cancel/undo function.
+```
+Basic Use
+``` html
+<radiolist-editor 
+[options]="genderOptions" 
+[(ngModel)]="selectedGender" 
+label="Gender" 
+placeholder="Select gender"
+displayValue="longName" 
+dataValue="shortName">
+</radiolist-editor>
 ```
