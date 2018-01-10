@@ -295,3 +295,26 @@ placeholder="Enter Time"
 format="shortTime">
 </time-editor> 
 ```
+### typeahead-editor
+```
+label - string - Label value for input element  
+id - string - Identifier for input element 
+disabled - string - true | false - by defult control is not disabled
+placeholder - string - Placeholder value for input element
+displayValue - string - Set the name of the property to be display;
+dataValue - string - Set the name of the property to get the selected value;
+[options] - binding to a collection/array of objects
+[(ngModel)] - angular two ways binding for selected items. 
+(onSave) - Bound to the green button - accepts the changes made in the input element - (optional) triggers your save changes function. 
+(onCancel) - Bound to the red button - undo or cancel chnages mde in the input element - (optional) triggers your cancel/undo function.
+```
+Basic Use
+``` html
+<typeahed-editor 
+[(ngModel)]="selectedTypeahead" 
+[options]="countries" 
+displayValue="longName" 
+dataValue="shortName" 
+placeholder="Enter a Country">
+</typeahed-editor> 
+```
