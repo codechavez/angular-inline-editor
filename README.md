@@ -86,7 +86,11 @@ sampleClick(){
 ```
 
 ## angular-inline-editors API
-
+All angular-inline-editors have onSave and onCancel events with default behavior that your will read below. Also you can bind onSave and onCancel to trigger your saving data function or your cancel undo data.
+```
+(onSave)="YOUR_SAVE_FUNCTION" 
+(onCancel)="YOUR_CANCEL_FUNCTION"
+```
 ### input-editor API
 ``` 
 label - string - Label value for input element  
@@ -106,6 +110,26 @@ Basic use
 Using onSave and onCancel
 ``` html
 <input-editor label="Full Name" id="txtname" [(ngModel)]="fullName" type="text"  placeholder="Enter Full Name" (onSave)="YOUR_SAVE_FUNCTION" (onCancel)="YOUR_CANCEL_FUNCTION"></input-editor>
+```
+### textarea-editor
+```
+label - string - Label value for input element  
+id - string - Identifier for input element 
+[(ngModel)] - angular two ways binding 
+placeholder - string - Placeholder value for input element
+disabled - string - true | false - by defult control is not disabled
+stringlength - string - Set maximun string length for input element
+maxheight - string - Set max height of the textarea - auto | 100% | pixes | rem
+(onSave) - Bound to the green button - accepts the changes made in the input element - (optional) triggers your save changes function. 
+(onCancel) - Bound to the red button - undo or cancel chnages mde in the input element - (optional) triggers your cancel/undo function.
+```
+Basic use
+``` html
+<textarea-editor [(ngModel)]="myBio" stringlength="700" label="My Bio" maxheight="200px"></textarea-editor>
+```
+Using onSave and onCancel
+``` html
+<textarea-editor [(ngModel)]="myBio" stringlength="700" label="Bio" maxheight="200px" (onSave)="YOUR_SAVE_FUNCTION" (onCancel)="YOUR_CANCEL_FUNCTION"></textarea-editor>
 ```
 
 
