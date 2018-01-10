@@ -261,7 +261,7 @@ id - string - Identifier for input element
 disabled - string - true | false - by defult control is not disabled
 placeholder - string - Placeholder value for input element
 [(ngModel)] - angular two ways binding.
-format - string - medium | short | fullDate | longDate | mediumDate | shortDate | mediumTime | shortTime - follows angular standard -> https://v2.angular.io/docs/ts/latest/api/common/index/DatePipe-pipe.html
+format - string - medium | short | fullDate | longDate | mediumDate | shortDate - follows angular standard -> https://v2.angular.io/docs/ts/latest/api/common/index/DatePipe-pipe.html
 (onSave) - Bound to the green button - accepts the changes made in the input element - (optional) triggers your save changes function. 
 (onCancel) - Bound to the red button - undo or cancel chnages mde in the input element - (optional) triggers your cancel/undo function.
 ```
@@ -274,4 +274,24 @@ placeholder="Enter a Date"
 format="shortDate">
 </date-editor>
 ```
-
+### time-editor
+**ngx-bootstrap** is required in order to use this editor. Make sure you've read the information in top of the page.
+```
+label - string - Label value for input element  
+id - string - Identifier for input element 
+disabled - string - true | false - by defult control is not disabled
+placeholder - string - Placeholder value for input element
+[(ngModel)] - angular two ways binding.
+format - string - mediumTime | shortTime - follows angular standard -> https://v2.angular.io/docs/ts/latest/api/common/index/DatePipe-pipe.html
+(onSave) - Bound to the green button - accepts the changes made in the input element - (optional) triggers your save changes function. 
+(onCancel) - Bound to the red button - undo or cancel chnages mde in the input element - (optional) triggers your cancel/undo function.
+```
+Basic Use
+``` html
+<time-editor 
+[(ngModel)]="timeSample" 
+label="Time Sample" 
+placeholder="Enter Time" 
+format="shortTime">
+</time-editor> 
+```
