@@ -9,29 +9,33 @@ const DATE_EDIT_CONTROL_VALUE_ACCESSOR = {
 
 @Component({
     selector: 'date-editor',
-    template: '<div *ngIf="editing">'+
-    '<label class="col-form-label">{{label}}</label>'+
-    '<div class="input-group">'+
-        '<input #dp="bsDatepicker" bsDatepicker  class="form-control" [required]="required" [id]="id" [(ngModel)]="value" type="text" [placeholder]="placeholder">'+
-        '<span class="input-group-btn">'+
-            '<button class="btn btn-sm btn-success" type="button" (click)="onSaveComplete()">'+
-                '<i class="fa fa-check" aria-hidden="true"></i>'+
-            '</button>'+
-            '<button class="btn btn-sm btn-danger" type="button" (click)="onCancelComplete()">'+
-                '<i class="fa fa-times" aria-hidden="true"></i>'+
-            '</button>'+
-        '</span>'+
-    '</div>'+
-'</div>'+
-'<div *ngIf="!editing">'+
-    '<div class="form-group">'+
-        '<label class="col-form-label">{{label}}</label>'+
-        '<div *ngIf="IsDateEmpty()" (click)="edit(value)" (focus)="edit(value);" tabindex="0" class="inline-edit-empty">'+
-            '{{placeholder}}&nbsp;'+
-        '</div>'+
-        '<div *ngIf="!IsDateEmpty()" (click)="edit(value)" (focus)="edit(value);" tabindex="0" [ngClass]="disabled == \'true\' ? \'inline-no-edit\' : \'inline-edit\'">{{value | date:format}}&nbsp;</div>'+
-    '</div>'+
-'</div>',
+    template: `<div *ngIf="editing">
+    <label class="col-form-label">{{label}}</label>
+    <div class="input-group">
+        <input #dateEditorControl #dp="bsDatepicker" bsDatepicker  [class.is-invalid]="dateReqflag" class="form-control" [id]="id" [(ngModel)]="value" type="text" [placeholder]="placeholder">
+        <span class="input-group-btn">
+            <button class="btn btn-sm btn-success" type="button" (click)="onSaveComplete()">
+                <i class="fa fa-check" aria-hidden="true"></i>
+            </button>
+            <button class="btn btn-sm btn-danger" type="button" (click)="onCancelComplete()">
+                <i class="fa fa-times" aria-hidden="true"></i>
+            </button>
+        </span>
+    </div>
+    <div *ngIf="dateReqflag" class="text-danger">
+            {{requiredMessage}}
+        </div>
+</div>
+<div *ngIf="!editing">
+    <div class="form-group">
+        <label class="col-form-label">{{label}}</label>
+        <div *ngIf="IsDateEmpty()" (click)="edit(value)" (focus)="edit(value);" tabindex="0" class="inline-edit-empty">
+            {{placeholder}}&nbsp;
+        </div>
+        <div *ngIf="!IsDateEmpty()" (click)="edit(value)" (focus)="edit(value);" tabindex="0" [ngClass]="disabled == 'true' ? 'inline-no-edit' : 'inline-edit'">{{value | date:format}}&nbsp;</div>
+    </div>
+</div>
+`,
     styles: [
       '.col-form-label { padding-bottom: 0px !important; }',
       '.inline-edit { text-decoration: none; border-bottom: #007bff dashed 1px; cursor: pointer; width: auto;}',
@@ -47,7 +51,8 @@ const DATE_EDIT_CONTROL_VALUE_ACCESSOR = {
     @Input() label: string = '';  // Label value for input element
     @Input() placeholder: string = ''; // Placeholder value ofr input element
     @Input() type: string = 'text'; // The type of input element
-    @Input() required: boolean = false; // Is input requried?
+    @Input() required: string = 'false'; // Is input requried?
+    @Input() requiredMessage: string = '';
     @Input() disabled: string = 'false'; // Is input disabled?
     @Input() id: string = '';
     @Input() format: string='';
@@ -61,10 +66,24 @@ const DATE_EDIT_CONTROL_VALUE_ACCESSOR = {
     private editing: boolean = false; // Is Component in edit mode?
     public onChange: any = Function.prototype; // Trascend the onChange event
     public onTouched: any = Function.prototype; // Trascend the onTouch event
-      
+    private dateReqflag:boolean = false;
+
     constructor(element: ElementRef, private _renderer: Renderer) { }
     
     onSaveComplete() {
+      if(this.required == "true"){
+        if(this.dateEditorControl.nativeElement.value == null || this.dateEditorControl.nativeElement.value === undefined || this.dateEditorControl.nativeElement.value === "")   {
+          this.dateReqflag = true;        
+          return;
+        }
+        else{
+          this.dateReqflag = false;
+        }      
+      }
+      else{
+        this.dateReqflag = false;
+      }
+  
       this.onSave.emit('clicked save');
       this.editing=false;
     }
@@ -72,8 +91,10 @@ const DATE_EDIT_CONTROL_VALUE_ACCESSOR = {
     onCancelComplete() {
       this.editing=false;
       this._value=this._originalValue;
+      this.dateReqflag = false;
       this.onCancel.emit('clicked cancel');
     }
+
     // Control Value Accessors for ngModel
     get value(): any {
       return this._value;

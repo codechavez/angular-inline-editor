@@ -1,8 +1,11 @@
 <div *ngIf="editing">
     <label class="col-form-label">{{label}}</label>
     <div>
-        <timepicker #timeEditorControl [(ngModel)]="value" [hourStep]=1 [minuteStep]=1></timepicker>
+        <timepicker #timeEditorControl [class.is-invalid]="timeReqflag" [(ngModel)]="value" [hourStep]=1 [minuteStep]=1></timepicker>
     </div>
+    <div *ngIf="timeReqflag" class="text-danger">
+            {{requiredMessage}}
+        </div>
     <div class="text-right">
             <button class="btn btn-sm btn-success" type="button" (click)="onSaveComplete()">
                 <i class="fa fa-check" aria-hidden="true"></i>

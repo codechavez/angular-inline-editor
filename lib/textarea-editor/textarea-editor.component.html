@@ -1,12 +1,12 @@
 <div *ngIf="editing">
     <label class="col-form-label">{{label}}</label>
     <div class="input-group">
-        <textarea [id]="id" [(ngModel)]="value" style="word-wrap: break-word;" [maxlength]="stringlength" [style.height]="maxheight" class="form-control"
-            wrap="hard">
+        <textarea [id]="id" #textareaEditorControl [(ngModel)]="value" [class.is-invalid]="textareaReqflag" style="word-wrap: break-word;"
+            [maxlength]="stringlength" [style.height]="maxheight" class="form-control" wrap="hard">
             </textarea>
-        <span class="input-group-btn">
-
-        </span>
+    </div>
+    <div *ngIf="textareaReqflag" class="text-danger">
+        {{requiredMessage}}
     </div>
     <div class="text-right">
         <button class="btn btn-success" type="button" (click)="onSaveComplete()">

@@ -12,7 +12,8 @@ const TYPEAHEAD_EDIT_CONTROL_VALUE_ACCESSOR = {
   template: `<div *ngIf="editing">
   <label class="col-form-label">{{label}}</label>
   <div class="input-group">
-      <input #typeaheadEditorControl class="form-control" id="ngtypeaheadsearch" type="text" [placeholder]="placeholder" (keyup)="search($event)">
+      <input #typeaheadEditorControl [class.is-invalid]="typeaheadReqflag"  class="form-control" id="ngtypeaheadsearch" [value]="value | displayFieldName:displayValue" type="text" [placeholder]="placeholder" (keyup)="search($event)">
+      
       <span class="input-group-btn">
           <button class="btn btn-sm btn-success" type="button" (click)="onSaveComplete()">
               <i class="fa fa-check" aria-hidden="true"></i>
@@ -22,6 +23,9 @@ const TYPEAHEAD_EDIT_CONTROL_VALUE_ACCESSOR = {
           </button>
       </span>
   </div>
+  <div *ngIf="typeaheadReqflag" class="text-danger">
+          {{requiredMessage}}
+      </div>
   <div class="typeahead-menu" *ngIf="open">
       <a class="typeahead-item" *ngFor="let item of options | typeaheadfilter:filterArg:displayValue" (click)="selectItem(item)">{{item[displayValue]}}</a>
   </div>
@@ -48,10 +52,11 @@ const TYPEAHEAD_EDIT_CONTROL_VALUE_ACCESSOR = {
 export class TypeAheadEditorComponent implements ControlValueAccessor, OnInit {
 
   @ViewChild('typeaheadEditorControl') typeaheadEditorControl: ElementRef; // input DOM element
-  @Input() label: string = '';  // Label value for input element
-  @Input() placeholder: string = ''; // Placeholder value ofr input element
-  @Input() required: boolean = false; // Is input requried?
-  @Input() disabled: string = 'false'; // Is input disabled?
+  @Input() label: string = '';  
+  @Input() placeholder: string = ''; 
+  @Input() required: string = 'false'; 
+  @Input() requiredMessage: string = '';
+  @Input() disabled: string = 'false'; 
   @Input() id: string = '';
   @Input() options: any[];
   @Input() dataValue: string = '';
@@ -67,17 +72,32 @@ export class TypeAheadEditorComponent implements ControlValueAccessor, OnInit {
   private editing: boolean = false; // Is Component in edit mode?
   public onChange: any = Function.prototype; // Trascend the onChange event
   public onTouched: any = Function.prototype; // Trascend the onTouch event
+  private typeaheadReqflag:boolean = false;
 
   constructor(element: ElementRef, private _renderer: Renderer) { }
-
+ 
   onSaveComplete() {
+    if(this.required == "true"){
+      if(this.typeaheadEditorControl.nativeElement.value == null || this.typeaheadEditorControl.nativeElement.value === undefined || this.typeaheadEditorControl.nativeElement.value === "")   {
+        this.typeaheadReqflag = true;        
+        return;
+      }
+      else{
+        this.typeaheadReqflag = false;
+      }      
+    }
+    else{
+      this.typeaheadReqflag = false;
+    }
+
     this.onSave.emit('clicked save');
-    this.editing = false;
+    this.editing=false;
   }
 
   onCancelComplete() {
-    this.editing = false;
-    this._value = this._originalValue;
+    this.editing=false;
+    this._value=this._originalValue;
+    this.typeaheadReqflag = false;
     this.onCancel.emit('clicked cancel');
   }
   

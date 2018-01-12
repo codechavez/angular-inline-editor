@@ -9,30 +9,33 @@ const INLINE_EDIT_CONTROL_VALUE_ACCESSOR = {
 
 @Component({
   selector: 'input-editor',
-  template: '<div *ngIf="editing">'+
-  '<label class="col-form-label">{{label}}</label>'+
-  '<div class="input-group">'+
-      '<input #inputEditorControl class="form-control" [required]="required" [id]="id" [(ngModel)]="value" [type]="type" [placeholder]="placeholder"'+
-          '[maxlength]="stringlength">'+
-      '<span class="input-group-btn">'+
-          '<button class="btn btn-sm btn-success" type="button" (click)="onSaveComplete()">'+
-              '<i class="fa fa-check" aria-hidden="true"></i>'+
-          '</button>'+
-          '<button class="btn btn-sm btn-danger" type="button" (click)="onCancelComplete()">'+
-              '<i class="fa fa-times" aria-hidden="true"></i>'+
-          '</button>'+
-      '</span>'+
-  '</div>'+
-'</div>'+
-'<div *ngIf="!editing">'+
-  '<div class="form-group">'+
-      '<label class="col-form-label">{{label}}</label>'+
-      '<div *ngIf="IsInputTextEmpty()" (click)="edit(value)" (focus)="edit(value);" tabindex="0" class="inline-edit-empty">'+
-          '{{placeholder}}&nbsp;'+
-      '</div>'+
-      '<div *ngIf="!IsInputTextEmpty()" (click)="edit(value)" (focus)="edit(value);" tabindex="0" [ngClass]="disabled == \'true\' ? \'inline-no-edit\' : \'inline-edit\'">{{value}}&nbsp;</div>'+
-  '</div>'+
-'</div>' ,
+  template: `<div *ngIf="editing">
+  <label class="col-form-label">{{label}}</label>
+  <div class="input-group">
+      <input #inputEditorControl class="form-control" [class.is-invalid]="inputReqflag" [required]="required" [id]="id" [(ngModel)]="value" type="text" [placeholder]="placeholder"
+          [maxlength]="stringlength">
+      <span class="input-group-btn">
+          <button class="btn btn-sm btn-success" type="button" (click)="onSaveComplete()">
+              <i class="fa fa-check" aria-hidden="true"></i>
+          </button>
+          <button class="btn btn-sm btn-danger" type="button" (click)="onCancelComplete()">
+              <i class="fa fa-times" aria-hidden="true"></i>
+          </button>
+      </span>
+  </div>
+  <div *ngIf="inputReqflag" class="text-danger">
+      {{requiredMessage}}
+  </div>
+</div>
+<div *ngIf="!editing">
+  <div class="form-group">
+      <label class="col-form-label">{{label}}</label>
+      <div *ngIf="IsInputTextEmpty()" (click)="edit(value)" (focus)="edit(value);" tabindex="0" class="inline-edit-empty">
+          {{placeholder}}&nbsp;
+      </div>
+      <div *ngIf="!IsInputTextEmpty()" (click)="edit(value)" (focus)="edit(value);" tabindex="0" [ngClass]="disabled == 'true' ? 'inline-no-edit' : 'inline-edit'">{{value}}&nbsp;</div>
+  </div>
+</div>` ,
   styles: [
     '.col-form-label { padding-bottom: 0px !important; }',
     '.inline-edit { text-decoration: none; border-bottom: #007bff dashed 1px; cursor: pointer; width: auto;}',
@@ -47,7 +50,8 @@ export class InputEditorComponent implements ControlValueAccessor, OnInit {
   @Input() label: string = '';  // Label value for input element
   @Input() placeholder: string = ''; // Placeholder value ofr input element
   @Input() type: string = 'text'; // The type of input element
-  @Input() required: boolean = false; // Is input requried?
+  @Input() required: string = 'false'; // Is input requried?
+  @Input() requiredMessage: string = '';
   @Input() disabled: string = 'false'; // Is input disabled?
   @Input() id: string = '';
   @Input() stringlength: string = '';
@@ -60,10 +64,24 @@ export class InputEditorComponent implements ControlValueAccessor, OnInit {
   private editing: boolean = false; // Is Component in edit mode?
   public onChange: any = Function.prototype; // Trascend the onChange event
   public onTouched: any = Function.prototype; // Trascend the onTouch event
+  private inputReqflag:boolean = false;
 
   constructor(element: ElementRef, private _renderer: Renderer) { }
   
   onSaveComplete() {
+    if(this.required == "true"){
+      if(this.inputEditorControl.nativeElement.value == null || this.inputEditorControl.nativeElement.value === undefined || this.inputEditorControl.nativeElement.value === "")   {
+        this.inputReqflag = true;        
+        return;
+      }
+      else{
+        this.inputReqflag = false;
+      }      
+    }
+    else{
+      this.inputReqflag = false;
+    }
+
     this.onSave.emit('clicked save');
     this.editing=false;
   }
@@ -71,8 +89,10 @@ export class InputEditorComponent implements ControlValueAccessor, OnInit {
   onCancelComplete() {
     this.editing=false;
     this._value=this._originalValue;
+    this.inputReqflag = false;
     this.onCancel.emit('clicked cancel');
   }
+  
   // Control Value Accessors for ngModel
   get value(): any {
     return this._value;

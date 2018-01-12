@@ -2,7 +2,7 @@
     <h3>input editor</h3>
     <div class="row">
         <div class="col-md-4">
-            <input-editor label="First Name" id="txtname" [(ngModel)]="name" type="text" placeholder="Enter First Name" (onSave)="sampleClick()">
+            <input-editor label="First Name" id="txtname" [(ngModel)]="name" type="text" required="true" requiredMessage="First Name is a Required Field" placeholder="Enter First Name" (onSave)="sampleClick()">
             </input-editor>
         </div>
         <div class="col-md-4">
@@ -10,7 +10,7 @@
             </input-editor>
         </div>
         <div class="col-md-4">
-            <input-editor label="Last Name" id="txtlast" [(ngModel)]="last" type="text" stringlength="10" placeholder="Enter Last Name"
+            <input-editor label="Last Name" id="txtlast" [(ngModel)]="last" type="text"  required="true" requiredMessage="Last Name is a Required Field" stringlength="10" placeholder="Enter Last Name"
                 (onSave)="sampleClick()">
             </input-editor>
         </div>
@@ -36,13 +36,13 @@
     <h3>textarea editor</h3>
     <div class="row">
         <div class="col-md-4">
-            <textarea-editor [(ngModel)]="textArea" stringlength="300" id="nondisable" label="Bio" maxheight="200px" (onSave)="sampleClick()"></textarea-editor>
+            <textarea-editor [(ngModel)]="textArea" stringlength="300" id="nondisable" label="Bio" maxheight="200px" (onSave)="sampleClick()" required="true" requiredMessage="BIO is a Required Field"></textarea-editor>
         </div>
         <div class="col-md-4">
             <textarea-editor [(ngModel)]="distextArea" disabled="true" id="disabled" stringlength="300" label="Bio" maxheight="200px" (onSave)="sampleClick()"></textarea-editor>
         </div>
         <div class="col-md-4">
-            <textarea-editor [(ngModel)]="emptyTextArea" id="taempty" stringlength="300" label="Bio" maxheight="300px" placeholder="Enter Bio"></textarea-editor>
+            <textarea-editor [(ngModel)]="emptyTextArea" id="taempty" stringlength="300" label="Bio" maxheight="300px" placeholder="Enter Bio" required="true" requiredMessage="BIO is a Required Field"></textarea-editor>
         </div>
     </div>
     <h3>checklist editor</h3>
@@ -108,20 +108,20 @@
     <h3>date editor</h3>
     <div class="row">
         <div class="col-md-4">
-            <date-editor [(ngModel)]="defaultdatesample" (onSave)="sampleClick()" label="Date Sample" placeholder="Enter a Date" format="shortDate"></date-editor>
+            <date-editor [(ngModel)]="defaultdatesample" (onSave)="sampleClick()" label="Date Sample" placeholder="Enter a Date" format="shortDate" required="true" requiredMessage="Date is requried."></date-editor>
         </div>
         <div class="col-md-4">
                 <date-editor [(ngModel)]="disdatesample" (onSave)="sampleClick()" label="Date Sample" placeholder="Enter a Date" format="longDate" disabled="true"></date-editor>
         </div>
         <div class="col-md-4">
-                <date-editor [(ngModel)]="emptydatesample" (onSave)="sampleClick()" label="Date Sample" placeholder="Enter a Date" format="fullDate"></date-editor>
+                <date-editor [(ngModel)]="emptydatesample" (onSave)="sampleClick()" label="Date Sample" placeholder="Enter a Date" format="fullDate" required="true" requiredMessage="Date is requried."></date-editor>
         </div>
     </div>
 
     <h3>time editor</h3>
     <div class="row">
         <div class="col-md-4">
-            <time-editor [(ngModel)]="timeSample" label="Time Sample" placeholder="Enter Time" format="shortTime"></time-editor>        
+            <time-editor [(ngModel)]="timeSample" label="Time Sample" placeholder="Enter Time" format="shortTime" required="true" requiredMessage="time is a Required Field" ></time-editor>        
         </div>
         <div class="col-md-4">
                 <time-editor [(ngModel)]="distimeSample" label="Time Sample" placeholder="Enter Time" format="shortTime" disabled="true"></time-editor>        
@@ -134,13 +134,13 @@
     <h3>typeahead editor</h3>
     <div class="row">
         <div class="col-md-4">
-            <typeahed-editor [(ngModel)]="selectedTypeahead" [options]="countries" displayValue="longName" dataValue="shortName" placeholder="Enter a Country" (onSave)="sampleClick()"></typeahed-editor>        
+            <typeahed-editor [(ngModel)]="selectedTypeahead" [options]="countries" displayValue="longName" dataValue="shortName" placeholder="Enter a Country" (onSave)="sampleClick()" required="true" requiredMessage="typeahead is a Required Field"></typeahed-editor>        
         </div>
         <div class="col-md-4">
                 <typeahed-editor [(ngModel)]="disselectedTypeahead" [options]="countries" displayValue="longName" dataValue="shortName" placeholder="Enter a Country" (onSave)="sampleClick()" disabled="true"></typeahed-editor>        
         </div>
         <div class="col-md-4">
-                <typeahed-editor [(ngModel)]="emptyselectedTypeahead" [options]="countries" displayValue="longName" dataValue="shortName" placeholder="Enter a Country" (onSave)="sampleClick()"></typeahed-editor>        
+                <typeahed-editor [(ngModel)]="emptyselectedTypeahead" [options]="countries" displayValue="longName" dataValue="shortName" placeholder="Enter a Country" (onSave)="sampleClick()" required="true" requiredMessage="typeahead is a Required Field"></typeahed-editor>        
         </div>
     </div>
 

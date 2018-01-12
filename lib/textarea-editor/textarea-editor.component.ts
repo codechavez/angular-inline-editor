@@ -9,31 +9,33 @@ const TEXTAREA_EDIT_VALUE_ACCESSOR = {
 
 @Component({
     selector: 'textarea-editor',
-    template: '<div *ngIf="editing">' +
-        '<label class="col-form-label">{{label}}</label>' +
-        '<div class="input-group">' +
-        '<textarea [id]="id" [(ngModel)]="value" style="word-wrap: break-word;" [maxlength]="stringlength" [style.height]="maxheight" class="form-control"' +
-        'wrap="hard">' +
-        '</textarea>' +
-        '<span class="input-group-btn">' +
-        '</span>' +
-        '</div>' +
-        '<div class="text-right">' +
-        '<button class="btn btn-success" type="button" (click)="onSaveComplete()">' +
-        '<i class="fa fa-check" aria-hidden="true"></i>' +
-        '</button>' +
-        '<button class="btn btn-danger" type="button" (click)="onCancelComplete()">' +
-        '<i class="fa fa-times" aria-hidden="true"></i>' +
-        '</button>' +
-        '</div>' +
-        '</div>' +
-        '<div *ngIf="!editing">' +
-        '<div class="form-group">' +
-        '<label class="col-form-label">{{label}}</label>' +
-        '<div *ngIf="IsTextareaEmpty()" (click)="edit(value)" (focus)="edit(value);" tabindex="0" class="inline-edit-empty">{{placeholder}}&nbsp;</div>' +
-        '<div *ngIf="!IsTextareaEmpty()" (click)="edit(value)" (focus)="edit(value);" [style.height]="minheight" tabindex="0" [ngClass]="disabled == \'true\' ? \'inline-no-edit\' : \'inline-edit\'">{{value}}&nbsp;</div>' +
-        '</div>' +
-        '</div>',
+    template: `<div *ngIf="editing">
+    <label class="col-form-label">{{label}}</label>
+    <div class="input-group">
+        <textarea [id]="id" #textareaEditorControl [(ngModel)]="value" [class.is-invalid]="textareaReqflag" style="word-wrap: break-word;"
+            [maxlength]="stringlength" [style.height]="maxheight" class="form-control" wrap="hard">
+            </textarea>
+    </div>
+    <div *ngIf="textareaReqflag" class="text-danger">
+        {{requiredMessage}}
+    </div>
+    <div class="text-right">
+        <button class="btn btn-success" type="button" (click)="onSaveComplete()">
+            <i class="fa fa-check" aria-hidden="true"></i>
+        </button>
+        <button class="btn btn-danger" type="button" (click)="onCancelComplete()">
+            <i class="fa fa-times" aria-hidden="true"></i>
+        </button>
+    </div>
+
+</div>
+<div *ngIf="!editing">
+    <div class="form-group">
+        <label class="col-form-label">{{label}}</label>
+        <div *ngIf="IsTextareaEmpty()" (click)="edit(value)" (focus)="edit(value);" tabindex="0" class="inline-edit-empty">{{placeholder}}&nbsp;</div>
+        <div *ngIf="!IsTextareaEmpty()" (click)="edit(value)" (focus)="edit(value);" [style.height]="minheight" tabindex="0" [ngClass]="disabled == 'true' ? 'inline-no-edit' : 'inline-edit'">{{value}}&nbsp;</div>
+    </div>
+</div>`,
     styles: [
         '.col-form-label { padding-bottom: 0px !important; }',
         '.inline-edit { text-decoration: none; border-bottom: #007bff dashed 1px; cursor: pointer; width: auto;}',
@@ -46,7 +48,8 @@ export class TextAreaEditorComponent implements ControlValueAccessor, OnInit {
 
     @ViewChild('textareaEditorControl') textareaEditorControl: ElementRef;
     @Input() label: string = '';
-    @Input() required: boolean = false;
+    @Input() required: string = "false";
+    @Input() requiredMessage: string = '';
     @Input() disabled: string = "false";
     @Input() id: string = '';
     @Input() stringlength: string = '';
@@ -62,11 +65,23 @@ export class TextAreaEditorComponent implements ControlValueAccessor, OnInit {
     private editing: boolean = false; // Is Component in edit mode?
     public onChange: any = Function.prototype; // Trascend the onChange event
     public onTouched: any = Function.prototype; // Trascend the onTouch event
-
+    private textareaReqflag:boolean = false;
 
     constructor(element: ElementRef, private _renderer: Renderer) { }
 
     onSaveComplete() {
+        if(this.required == "true"){
+            if(this.textareaEditorControl.nativeElement.value == null || this.textareaEditorControl.nativeElement.value === undefined || this.textareaEditorControl.nativeElement.value === "")   {
+              this.textareaReqflag = true;        
+              return;
+            }
+            else{
+              this.textareaReqflag = false;
+            }      
+          }
+          else{
+            this.textareaReqflag = false;
+          }
         this.onSave.emit('clicked save');
         this.editing = false;
     }
@@ -74,6 +89,7 @@ export class TextAreaEditorComponent implements ControlValueAccessor, OnInit {
     onCancelComplete() {
         this.editing = false;
         this._value = this._originalValue;
+        this.textareaReqflag = false;
         this.onCancel.emit('clicked cancel');
     }
 

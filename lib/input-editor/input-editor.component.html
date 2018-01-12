@@ -1,7 +1,7 @@
 <div *ngIf="editing">
     <label class="col-form-label">{{label}}</label>
     <div class="input-group">
-        <input #inputEditorControl class="form-control" [required]="required" [id]="id" [(ngModel)]="value" [type]="type" [placeholder]="placeholder"
+        <input #inputEditorControl class="form-control" [class.is-invalid]="inputReqflag" [id]="id" [(ngModel)]="value" type="text" [placeholder]="placeholder"
             [maxlength]="stringlength">
         <span class="input-group-btn">
             <button class="btn btn-sm btn-success" type="button" (click)="onSaveComplete()">
@@ -11,6 +11,9 @@
                 <i class="fa fa-times" aria-hidden="true"></i>
             </button>
         </span>
+    </div>
+    <div *ngIf="inputReqflag" class="text-danger">
+        {{requiredMessage}}
     </div>
 </div>
 <div *ngIf="!editing">

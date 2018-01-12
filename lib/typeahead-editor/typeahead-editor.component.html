@@ -1,7 +1,8 @@
 <div *ngIf="editing">
     <label class="col-form-label">{{label}}</label>
     <div class="input-group">
-        <input #typeaheadEditorControl class="form-control" id="ngtypeaheadsearch" type="text" [placeholder]="placeholder" (keyup)="search($event)">
+        <input #typeaheadEditorControl [class.is-invalid]="typeaheadReqflag"  class="form-control" id="ngtypeaheadsearch" [value]="value | displayFieldName:displayValue" type="text" [placeholder]="placeholder" (keyup)="search($event)">
+        
         <span class="input-group-btn">
             <button class="btn btn-sm btn-success" type="button" (click)="onSaveComplete()">
                 <i class="fa fa-check" aria-hidden="true"></i>
@@ -11,6 +12,9 @@
             </button>
         </span>
     </div>
+    <div *ngIf="typeaheadReqflag" class="text-danger">
+            {{requiredMessage}}
+        </div>
     <div class="typeahead-menu" *ngIf="open">
         <a class="typeahead-item" *ngFor="let item of options | typeaheadfilter:filterArg:displayValue" (click)="selectItem(item)">{{item[displayValue]}}</a>
     </div>
