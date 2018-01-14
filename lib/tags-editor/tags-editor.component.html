@@ -1,7 +1,7 @@
-<div  #tagsEditorControl *ngIf="editing">
+<div #tagsEditorControl *ngIf="editing">
     <label class="col-form-label">{{label}}</label>
     <div class="input-group">
-        <div class=tags>
+        <div class="tags" [class.tags-is-invalid]="tagsReqflag">
             <ul class="tag-list">
                 <li class="tag-item" *ngFor="let t of value; let i = index">
                     <span>{{t}}</span>
@@ -10,6 +10,9 @@
             </ul>
             <input id="ngtags-control" type="text" class="tag-input" autocomplete="off" (keydown.enter)="addTag($event)" [placeholder]="placeholder">
         </div>
+    </div>
+    <div *ngIf="tagsReqflag" class="text-danger">
+        {{requiredMessage}}
     </div>
     <div class="text-right">
         <button class="btn btn-sm btn-success" type="button" (click)="onSaveComplete()">

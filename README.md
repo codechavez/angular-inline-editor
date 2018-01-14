@@ -27,18 +27,13 @@ angular-inline-editors was built to work with Angular 4+, current dependencies a
   * [x] textarea - required
   * [x] date - required
   * [x] time - required
-  * [ ] tags - required
+  * [x] tags - required
   * [x] typeahead - required
   * [ ] select - required
   * [ ] checkbox
   * [ ] checkbox list
   * [ ] radio list
   * [ ] form
-* [ ] html5 inputs
-  * [ ] input password
-  * [ ] input email
-  * [ ] input number
-  * [ ] input currency
 * [ ] editable data table
 * [ ] customize css/themes
 

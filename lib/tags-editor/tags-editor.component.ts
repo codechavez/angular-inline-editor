@@ -9,43 +9,46 @@ const TAGS_EDIT_CONTROL_VALUE_ACCESSOR = {
 
 @Component({
   selector: 'tags-editor',
-  template: '<div *ngIf="editing">'+
-  '<label class="col-form-label">{{label}}</label>'+
-  '<div class="input-group">'+
-      '<div class=tags>'+
-          '<ul class="tag-list">'+
-              '<li class="tag-item" *ngFor="let t of tags; let i = index">'+
-                  '<span>{{t}}</span>'+
-                  '<a class="tag-remove-button" (click)="removeTagItem(i)">×</a>'+
-              '</li>'+
-          '</ul>'+
-          '<input #tagsEditorControl id="ngtags-control" type="text" class="tag-input" autocomplete="off" (keydown.enter)="addTag($event)" [placeholder]="placeholder">'+
-      '</div>'+
-  '</div>'+
-  '<div class="text-right">'+
-      '<button class="btn btn-sm btn-success" type="button" (click)="onSaveComplete()">'+
-         '<i class="fa fa-check" aria-hidden="true"></i>'+
-      '</button>'+
-      '<button class="btn btn-sm btn-danger" type="button" (click)="onCancelComplete()">'+
-          '<i class="fa fa-times" aria-hidden="true"></i>'+
-      '</button>'+
-  '</div>'+
-'</div>'+
-'<div *ngIf="!editing">'+
-  '<div class="form-group">'+
-      '<label class="col-form-label">{{label}}</label>'+
-      '<div *ngIf="IsTagsEmpty(value)" (click)="edit(value)" (focus)="edit(value);" tabindex="0" class="inline-edit-empty">'+
-          '{{placeholder}}&nbsp;'+
-      '</div>'+
-      '<div *ngIf="!IsTagsEmpty(value)" (click)="edit(value)" (focus)="edit(value);" tabindex="0" [ngClass]="disabled == \'true\' ? \'inline-no-edit\' : \'inline-edit\'">'+
-          '<ul class="tag-list">'+
-              '<li class="tag-item" *ngFor="let t of value;">'+
-                  '<span>{{t}}</span>'+
-              '</li>'+
-          '</ul>'+
-      '</div>'+
-  '</div>'+
-'</div>',
+  template: `<div #tagsEditorControl *ngIf="editing">
+  <label class="col-form-label">{{label}}</label>
+  <div class="input-group">
+      <div class="tags" [class.tags-is-invalid]="tagsReqflag">
+          <ul class="tag-list">
+              <li class="tag-item" *ngFor="let t of value; let i = index">
+                  <span>{{t}}</span>
+                  <a class="tag-remove-button" (click)="removeTagItem(i)">×</a>
+              </li>
+          </ul>
+          <input id="ngtags-control" type="text" class="tag-input" autocomplete="off" (keydown.enter)="addTag($event)" [placeholder]="placeholder">
+      </div>
+  </div>
+  <div *ngIf="tagsReqflag" class="text-danger">
+      {{requiredMessage}}
+  </div>
+  <div class="text-right">
+      <button class="btn btn-sm btn-success" type="button" (click)="onSaveComplete()">
+          <i class="fa fa-check" aria-hidden="true"></i>
+      </button>
+      <button class="btn btn-sm btn-danger" type="button" (click)="onCancelComplete()">
+          <i class="fa fa-times" aria-hidden="true"></i>
+      </button>
+  </div>
+</div>
+<div *ngIf="!editing">
+  <div class="form-group">
+      <label class="col-form-label">{{label}}</label>
+      <div *ngIf="IsTagsEmpty(value)" (click)="edit(value)" (focus)="edit(value);" tabindex="0" class="inline-edit-empty">
+          {{placeholder}}&nbsp;
+      </div>
+      <div *ngIf="!IsTagsEmpty(value)" (click)="edit(value)" (focus)="edit(value);" tabindex="0" [ngClass]="disabled == 'true' ? 'inline-no-edit' : 'inline-edit'">
+          <ul class="tag-list">
+              <li class="tag-item" *ngFor="let t of value;">
+                  <span>{{t}}</span>
+              </li>
+          </ul>
+      </div>
+  </div>
+</div>`,
   styles:[
     '.tags { -moz-appearance: none; -webkit-appearance: none;  border: 1px solid #ccc; border-radius: 4px; width: 100%; -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);   -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075); box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);  -webkit-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;  -moz-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;  transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;  -moz-appearance: textfield; -webkit-appearance: textfield; padding: 1px; overflow: hidden; word-wrap: break-word; cursor: text; background-color: #fff; border: 1px solid darkgray; box-shadow: 1px 1px 1px 0 lightgrey inset; height: 100%; }',
     '.tag-list { margin: 0;padding: 0; list-style-type: none; }',
@@ -55,7 +58,8 @@ const TAGS_EDIT_CONTROL_VALUE_ACCESSOR = {
     '.col-form-label { padding-bottom: 0px !important; }',
     '.inline-edit { text-decoration: none; border-bottom: #007bff dashed 1px; cursor: pointer; width: auto;}',
     '.inline-no-edit { text-decoration: none; border-bottom: #959596 dashed 1px; cursor: not-allowed; width: auto;}',
-    '.inline-edit-empty{ text-decoration: none; border-bottom: red dashed 1px; cursor: pointer; width: auto; color: #b9b8b8;}'
+    '.inline-edit-empty{ text-decoration: none; border-bottom: red dashed 1px; cursor: pointer; width: auto; color: #b9b8b8;}',
+    '.tags-is-invalid { border-color: red; }'
   
   ],
   providers: [TAGS_EDIT_CONTROL_VALUE_ACCESSOR]
@@ -65,7 +69,8 @@ export class TagsEditorComponent implements ControlValueAccessor, OnInit {
   @ViewChild('tagsEditorControl') tagsEditorControl: ElementRef; // input DOM element
   @Input() label: string = '';  // Label value for input element
   @Input() placeholder: string = ''; // Placeholder value ofr input element
-  @Input() required: boolean = false; // Is input requried?
+  @Input() required: string = 'false'; // Is input requried?
+  @Input() requiredMessage: string = '';
   @Input() disabled: string = 'false'; // Is input disabled?
   @Input() id: string = ''
   @Input() stringlength: string = ''
@@ -80,17 +85,34 @@ export class TagsEditorComponent implements ControlValueAccessor, OnInit {
   public onChange: any = Function.prototype; // Trascend the onChange event
   public onTouched: any = Function.prototype; // Trascend the onTouch event
   isempty:boolean;
+  private tagsReqflag:boolean = false;
+
+
+
   constructor(element: ElementRef, private _renderer: Renderer) { }
 
   onSaveComplete() {
+    if(this.required == "true"){
+      if(this.value == null || this.value.length<= 0 || this.value == undefined){
+        this.tagsReqflag = true;        
+        return;
+      }
+      else{
+        this.tagsReqflag = false;
+      }      
+    }
+    else{
+      this.tagsReqflag = false;
+    }
+
     this.onSave.emit('clicked save');
     this.editing=false;
   }
 
   onCancelComplete() {
-    debugger;
     this.editing=false;
     this.value=this._originalValue;
+    this.tagsReqflag = false;
     this.onCancel.emit('clicked cancel');
   }
 

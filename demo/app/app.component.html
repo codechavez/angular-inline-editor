@@ -95,7 +95,7 @@
     <h3>tags editor</h3>
     <div class="row">
         <div class="col-md-4">
-            <tags-editor [(ngModel)]="tags" (onSave)="sampleClick()" label="Categories" placeholder="Enter a category" ></tags-editor>            
+            <tags-editor [(ngModel)]="tags" (onSave)="sampleClick()" label="Categories" placeholder="Enter a category" required="true" requiredMessage="tags are required."></tags-editor>            
         </div>
         <div class="col-md-4">
                 <tags-editor [(ngModel)]="distags" (onSave)="sampleClick()" label="Categories" placeholder="Enter a category" disabled="true" ></tags-editor>            
