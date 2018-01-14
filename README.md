@@ -30,7 +30,6 @@ angular-inline-editors was built to work with Angular 4+, current dependencies a
   * [x] tags - required
   * [x] typeahead - required
   * [ ] select - required
-  * [ ] checkbox
   * [ ] checkbox list
   * [ ] radio list
   * [ ] form
