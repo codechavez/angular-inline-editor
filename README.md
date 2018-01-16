@@ -9,10 +9,17 @@ angular-inline-editors is a small Angular library that allows the experience to 
 [![npm version](https://badge.fury.io/js/angular-inline-editors.svg)](https://badge.fury.io/js/angular-inline-editors)
 [![Build Status](https://travis-ci.org/codechavez/angular-inline-editor.svg?branch=master)](https://travis-ci.org/codechavez/angular-inline-editor) 
 [![npm](https://img.shields.io/npm/dm/localeval.svg)](https://www.npmjs.com/package/angular-inline-editors)
+[![npm](https://img.shields.io/npm/l/express.svg)](https://www.npmjs.com/package/angular-inline-editors)
 ### Dependencies
 angular-inline-editors was built to work with Angular 4+, current dependencies are Bootstrap (3.3.7+) and FontAwesome. 
 ### Road Map - Inline Editors
-* [x] input - text
+* [ ] input
+  * [x] input - text
+  * [ ] input - password
+  * [ ] input - number
+  * [ ] input - email
+  * [ ] input - phone
+* [ ] input - pattern 
 * [x] textarea
 * [x] select
 * [x] checkbox
