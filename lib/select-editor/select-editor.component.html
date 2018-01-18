@@ -1,20 +1,21 @@
-<div *ngIf="editing">
+<div *ngIf="editing" (clickOutside)="emptyMethod()">
     <label class="col-form-label">{{label}}</label>
     <div class="input-group">
-        <select #selectEditorControl class="form-control" [(ngModel)]="value">
-            <!-- <option [ngValue]="value">{{value[dataValue]}}</option> -->
-            <option *ngFor="let opt of options" [ngValue]="opt">  
-                {{opt[displayValue]}}
-            </option>
-        </select>  
+        <input type="text" #selectEditorControl class="form-control"  [class.is-invalid]="selectReqflag" (click)="showSelectOptions()" readonly [value]="value | displayName:displayValue">
         <span class="input-group-btn">
-                <button class="btn btn-sm btn-success" type="button" (click)="onSaveComplete()">
-                    <i class="fa fa-check" aria-hidden="true"></i>
-                </button>
-                <button class="btn btn-sm btn-danger" type="button" (click)="onCancelComplete()">
-                    <i class="fa fa-times" aria-hidden="true"></i>
-                </button>
-            </span>
+            <button class="btn btn-sm btn-success" type="button" (click)="onSaveComplete()">
+                <i class="fa fa-check" aria-hidden="true"></i>
+            </button>
+            <button class="btn btn-sm btn-danger" type="button" (click)="onCancelComplete()">
+                <i class="fa fa-times" aria-hidden="true"></i>
+            </button>
+        </span>
+    </div>
+    <div *ngIf="selectReqflag" class="text-danger">
+        {{requiredMessage}}
+    </div>
+    <div class="select-menu" *ngIf="open">
+        <a class="select-item" *ngFor="let item of options" (click)="onSelection(item)">{{item[displayValue]}}</a>
     </div>
 </div>
 <div *ngIf="!editing">

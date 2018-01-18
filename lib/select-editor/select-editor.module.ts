@@ -2,12 +2,18 @@ import { NgModule, ModuleWithProviders } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { SelectEditorComponent } from './select-editor.component';
-
+import { DisplayNameFilter } from "../pipes/displayvalue.pipe";
+// import { OutSideClickDirective } from "../directives/outsideclick.directive";
 
 @NgModule({
-  imports: [CommonModule, FormsModule],
+  imports: [
+    CommonModule, 
+    FormsModule
+    
+  ],
   declarations: [
-    SelectEditorComponent
+    SelectEditorComponent,
+    DisplayNameFilter
   ],
   exports: [SelectEditorComponent]
 })

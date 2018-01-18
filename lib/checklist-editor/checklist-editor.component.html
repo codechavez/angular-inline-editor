@@ -1,12 +1,15 @@
 <div *ngIf="editing">
     <label class="col-form-label">{{label}}</label>
-    <div class="row">
+    <div class="">
         <div class="form-check">
             <label #checklistEditorControl *ngFor="let item of options" class="form-check-label">
-                <input type="checkbox" class="form-check-input" [value]="item[dataValue]" [name]="item[displayValue]" (change)="updateSelectedChecks($event)"
+                <input type="checkbox" class="form-check-input" [value]="item[dataValue]" [class.is-invalid]="checklistReqflag" [name]="item[displayValue]" (change)="updateSelectedChecks($event) "
                     [checked]="(value && (-1 !== value.indexOf(item[dataValue])) ? 'checked' : '')" />&nbsp;{{item[displayValue]}}&nbsp;&nbsp;
             </label>
         </div>
+    </div>
+    <div *ngIf="checklistReqflag" class="text-danger">
+        {{requiredMessage}}
     </div>
     <div class="text-right">
         <button class="btn btn-sm btn-success" type="button" (click)="onSaveComplete()">

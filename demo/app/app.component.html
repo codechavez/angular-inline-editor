@@ -28,7 +28,8 @@
             </select-editor>
         </div>
         <div class="col-md-4">
-            <select-editor label="Country" id="dpGener" [(ngModel)]="emptyselectedCountry" [options]="countryOptions" placeholder="Select a country"
+            <select-editor label="Country" id="dpGener" [(ngModel)]="emptyselectedCountry" 
+            [options]="countryOptions" placeholder="Select a country" required="true" requiredMessage="Please select a country"
                 displayValue="longName" dataValue="shortName">
             </select-editor>
         </div>
@@ -48,7 +49,7 @@
     <h3>checklist editor</h3>
     <div class="row">
         <div class="col-md-4">
-            <checklist-editor [options]="langOptions" [(ngModel)]="selectedLang" label="Speaks" displayValue="longName" dataValue="shortName"
+            <checklist-editor [options]="langOptions" [(ngModel)]="selectedLang" label="Speaks" displayValue="longName" dataValue="shortName" required="true" requiredMessage="Please select a language"
                 (onSave)="sampleClick()"></checklist-editor>
         </div>
         <div class="col-md-4">
@@ -72,7 +73,7 @@
                 disabled="true" (onSave)="sampleClick()"></radiolist-editor>
         </div>
         <div class="col-md-4">
-            <radiolist-editor [options]="genderOptions" [(ngModel)]="emptySelectedGender" label="Gender" displayValue="longName" dataValue="shortName"
+            <radiolist-editor [options]="genderOptions" [(ngModel)]="emptySelectedGender" label="Gender" displayValue="longName" dataValue="shortName" required="true" requiredMessage="Please select a gender"
                 placeholder="Select gender" (onSave)="sampleClick()"></radiolist-editor>
         </div>
     </div>

@@ -11,7 +11,7 @@ export class AppComponent implements OnInit {
     middle: string = 'D.';
     last:string;
     // Select
-    countryOptions: Country[]=[new Country("US","United States"), new Country("FR","France"), new Country("IT","Italy")];
+    countryOptions: Country[]=[new Country("US","United States"), new Country("FR","France"), new Country("IT","Italy"),  new Country("CN","Canada"),  new Country("GR","Germany"),  new Country("JP","Japan"), new Country("BZ","Brazil"), new Country("CX","China"), new Country("RC","Greece")];
     selectedCountry: Country = new Country("US","United States");
     disselectedCountry: Country = new Country("IT","Italy");
     emptyselectedCountry:string;

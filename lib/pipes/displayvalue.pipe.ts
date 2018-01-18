@@ -5,7 +5,6 @@ import {Injectable, Pipe, PipeTransform} from '@angular/core';
   pure: false
 
 })
-@Injectable()
 export class DisplayFieldNameFilter implements PipeTransform {
     transform(item: any, displayValue: string): any {
         if (item == null || item == undefined || displayValue == "" || displayValue == null || displayValue == undefined) {
@@ -15,3 +14,19 @@ export class DisplayFieldNameFilter implements PipeTransform {
         return item[displayValue];
     }
 }
+
+
+@Pipe({
+    name: 'displayName',
+    pure: false
+  
+  })
+  export class DisplayNameFilter implements PipeTransform {
+      transform(item: any, displayValue: string): any {
+          if (item == null || item == undefined || displayValue == "" || displayValue == null || displayValue == undefined) {
+              return null;
+          }
+  
+          return item[displayValue];
+      }
+  }
