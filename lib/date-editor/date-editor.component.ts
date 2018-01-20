@@ -136,9 +136,6 @@ const DATE_EDIT_CONTROL_VALUE_ACCESSOR = {
       this.preValue = value;
       this.editing = true;
       this._originalValue=value;
-      // Focus on the input element just as the editing begins
-      // setTimeout(() => this._renderer.invokeElementMethod(this.dateEditorControl,
-      //   'focus', []),100);
     }
   
     IsDateEmpty(): Boolean{

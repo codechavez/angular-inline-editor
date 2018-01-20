@@ -5,13 +5,15 @@ import { TypeAheadEditorComponent } from './typeahead-editor.component';
 
 import { typeaheadfilter } from "../pipes/typeahead-filter.pipe";
 import { DisplayFieldNameFilter } from "../pipes/displayvalue.pipe";
+import { HighLightPipe } from "../pipes/texthighlight.pipe";
 
 @NgModule({
   imports: [CommonModule, FormsModule],
   declarations: [
     typeaheadfilter,
     TypeAheadEditorComponent,
-    DisplayFieldNameFilter
+    DisplayFieldNameFilter,HighLightPipe
+    
   ],
   exports: [TypeAheadEditorComponent]
 })

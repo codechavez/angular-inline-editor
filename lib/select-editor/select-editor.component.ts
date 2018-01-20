@@ -77,7 +77,6 @@ export class SelectEditorComponent implements ControlValueAccessor, OnInit {
 
   @HostListener('document:click',['$event','$event.target'])
   public onClick(event: MouseEvent, targetElement: HTMLElement): void {
-    debugger;
       if (!targetElement) {
           return;
       }
@@ -177,7 +176,6 @@ export class SelectEditorComponent implements ControlValueAccessor, OnInit {
   }
 
   showSelectOptions(){
-    debugger;
     this.open = !this.open;
   }
 

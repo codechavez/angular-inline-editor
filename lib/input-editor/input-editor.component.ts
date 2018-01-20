@@ -134,6 +134,8 @@ export class InputEditorComponent implements ControlValueAccessor, OnInit {
     this.preValue = value;
     this.editing = true;
     this._originalValue=value;
+
+    setTimeout(() => { this.inputEditorControl.nativeElement.focus(); }, 300);
   }
 
   IsInputTextEmpty(): Boolean{

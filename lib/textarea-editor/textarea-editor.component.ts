@@ -134,6 +134,8 @@ export class TextAreaEditorComponent implements ControlValueAccessor, OnInit {
         this.preValue = value;
         this.editing = true;
         this._originalValue = value;
+
+        setTimeout(() => { this.textareaEditorControl.nativeElement.focus(); }, 300);
     }
 
     IsTextareaEmpty(): Boolean {

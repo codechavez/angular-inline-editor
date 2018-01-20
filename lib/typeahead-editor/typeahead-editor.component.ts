@@ -1,4 +1,4 @@
-import { Component, Input, ElementRef, ViewChild, Renderer, forwardRef, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, Input, ElementRef, ViewChild, Renderer, forwardRef, OnInit, Output, EventEmitter, ViewEncapsulation } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 const TYPEAHEAD_EDIT_CONTROL_VALUE_ACCESSOR = {
@@ -9,10 +9,10 @@ const TYPEAHEAD_EDIT_CONTROL_VALUE_ACCESSOR = {
 
 @Component({
   selector: 'typeahed-editor',
-  template: `<div *ngIf="editing">
+  template: `<div *ngIf="editing" >
   <label class="col-form-label">{{label}}</label>
   <div class="input-group">
-      <input #typeaheadEditorControl [class.is-invalid]="typeaheadReqflag"  class="form-control" id="ngtypeaheadsearch" [value]="value | displayFieldName:displayValue" type="text" [placeholder]="placeholder" (keyup)="search($event)">
+      <input #typeaheadEditorControl  [class.is-invalid]="typeaheadReqflag"  class="form-control" id="ngtypeaheadsearch" [value]="value | displayFieldName:displayValue" type="text" [placeholder]="placeholder" (keyup)="search($event)">
       
       <span class="input-group-btn">
           <button class="btn btn-sm btn-success" type="button" (click)="onSaveComplete()">
@@ -27,7 +27,7 @@ const TYPEAHEAD_EDIT_CONTROL_VALUE_ACCESSOR = {
           {{requiredMessage}}
       </div>
   <div class="typeahead-menu" *ngIf="open">
-      <a class="typeahead-item" *ngFor="let item of options | typeaheadfilter:filterArg:displayValue" (click)="selectItem(item)">{{item[displayValue]}}</a>
+      <div class="typeahead-item" [class.scrollSelected]="isIndexSelected(item,i)"  *ngFor="let item of availOptions; let i = index" (click)="selectItem(item)" [innerHTML]="item[displayValue] | highlight:[aheadKey]"></div>
   </div>
 </div>
 <div *ngIf="!editing">
@@ -39,32 +39,38 @@ const TYPEAHEAD_EDIT_CONTROL_VALUE_ACCESSOR = {
       <div *ngIf="!IsTypeAheadTextEmpty()" (click)="edit(value)" (focus)="edit(value);" tabindex="0" [ngClass]="disabled == 'true' ? 'inline-no-edit' : 'inline-edit'">{{GetDisplayText(value)}}&nbsp;</div>
   </div>
 </div>`,
+  encapsulation: ViewEncapsulation.None,
   styles: [
     '.col-form-label { padding-bottom: 0px !important; }',
     '.inline-edit { text-decoration: none; border-bottom: #007bff dashed 1px; cursor: pointer; width: auto;}',
     '.inline-no-edit { text-decoration: none; border-bottom: #959596 dashed 1px; cursor: not-allowed; width: auto;}',
     '.inline-edit-empty{ text-decoration: none; border-bottom: red dashed 1px; cursor: pointer; width: auto; color: #b9b8b8;}',
     '.typeahead-menu { top: 100%; left: 0; z-index: 1000; float: left; min-width: 10rem; padding: .5rem 0; margin: .125rem 0 0; font-size: 1rem; color: #212529; text-align: left; list-style: none; background-color: #fff; background-clip: padding-box; border: 1px solid rgba(0,0,0,.15); border-radius: .25rem; }',
-    '.typeahead-item { cursor: pointer; display: block; width: 100%; padding: .25rem 1.5rem; clear: both; font-weight: 400; color: #212529; text-align: inherit; white-space: nowrap; background-color: transparent; border: 0;}'
+    '.typeahead-item { cursor: pointer; display: block; width: 100%; padding: .25rem 1.5rem; clear: both; font-weight: 400; color: #212529; text-align: inherit; white-space: nowrap; background-color: transparent; border: 0;}',
+    '.typeahead-item:hover { cursor: pointer; display: block; width: 100%; padding: .25rem 1.5rem; clear: both; font-weight: 400; color: #212529; text-align: inherit; white-space: nowrap; background-color: #cce4ff; border: 0;}',
+    '.scrollSelected { cursor: pointer; display: block; width: 100%; padding: .25rem 1.5rem; clear: both; font-weight: 400; color: #212529; text-align: inherit; white-space: nowrap; background-color: #cce4ff; border: 0;}',
+    '.txt-light { font-weight:bolder; }'
   ],
   providers: [TYPEAHEAD_EDIT_CONTROL_VALUE_ACCESSOR]
 })
 export class TypeAheadEditorComponent implements ControlValueAccessor, OnInit {
 
   @ViewChild('typeaheadEditorControl') typeaheadEditorControl: ElementRef; // input DOM element
-  @Input() label: string = '';  
-  @Input() placeholder: string = ''; 
-  @Input() required: string = 'false'; 
+  @Input() label: string = '';
+  @Input() placeholder: string = '';
+  @Input() required: string = 'false';
   @Input() requiredMessage: string = '';
-  @Input() disabled: string = 'false'; 
+  @Input() disabled: string = 'false';
   @Input() id: string = '';
-  @Input() options: any[];
+  @Input() options: any[] = [];
+
   @Input() dataValue: string = '';
   @Input() displayValue: string = '';
   @Output() onSave: EventEmitter<string> = new EventEmitter();
   @Output() onCancel: EventEmitter<string> = new EventEmitter();
 
   public open: boolean = false;
+  private displayText: string;
   private _originalValue: any;
   public filterArg: any;
   private _value: string = ''; // Private variable for input value
@@ -72,35 +78,38 @@ export class TypeAheadEditorComponent implements ControlValueAccessor, OnInit {
   private editing: boolean = false; // Is Component in edit mode?
   public onChange: any = Function.prototype; // Trascend the onChange event
   public onTouched: any = Function.prototype; // Trascend the onTouch event
-  private typeaheadReqflag:boolean = false;
+  private typeaheadReqflag: boolean = false;
+  private scrolledIndex: number = -1;
+  private availOptions: any[] = [];
+  private aheadKey: string;
 
   constructor(element: ElementRef, private _renderer: Renderer) { }
- 
+
   onSaveComplete() {
-    if(this.required == "true"){
-      if(this.typeaheadEditorControl.nativeElement.value == null || this.typeaheadEditorControl.nativeElement.value === undefined || this.typeaheadEditorControl.nativeElement.value === "")   {
-        this.typeaheadReqflag = true;        
+    if (this.required == "true") {
+      if (this.typeaheadEditorControl.nativeElement.value == null || this.typeaheadEditorControl.nativeElement.value === undefined || this.typeaheadEditorControl.nativeElement.value === "") {
+        this.typeaheadReqflag = true;
         return;
       }
-      else{
+      else {
         this.typeaheadReqflag = false;
-      }      
+      }
     }
-    else{
+    else {
       this.typeaheadReqflag = false;
     }
 
     this.onSave.emit('clicked save');
-    this.editing=false;
+    this.editing = false;
   }
 
   onCancelComplete() {
-    this.editing=false;
-    this._value=this._originalValue;
+    this.editing = false;
+    this._value = this._originalValue;
     this.typeaheadReqflag = false;
     this.onCancel.emit('clicked cancel');
   }
-  
+
   // Control Value Accessors for ngModel
   get value(): any {
     return this._value;
@@ -142,6 +151,8 @@ export class TypeAheadEditorComponent implements ControlValueAccessor, OnInit {
     this.preValue = value;
     this.editing = true;
     this._originalValue = value;
+
+    setTimeout(() => { this.typeaheadEditorControl.nativeElement.focus(); }, 300);
   }
 
   IsTypeAheadTextEmpty(): Boolean {
@@ -149,17 +160,31 @@ export class TypeAheadEditorComponent implements ControlValueAccessor, OnInit {
   }
 
   search(event: any) {
-    if (event.target.value === undefined || event.target.value === null || event.target.value === "") {
-      this.open = false;
-      return;
-    } else {
-      this.filterArg = event.target.value;
-      this.open = true;
+    event.preventDefault();
+    // key down
+    if (event.keyCode === 40) {
+      if (this.scrolledIndex < this.availOptions.length - 1) {
+        this.scrolledIndex = ++this.scrolledIndex;
+      }
+    } else if (event.keyCode === 38) { // key up
+      if (this.scrolledIndex >= 0) {
+        this.scrolledIndex = --this.scrolledIndex;
+      }
+    } else if (event.keyCode === 13) { // enter
+      this.selectItem(this.availOptions[this.scrolledIndex]);
+    } else { // search
+      if (event.target.value === undefined || event.target.value === null || event.target.value === "") {
+        this.open = false;
+        return;
+      } else {
+        this.aheadKey = event.target.value;
+        this.availOptions = this.options.filter(item => item[this.displayValue].toLowerCase().indexOf(event.target.value.toLowerCase()) !== -1);
+        this.open = true;
+      }
     }
   }
 
   selectItem(item: any) {
-    debugger;
     var dd = <HTMLInputElement>document.getElementById("ngtypeaheadsearch");
     dd.value = item[this.displayValue];
     this.value = item;
@@ -168,6 +193,10 @@ export class TypeAheadEditorComponent implements ControlValueAccessor, OnInit {
 
   GetDisplayText(c: any): string {
     return c[this.displayValue];
+  }
+
+  isIndexSelected(item: any, i: number): boolean {
+    return this.scrolledIndex == i ? true : false;
   }
 
   ngOnInit() {

@@ -9,7 +9,7 @@ const TAGS_EDIT_CONTROL_VALUE_ACCESSOR = {
 
 @Component({
   selector: 'tags-editor',
-  template: `<div #tagsEditorControl *ngIf="editing">
+  template: `<div *ngIf="editing">
   <label class="col-form-label">{{label}}</label>
   <div class="input-group">
       <div class="tags" [class.tags-is-invalid]="tagsReqflag">
@@ -19,7 +19,7 @@ const TAGS_EDIT_CONTROL_VALUE_ACCESSOR = {
                   <a class="tag-remove-button" (click)="removeTagItem(i)">×</a>
               </li>
           </ul>
-          <input id="ngtags-control" type="text" class="tag-input" autocomplete="off" (keydown.enter)="addTag($event)" [placeholder]="placeholder">
+          <input #tagsEditorControl id="ngtags-control" type="text" class="tag-input" autocomplete="off" (keydown.enter)="addTag($event)" [placeholder]="placeholder">
       </div>
   </div>
   <div *ngIf="tagsReqflag" class="text-danger">
@@ -142,17 +142,17 @@ export class TagsEditorComponent implements ControlValueAccessor, OnInit {
   public registerOnTouched(fn: () => {}): void {
     this.onTouched = fn;
   }
- 
-  // Start the editting process for the input element
+   
   edit(value: any) {
     if (this.disabled === "true") {
       return;
     }
-    debugger;
     this.preValue = value;
     this.editing = true;
     this.tags = this.value;
     if(value != null || value != undefined) this._originalValue=value.slice(0);
+
+    setTimeout(() => { this.tagsEditorControl.nativeElement.focus(); }, 300);
   }
 
   IsTagsEmpty(value:string[]): Boolean{
