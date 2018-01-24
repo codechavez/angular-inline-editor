@@ -12,6 +12,7 @@ import { TagsEditorModule } from "../../lib/tags-editor/tags-editor.module";
 import { DateEditorModule } from "../../lib/date-editor/date-editor.module";
 import { TimeEditorModule } from "../../lib/time-editor/time-editor.module";
 import { TypeAheadEditorModule } from "../../lib/typeahead-editor/typeahead-editor.module";
+import { NumberEditorModule } from "../../lib/inputnumber-editor/number-editor.module";
 
 import { AppComponent } from './app.component';
 
@@ -28,7 +29,8 @@ import { AppComponent } from './app.component';
     TagsEditorModule.forRoot(),
     DateEditorModule.forRoot(),
     TimeEditorModule.forRoot(),
-    TypeAheadEditorModule.forRoot()
+    TypeAheadEditorModule.forRoot(),
+    NumberEditorModule.forRoot()
   ],
   declarations: [AppComponent],
   bootstrap: [AppComponent]

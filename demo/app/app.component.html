@@ -145,6 +145,18 @@
         </div>
     </div>
 
+    <h3>number editor</h3>
+    <div class="row">
+        <div class="col-md-4">
+            <number-editor [(ngModel)]="numbers" minNumber=0 maxNumber=10 step=2 placeholder="Enter a positive number"></number-editor>
+        </div>
+        <div class="col-md-4">
+            <number-editor [(ngModel)]="disnumbers" minNumber=0 maxNumber=10 step=2 placeholder="Enter a positive number" disabled="true"></number-editor>
+        </div>
+        <div class="col-md-4">
+            <number-editor [(ngModel)]="renumber" minNumber=0 maxNumber=10 step=2 placeholder="Enter a positive number" required="true" requiredMessage="number is required" ></number-editor>
+        </div>
+    </div>
     
 <br/>
 <br/>

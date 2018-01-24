@@ -57,6 +57,10 @@ export class AppComponent implements OnInit {
     disselectedTypeahead:Country= new Country("GK","Greek");
     emptyselectedTypeahead:Country;
 
+    numbers:number=6;
+    disnumbers:number=10;
+    renumber:number;
+
     constructor() { }
 
     ngOnInit() { }  

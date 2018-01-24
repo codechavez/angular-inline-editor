@@ -17,7 +17,7 @@ angular-inline-editors was built to work with Angular 4+, current dependencies a
 * [ ] input
   * [x] input - text
   * [ ] input - password - pattern
-  * [ ] input - number
+  * [x] input - number
   * [ ] input - email
   * [ ] input - phone
   * [ ] input - pattern 
@@ -29,6 +29,7 @@ angular-inline-editors was built to work with Angular 4+, current dependencies a
 * [x] tags
 * [x] date
 * [x] time
+* [ ] datetime picker
 * [x] typeahead
 * [x] validations
   * [x] input - required
