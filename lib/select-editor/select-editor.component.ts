@@ -63,6 +63,7 @@ export class SelectEditorComponent implements ControlValueAccessor, OnInit {
   @Output() onSave: EventEmitter<string> = new EventEmitter();
   @Output() onCancel: EventEmitter<string> = new EventEmitter();
   @Output() clickoutside = new EventEmitter<MouseEvent>();
+  @Output() onEditing: EventEmitter<string> = new EventEmitter();
 
   private _value: any = ''; // Private variable for input value
   private preValue: string = ''; // The value before clicking to edit
@@ -147,10 +148,12 @@ export class SelectEditorComponent implements ControlValueAccessor, OnInit {
     if (this.disabled === 'true') {
       return;
     }
+
+    this.onEditing.emit('editing click');
+
     this.preValue = value;
     this.editing = true;
     this._originalValue=value;
-  
   }
 
   isSelected(opt: any): boolean {

@@ -32,6 +32,7 @@ export class NumberEditorComponent implements ControlValueAccessor, OnInit {
   @Input() step: number = 1;
   @Output() onSave: EventEmitter<string> = new EventEmitter();
   @Output() onCancel: EventEmitter<string> = new EventEmitter();
+  @Output() onEditing: EventEmitter<string> = new EventEmitter();
 
   private _originalValue: any;
   private _value: number; // Private variable for input value
@@ -116,6 +117,8 @@ export class NumberEditorComponent implements ControlValueAccessor, OnInit {
     if (this.disabled === "true") {
       return;
     }
+
+    this.onEditing.emit('editing click');
 
     this.preValue = value;
     this.editing = true;

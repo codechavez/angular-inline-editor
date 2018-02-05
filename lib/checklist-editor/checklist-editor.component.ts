@@ -68,6 +68,7 @@ export class CheckListEditorComponent implements ControlValueAccessor, OnInit {
   @Input() dataValue: string = '';
   @Output() onSave: EventEmitter<string> = new EventEmitter();
   @Output() onCancel: EventEmitter<string> = new EventEmitter();
+  @Output() onEditing: EventEmitter<string> = new EventEmitter();
 
   private _originalValue:any;
   private _value: any[] = []; // Private variable for input value
@@ -142,12 +143,11 @@ export class CheckListEditorComponent implements ControlValueAccessor, OnInit {
       return;
     }
 
+    this.onEditing.emit('editing click');
+
     this.preValue = value;
     this.editing = true;
     this._originalValue=value;
-    // Focus on the input element just as the editing begins
-    setTimeout(() => this._renderer.invokeElementMethod(this.checklistEditorControl,
-      'focus', []));
   }
 
   updateSelectedChecks(event: any) {

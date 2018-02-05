@@ -59,6 +59,7 @@ const DATE_EDIT_CONTROL_VALUE_ACCESSOR = {
     @Input() stringlength: string = '';
     @Output() onSave: EventEmitter<string> = new EventEmitter();
     @Output() onCancel: EventEmitter<string> = new EventEmitter();
+    @Output() onEditing: EventEmitter<string> = new EventEmitter();
   
     private _originalValue:any;
     private _value: string = ''; // Private variable for input value
@@ -133,6 +134,8 @@ const DATE_EDIT_CONTROL_VALUE_ACCESSOR = {
         return;
       }
   
+      this.onEditing.emit('editing click');
+
       this.preValue = value;
       this.editing = true;
       this._originalValue=value;

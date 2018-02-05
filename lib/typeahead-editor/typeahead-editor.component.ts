@@ -68,6 +68,7 @@ export class TypeAheadEditorComponent implements ControlValueAccessor, OnInit {
   @Input() displayValue: string = '';
   @Output() onSave: EventEmitter<string> = new EventEmitter();
   @Output() onCancel: EventEmitter<string> = new EventEmitter();
+  @Output() onEditing: EventEmitter<string> = new EventEmitter();
 
   public open: boolean = false;
   private displayText: string;
@@ -147,6 +148,8 @@ export class TypeAheadEditorComponent implements ControlValueAccessor, OnInit {
     if (this.disabled === "true") {
       return;
     }
+
+    this.onEditing.emit('editing click');
 
     this.preValue = value;
     this.editing = true;

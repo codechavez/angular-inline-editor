@@ -62,6 +62,7 @@ export class RadioListEditorComponent implements ControlValueAccessor, OnInit {
     @Input() placeholder: string = '';
     @Output() onSave: EventEmitter<string> = new EventEmitter();
     @Output() onCancel: EventEmitter<string> = new EventEmitter();
+    @Output() onEditing: EventEmitter<string> = new EventEmitter();
 
     public isEmpty: boolean = true;
     private _originalValue: any;
@@ -137,6 +138,8 @@ export class RadioListEditorComponent implements ControlValueAccessor, OnInit {
         if (this.disabled === 'true') {
             return;
         }
+
+        this.onEditing.emit('editing click');
 
         this.preValue = value;
         this.editing = true;

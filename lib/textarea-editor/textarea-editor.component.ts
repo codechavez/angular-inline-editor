@@ -58,6 +58,7 @@ export class TextAreaEditorComponent implements ControlValueAccessor, OnInit {
     @Input() placeholder: string = '';
     @Output() onSave: EventEmitter<string> = new EventEmitter();
     @Output() onCancel: EventEmitter<string> = new EventEmitter();
+    @Output() onEditing: EventEmitter<string> = new EventEmitter();
 
     private _originalValue: any;
     private _value: string = ''; // Private variable for input value
@@ -130,6 +131,8 @@ export class TextAreaEditorComponent implements ControlValueAccessor, OnInit {
         if (this.disabled === "true") {
             return;
         }
+
+        this.onEditing.emit('editing click');
 
         this.preValue = value;
         this.editing = true;

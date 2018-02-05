@@ -57,6 +57,7 @@ export class InputEditorComponent implements ControlValueAccessor, OnInit {
   @Input() stringlength: string = '';
   @Output() onSave: EventEmitter<string> = new EventEmitter();
   @Output() onCancel: EventEmitter<string> = new EventEmitter();
+  @Output() onEditing: EventEmitter<string> = new EventEmitter();
 
   private _originalValue:any;
   private _value: string = ''; // Private variable for input value
@@ -130,6 +131,8 @@ export class InputEditorComponent implements ControlValueAccessor, OnInit {
     if (this.disabled === "true") {
       return;
     }
+
+    this.onEditing.emit('editing click');
 
     this.preValue = value;
     this.editing = true;
