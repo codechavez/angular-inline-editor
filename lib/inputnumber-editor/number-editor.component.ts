@@ -9,7 +9,43 @@ const NUMBER_EDIT_CONTROL_VALUE_ACCESSOR = {
 
 @Component({
   selector: 'number-editor',
-  templateUrl: 'number-editor.component.html',
+  template: `<div *ngIf="editing">
+  <label class="col-form-label">{{label}}</label>
+  <div class="input-group">
+      <input #numberEditorControl class="form-control" 
+          [class.is-invalid]="numberReqflag || numberBigflag"
+          [id]="id" 
+          [(ngModel)]="value" 
+          type="number" 
+          [placeholder]="placeholder"
+          [max]="maxNumber"
+          [min]="minNumber"
+          [step]="step">
+      <span class="input-group-btn">
+          <button class="btn btn-sm btn-success" type="button" (click)="onSaveInputNumber()">
+              <i class="fa fa-check" aria-hidden="true"></i>
+          </button>
+          <button class="btn btn-sm btn-danger" type="button" (click)="onCancelInputNumber()">
+              <i class="fa fa-times" aria-hidden="true"></i>
+          </button>
+      </span>
+  </div>
+  <div *ngIf="numberReqflag" class="text-danger">
+      {{requiredMessage}}
+  </div>
+  <div *ngIf="numberBigflag" class="text-danger">
+      Number enter is out of bound MAX:{{maxNumber}} MIN:{{minNumber}}
+  </div>
+</div>
+<div *ngIf="!editing">
+  <div class="form-group">
+      <label class="col-form-label">{{label}}</label>
+      <div *ngIf="IsInputTextEmpty()" (click)="edit(value)" (focus)="edit(value);" tabindex="0" class="inline-edit-empty">
+          {{placeholder}}&nbsp;
+      </div>
+      <div *ngIf="!IsInputTextEmpty()" (click)="edit(value)" (focus)="edit(value);" tabindex="0" [ngClass]="disabled == 'true' ? 'inline-no-edit' : 'inline-edit'">{{value}}&nbsp;</div>
+  </div>
+</div>`,
   styles: [
     '.col-form-label { padding-bottom: 0px !important; }',
     '.inline-edit { text-decoration: none; border-bottom: #007bff dashed 1px; cursor: pointer; width: auto;}',
@@ -45,8 +81,7 @@ export class NumberEditorComponent implements ControlValueAccessor, OnInit {
 
   constructor(element: ElementRef, private _renderer: Renderer) { }
 
-  onSaveComplete() {
-    debugger;
+  onSaveInputNumber() {
     if (this.numberEditorControl.nativeElement.value != "" && (this.numberEditorControl.nativeElement.value > this.maxNumber || this.numberEditorControl.nativeElement.value < this.minNumber)) {
       this.numberBigflag = true;
       this.numberReqflag = false;
@@ -73,7 +108,7 @@ export class NumberEditorComponent implements ControlValueAccessor, OnInit {
     this.editing = false;
   }
 
-  onCancelComplete() {
+  onCancelInputNumber() {
     this.editing = false;
     this._value = this._originalValue;
     this.numberReqflag = false;

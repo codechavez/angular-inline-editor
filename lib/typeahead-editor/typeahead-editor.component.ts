@@ -15,10 +15,10 @@ const TYPEAHEAD_EDIT_CONTROL_VALUE_ACCESSOR = {
       <input #typeaheadEditorControl  [class.is-invalid]="typeaheadReqflag"  class="form-control" id="ngtypeaheadsearch" [value]="value | displayFieldName:displayValue" type="text" [placeholder]="placeholder" (keyup)="search($event)">
       
       <span class="input-group-btn">
-          <button class="btn btn-sm btn-success" type="button" (click)="onSaveComplete()">
+          <button class="btn btn-sm btn-success" type="button" (click)="onSaveTypeahead()">
               <i class="fa fa-check" aria-hidden="true"></i>
           </button>
-          <button class="btn btn-sm btn-danger" type="button" (click)="onCancelComplete()">
+          <button class="btn btn-sm btn-danger" type="button" (click)="onCancelTypeahead()">
               <i class="fa fa-times" aria-hidden="true"></i>
           </button>
       </span>
@@ -86,7 +86,7 @@ export class TypeAheadEditorComponent implements ControlValueAccessor, OnInit {
 
   constructor(element: ElementRef, private _renderer: Renderer) { }
 
-  onSaveComplete() {
+  onSaveTypeahead() {
     if (this.required == "true") {
       if (this.typeaheadEditorControl.nativeElement.value == null || this.typeaheadEditorControl.nativeElement.value === undefined || this.typeaheadEditorControl.nativeElement.value === "") {
         this.typeaheadReqflag = true;
@@ -104,7 +104,7 @@ export class TypeAheadEditorComponent implements ControlValueAccessor, OnInit {
     this.editing = false;
   }
 
-  onCancelComplete() {
+  onCancelTypeahead() {
     this.editing = false;
     this._value = this._originalValue;
     this.typeaheadReqflag = false;

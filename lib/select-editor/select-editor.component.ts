@@ -14,10 +14,10 @@ const SELECT_CONTROL_VALUE_ACCESSOR = {
   <div class="input-group">
       <input type="text" #selectEditorControl class="form-control"  [class.is-invalid]="selectReqflag" (click)="showSelectOptions()" readonly [value]="value | displayName:displayValue">
       <span class="input-group-btn">
-          <button class="btn btn-sm btn-success" type="button" (click)="onSaveComplete()">
+          <button class="btn btn-sm btn-success" type="button" (click)="onSaveSelect()">
               <i class="fa fa-check" aria-hidden="true"></i>
           </button>
-          <button class="btn btn-sm btn-danger" type="button" (click)="onCancelComplete()">
+          <button class="btn btn-sm btn-danger" type="button" (click)="onCancelSelect()">
               <i class="fa fa-times" aria-hidden="true"></i>
           </button>
       </span>
@@ -92,7 +92,7 @@ export class SelectEditorComponent implements ControlValueAccessor, OnInit {
 
   }
 
-  onSaveComplete() {
+  onSaveSelect() {
     if(this.required == "true"){
       if(this.selectEditorControl.nativeElement.value == null || this.selectEditorControl.nativeElement.value === undefined || this.selectEditorControl.nativeElement.value === "")   {
         this.selectReqflag = true;        
@@ -109,7 +109,7 @@ export class SelectEditorComponent implements ControlValueAccessor, OnInit {
     this.onSave.emit('clicked save');
     this.editing=false;
   }
-  onCancelComplete() {
+  onCancelSelect() {
     this.editing=false;
     this._value=this._originalValue;
     this.selectReqflag = false;

@@ -3,10 +3,10 @@
     <div class="input-group">
         <input type="text" #selectEditorControl class="form-control"  [class.is-invalid]="selectReqflag" (click)="showSelectOptions()" readonly [value]="value | displayName:displayValue">
         <span class="input-group-btn">
-            <button class="btn btn-sm btn-success" type="button" (click)="onSaveComplete()">
+            <button class="btn btn-sm btn-success" type="button" (click)="onSaveSelect()">
                 <i class="fa fa-check" aria-hidden="true"></i>
             </button>
-            <button class="btn btn-sm btn-danger" type="button" (click)="onCancelComplete()">
+            <button class="btn btn-sm btn-danger" type="button" (click)="onCancelSelect()">
                 <i class="fa fa-times" aria-hidden="true"></i>
             </button>
         </span>

@@ -18,10 +18,10 @@ const TIME_EDIT_CONTROL_VALUE_ACCESSOR = {
           {{requiredMessage}}
       </div>
   <div class="text-right">
-          <button class="btn btn-sm btn-success" type="button" (click)="onSaveComplete()">
+          <button class="btn btn-sm btn-success" type="button" (click)="onSaveTime()">
               <i class="fa fa-check" aria-hidden="true"></i>
           </button>
-          <button class="btn btn-sm btn-danger" type="button" (click)="onCancelComplete()">
+          <button class="btn btn-sm btn-danger" type="button" (click)="onCancelTime()">
               <i class="fa fa-times" aria-hidden="true"></i>
           </button>
       </div>
@@ -70,8 +70,7 @@ export class TimeEditorComponent implements ControlValueAccessor, OnInit {
 
   constructor(element: ElementRef, private _renderer: Renderer) { }
 
-  onSaveComplete() {
-    debugger;
+  onSaveTime() {
 
     var inputs = document.getElementsByClassName("form-control text-center bs-timepicker-field");
     var hh = <HTMLInputElement>inputs.item(0);
@@ -98,7 +97,7 @@ export class TimeEditorComponent implements ControlValueAccessor, OnInit {
     this.editing = false;
   }
 
-  onCancelComplete() {
+  onCancelTime() {
     this.editing = false;
     this._value = this._originalValue;
     this.timeReqflag = false;

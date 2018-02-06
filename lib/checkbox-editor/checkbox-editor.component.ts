@@ -9,30 +9,30 @@ const CHECKBOX_EDIT_CONTROL_VALUE_ACCESSOR = {
 
 @Component({
     selector: 'checkbox-editor',
-    template: '<div *ngIf="editing">'+
-    '<div class="row">'+
-        '<div class="col-md-6">'+
-            '<div class="form-check">'+
-                '<label #checkboxEditorControl class="form-check-label">'+
-                    '<input type="checkbox" class="form-check-input" [(checked)]="value" (change)="checkedChange($event)" />&nbsp;{{label}}'+
-                '</label>'+
-            '</div>'+
-        '</div>'+
-        '<div class="col-md-6 text-right">'+
-            '<button class="btn btn-sm btn-success" type="button" (click)="onSaveComplete()">'+
-                '<i class="fa fa-check" aria-hidden="true"></i>'+
-            '</button>'+
-            '<button class="btn btn-sm btn-danger" type="button" (click)="onCancelComplete()">'+
-                '<i class="fa fa-times" aria-hidden="true"></i>'+
-            '</button>'+
-        '</div>'+
-    '</div>'+
-'</div>'+
-'<div *ngIf="!editing">'+
-    '<div class="form-group">'+
-        '<div (click)="edit(value)" (focus)="edit(value);" tabindex="0" [ngClass]="disabled == \'true\' ? \'inline-no-edit\' : \'inline-edit\'">{{value == true ? checkedDisplayValue : uncheckedDisplayValue}}&nbsp;</div>'+
-    '</div>'+
-'</div>',
+    template: '<div *ngIf="editing">' +
+        '<div class="row">' +
+        '<div class="col-md-6">' +
+        '<div class="form-check">' +
+        '<label #checkboxEditorControl class="form-check-label">' +
+        '<input type="checkbox" class="form-check-input" [(checked)]="value" (change)="checkedChange($event)" />&nbsp;{{label}}' +
+        '</label>' +
+        '</div>' +
+        '</div>' +
+        '<div class="col-md-6 text-right">' +
+        '<button class="btn btn-sm btn-success" type="button" (click)="onSaveCheckBox()">' +
+        '<i class="fa fa-check" aria-hidden="true"></i>' +
+        '</button>' +
+        '<button class="btn btn-sm btn-danger" type="button" (click)="onCancelCheckBox()">' +
+        '<i class="fa fa-times" aria-hidden="true"></i>' +
+        '</button>' +
+        '</div>' +
+        '</div>' +
+        '</div>' +
+        '<div *ngIf="!editing">' +
+        '<div class="form-group">' +
+        '<div (click)="edit(value)" (focus)="edit(value);" tabindex="0" [ngClass]="disabled == \'true\' ? \'inline-no-edit\' : \'inline-edit\'">{{value == true ? checkedDisplayValue : uncheckedDisplayValue}}&nbsp;</div>' +
+        '</div>' +
+        '</div>',
     styles: [
         '.col-form-label { padding-bottom: 0px !important; }',
         '.inline-edit { text-decoration: none; border-bottom: #007bff dashed 1px; cursor: pointer; width: auto;}',
@@ -48,14 +48,14 @@ export class CheckBoxEditorComponent implements ControlValueAccessor, OnInit {
     @Input() required: boolean = false; // Is input requried?
     @Input() disabled: string = 'false'; // Is input disabled?
     @Input() id: string = ''
-    @Input() checkedDisplayValue:string='';
-    @Input() uncheckedDisplayValue:string='';
+    @Input() checkedDisplayValue: string = '';
+    @Input() uncheckedDisplayValue: string = '';
     @Output() onSave: EventEmitter<string> = new EventEmitter();
     @Output() onCancel: EventEmitter<string> = new EventEmitter();
     @Output() onEditing: EventEmitter<string> = new EventEmitter();
 
-    private _originalValue:any;
-    display:string='';
+    private _originalValue: any;
+    display: string = '';
     private _value: true; // Private variable for input value
     private preValue: string = ''; // The value before clicking to edit
     private editing: boolean = false; // Is Component in edit mode?
@@ -64,16 +64,16 @@ export class CheckBoxEditorComponent implements ControlValueAccessor, OnInit {
 
     constructor(element: ElementRef, private _renderer: Renderer) { }
 
-    onSaveComplete() {
+    onSaveCheckBox() {
         this.onSave.emit('clicked save');
-        this.editing=false;
-      }
-    
-      onCancelComplete() {
-        this.editing=false;
-        this._value=this._originalValue;
+        this.editing = false;
+    }
+
+    onCancelCheckBox() {
+        this.editing = false;
+        this._value = this._originalValue;
         this.onCancel.emit('clicked cancel');
-      }
+    }
 
     // Control Value Accessors for ngModel
     get value(): any {
@@ -115,10 +115,10 @@ export class CheckBoxEditorComponent implements ControlValueAccessor, OnInit {
 
         this.preValue = value;
         this.editing = true;
-        this._originalValue=value;
+        this._originalValue = value;
     }
 
-    checkedChange(event:any){
+    checkedChange(event: any) {
         this.value = event.target.checked;
     }
 

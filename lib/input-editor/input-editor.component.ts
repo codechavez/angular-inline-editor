@@ -15,10 +15,10 @@ const INLINE_EDIT_CONTROL_VALUE_ACCESSOR = {
       <input #inputEditorControl class="form-control" [class.is-invalid]="inputReqflag" [required]="required" [id]="id" [(ngModel)]="value" type="text" [placeholder]="placeholder"
           [maxlength]="stringlength">
       <span class="input-group-btn">
-          <button class="btn btn-sm btn-success" type="button" (click)="onSaveComplete()">
+          <button class="btn btn-sm btn-success" type="button" (click)="onSaveInput()">
               <i class="fa fa-check" aria-hidden="true"></i>
           </button>
-          <button class="btn btn-sm btn-danger" type="button" (click)="onCancelComplete()">
+          <button class="btn btn-sm btn-danger" type="button" (click)="onCancelInput()">
               <i class="fa fa-times" aria-hidden="true"></i>
           </button>
       </span>
@@ -69,7 +69,7 @@ export class InputEditorComponent implements ControlValueAccessor, OnInit {
 
   constructor(element: ElementRef, private _renderer: Renderer) { }
   
-  onSaveComplete() {
+  onSaveInput() {
     if(this.required == "true"){
       if(this.inputEditorControl.nativeElement.value == null || this.inputEditorControl.nativeElement.value === undefined || this.inputEditorControl.nativeElement.value === "")   {
         this.inputReqflag = true;        
@@ -87,7 +87,7 @@ export class InputEditorComponent implements ControlValueAccessor, OnInit {
     this.editing=false;
   }
 
-  onCancelComplete() {
+  onCancelInput() {
     this.editing=false;
     this._value=this._originalValue;
     this.inputReqflag = false;

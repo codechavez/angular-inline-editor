@@ -24,10 +24,10 @@ const CHECKLIST_EDIT_CONTROL_VALUE_ACCESSOR = {
       {{requiredMessage}}
   </div>
   <div class="text-right">
-      <button class="btn btn-sm btn-success" type="button" (click)="onSaveComplete()">
+      <button class="btn btn-sm btn-success" type="button" (click)="onSaveChecklist()">
           <i class="fa fa-check" aria-hidden="true"></i>
       </button>
-      <button class="btn btn-sm btn-danger" type="button" (click)="onCancelComplete()">
+      <button class="btn btn-sm btn-danger" type="button" (click)="onCancelChecklist()">
           <i class="fa fa-times" aria-hidden="true"></i>
       </button>
   </div>
@@ -80,7 +80,7 @@ export class CheckListEditorComponent implements ControlValueAccessor, OnInit {
 
   constructor(element: ElementRef, private _renderer: Renderer) { }
 
-  onSaveComplete() {
+  onSaveChecklist() {
     if(this.required == "true"){
       if(this.value == null || this.value.length<= 0 || this.value == undefined){
         this.checklistReqflag = true;        
@@ -98,7 +98,7 @@ export class CheckListEditorComponent implements ControlValueAccessor, OnInit {
     this.editing=false;
   }
 
-  onCancelComplete() {
+  onCancelChecklist() {
     this.editing=false;
     this._value=this._originalValue;
     this.checklistReqflag = false;

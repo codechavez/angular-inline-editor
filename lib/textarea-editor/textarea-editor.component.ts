@@ -20,10 +20,10 @@ const TEXTAREA_EDIT_VALUE_ACCESSOR = {
         {{requiredMessage}}
     </div>
     <div class="text-right">
-        <button class="btn btn-success" type="button" (click)="onSaveComplete()">
+        <button class="btn btn-success" type="button" (click)="onSaveTextarea()">
             <i class="fa fa-check" aria-hidden="true"></i>
         </button>
-        <button class="btn btn-danger" type="button" (click)="onCancelComplete()">
+        <button class="btn btn-danger" type="button" (click)="onCancelTextarea()">
             <i class="fa fa-times" aria-hidden="true"></i>
         </button>
     </div>
@@ -70,7 +70,7 @@ export class TextAreaEditorComponent implements ControlValueAccessor, OnInit {
 
     constructor(element: ElementRef, private _renderer: Renderer) { }
 
-    onSaveComplete() {
+    onSaveTextarea() {
         if(this.required == "true"){
             if(this.textareaEditorControl.nativeElement.value == null || this.textareaEditorControl.nativeElement.value === undefined || this.textareaEditorControl.nativeElement.value === "")   {
               this.textareaReqflag = true;        
@@ -87,7 +87,7 @@ export class TextAreaEditorComponent implements ControlValueAccessor, OnInit {
         this.editing = false;
     }
 
-    onCancelComplete() {
+    onCancelTextarea() {
         this.editing = false;
         this._value = this._originalValue;
         this.textareaReqflag = false;

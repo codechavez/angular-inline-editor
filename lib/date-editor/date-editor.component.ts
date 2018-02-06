@@ -14,10 +14,10 @@ const DATE_EDIT_CONTROL_VALUE_ACCESSOR = {
     <div class="input-group">
         <input #dateEditorControl #dp="bsDatepicker" bsDatepicker  [class.is-invalid]="dateReqflag" class="form-control" [id]="id" [(ngModel)]="value" type="text" [placeholder]="placeholder">
         <span class="input-group-btn">
-            <button class="btn btn-sm btn-success" type="button" (click)="onSaveComplete()">
+            <button class="btn btn-sm btn-success" type="button" (click)="onSaveDate()">
                 <i class="fa fa-check" aria-hidden="true"></i>
             </button>
-            <button class="btn btn-sm btn-danger" type="button" (click)="onCancelComplete()">
+            <button class="btn btn-sm btn-danger" type="button" (click)="onCancelDate()">
                 <i class="fa fa-times" aria-hidden="true"></i>
             </button>
         </span>
@@ -71,7 +71,7 @@ const DATE_EDIT_CONTROL_VALUE_ACCESSOR = {
 
     constructor(element: ElementRef, private _renderer: Renderer) { }
     
-    onSaveComplete() {
+    onSaveDate() {
       if(this.required == "true"){
         if(this.dateEditorControl.nativeElement.value == null || this.dateEditorControl.nativeElement.value === undefined || this.dateEditorControl.nativeElement.value === "")   {
           this.dateReqflag = true;        
@@ -89,7 +89,7 @@ const DATE_EDIT_CONTROL_VALUE_ACCESSOR = {
       this.editing=false;
     }
   
-    onCancelComplete() {
+    onCancelDate() {
       this.editing=false;
       this._value=this._originalValue;
       this.dateReqflag = false;
