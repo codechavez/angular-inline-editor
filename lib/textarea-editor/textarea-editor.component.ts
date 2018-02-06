@@ -66,23 +66,23 @@ export class TextAreaEditorComponent implements ControlValueAccessor, OnInit {
     private editing: boolean = false; // Is Component in edit mode?
     public onChange: any = Function.prototype; // Trascend the onChange event
     public onTouched: any = Function.prototype; // Trascend the onTouch event
-    private textareaReqflag:boolean = false;
+    private textareaReqflag: boolean = false;
 
     constructor(element: ElementRef, private _renderer: Renderer) { }
 
     onSaveTextarea() {
-        if(this.required == "true"){
-            if(this.textareaEditorControl.nativeElement.value == null || this.textareaEditorControl.nativeElement.value === undefined || this.textareaEditorControl.nativeElement.value === "")   {
-              this.textareaReqflag = true;        
-              return;
+        if (this.required == "true") {
+            if (this.textareaEditorControl.nativeElement.value == null || this.textareaEditorControl.nativeElement.value === undefined || this.textareaEditorControl.nativeElement.value === "") {
+                this.textareaReqflag = true;
+                return;
             }
-            else{
-              this.textareaReqflag = false;
-            }      
-          }
-          else{
+            else {
+                this.textareaReqflag = false;
+            }
+        }
+        else {
             this.textareaReqflag = false;
-          }
+        }
         this.onSave.emit('clicked save');
         this.editing = false;
     }
@@ -92,6 +92,11 @@ export class TextAreaEditorComponent implements ControlValueAccessor, OnInit {
         this._value = this._originalValue;
         this.textareaReqflag = false;
         this.onCancel.emit('clicked cancel');
+    }
+
+    onCloseTextarea() {
+        this.editing = false;
+        this.textareaReqflag = false;
     }
 
     // Control Value Accessors for ngModel

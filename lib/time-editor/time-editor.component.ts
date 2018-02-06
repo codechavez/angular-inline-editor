@@ -103,6 +103,12 @@ export class TimeEditorComponent implements ControlValueAccessor, OnInit {
     this.timeReqflag = false;
     this.onCancel.emit('clicked cancel');
   }
+
+  onCloseTime() {
+    this.editing = false;
+    this.timeReqflag = false;
+  }
+
   // Control Value Accessors for ngModel
   get value(): any {
     return this._value;

@@ -58,6 +58,7 @@ export class InputEditorComponent implements ControlValueAccessor, OnInit {
   @Output() onSave: EventEmitter<string> = new EventEmitter();
   @Output() onCancel: EventEmitter<string> = new EventEmitter();
   @Output() onEditing: EventEmitter<string> = new EventEmitter();
+  
 
   private _originalValue:any;
   private _value: string = ''; // Private variable for input value
@@ -92,6 +93,11 @@ export class InputEditorComponent implements ControlValueAccessor, OnInit {
     this._value=this._originalValue;
     this.inputReqflag = false;
     this.onCancel.emit('clicked cancel');
+  }
+
+  onCloseInput(){
+    this.editing=false;
+    this.inputReqflag = false;
   }
   
   // Control Value Accessors for ngModel

@@ -111,6 +111,10 @@ export class TypeAheadEditorComponent implements ControlValueAccessor, OnInit {
     this.onCancel.emit('clicked cancel');
   }
 
+  onCloseTypeahead() {
+    this.editing = false;
+  }
+
   // Control Value Accessors for ngModel
   get value(): any {
     return this._value;

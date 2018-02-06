@@ -116,6 +116,11 @@ export class SelectEditorComponent implements ControlValueAccessor, OnInit {
     this.onCancel.emit('clicked cancel');
   }
 
+  onCloseSelect(){
+    this.editing=false;
+    this.selectReqflag = false;
+  }
+
   // Control Value Accessors for ngModel
   get value(): any {
     return this._value;

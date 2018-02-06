@@ -117,6 +117,11 @@ export class TagsEditorComponent implements ControlValueAccessor, OnInit {
     this.onCancel.emit('clicked cancel');
   }
 
+  onCloseTags(){
+    this.editing=false;
+    this.tagsReqflag = false;
+  }
+
   // Control Value Accessors for ngModel
   get value(): any {
     return this._value;

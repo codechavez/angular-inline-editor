@@ -115,6 +115,11 @@ export class NumberEditorComponent implements ControlValueAccessor, OnInit {
     this.onCancel.emit('clicked cancel');
   }
 
+  onCloseInputNumber(){
+    this.editing=false;
+    this.numberReqflag = false;
+  }
+
   // Control Value Accessors for ngModel
   get value(): number {
     return this._value;

@@ -75,6 +75,11 @@ export class CheckBoxEditorComponent implements ControlValueAccessor, OnInit {
         this.onCancel.emit('clicked cancel');
     }
 
+    
+  onCloseInput(){
+    this.editing=false;
+  }
+
     // Control Value Accessors for ngModel
     get value(): any {
         return this._value;

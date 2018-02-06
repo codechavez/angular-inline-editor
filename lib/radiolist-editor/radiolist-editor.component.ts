@@ -9,7 +9,7 @@ const RADIOLIST_EDIT_CONTROL_VALUE_ACCESSOR = {
 
 @Component({
     selector: 'radiolist-editor',
-    template:`<div *ngIf="editing">
+    template: `<div *ngIf="editing">
     <label class="col-form-label">{{label}}</label>
     <div class="">
         <div class="form-check">
@@ -98,6 +98,11 @@ export class RadioListEditorComponent implements ControlValueAccessor, OnInit {
         this._value = this._originalValue;
         this.radiolistReqflag = false;
         this.onCancel.emit('clicked cancel');
+    }
+
+    onCloseRadiolist() {
+        this.editing = false;
+        this.radiolistReqflag = false;
     }
 
     // Control Value Accessors for ngModel
