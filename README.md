@@ -29,7 +29,7 @@ angular-inline-editors was built to work with Angular 4+, current dependencies a
 * [x] tags
 * [x] date
 * [x] time
-* [ ] datetime picker
+* [x] datetime picker
 * [x] typeahead
 * [x] validations
   * [x] input - required
