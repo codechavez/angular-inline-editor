@@ -1,0 +1,36 @@
+<div *ngIf="editing">
+    <label class="col-form-label">{{label}}</label>
+    <div class="input-group">
+        <input #datetimeEditorControl type="datetime" (click)="ShowCalendar()"  [class.is-invalid]="dateReqflag" [ngModel]="value | date:'short'" (ngModelChange)="value=$event" class="form-control" [id]="id" type="text" [placeholder]="placeholder" >
+        <span #dp="bsDatepicker" bsDatepicker (onHidden)="SelectedDate()" [(bsValue)]="value"></span>
+        <span class="input-group-btn">
+            <button class="btn btn-sm btn-success" type="button" (click)="onSaveDateTime()">
+                <i class="fa fa-check" aria-hidden="true"></i>
+            </button>
+            <button class="btn btn-sm btn-danger" type="button" (click)="onCancelDateTime()">
+                <i class="fa fa-times" aria-hidden="true"></i>
+            </button>
+        </span>
+    </div>
+    <div class="time-picker-container" *ngIf="showTimePicker">
+        <div class="time-picker">
+            <div class="time-picker-body">
+                <timepicker [(ngModel)]="selectedTime"></timepicker>
+                <br/>
+                <button class="btn btn-block btn-success" (click)="SelectDateTime()">OK</button>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="dateReqflag" class="text-danger">
+        {{requiredMessage}}
+    </div>
+</div>
+<div *ngIf="!editing">
+    <div class="form-group">
+        <label class="col-form-label">{{label}}</label>
+        <div *ngIf="IsDateEmpty()" (click)="edit(value)" (focus)="edit(value);" tabindex="0" class="inline-edit-empty">
+            {{placeholder}}&nbsp;
+        </div>
+        <div *ngIf="!IsDateEmpty()" (click)="edit(value)" (focus)="edit(value);" tabindex="0" [ngClass]="disabled == 'true' ? 'inline-no-edit' : 'inline-edit'">{{value | date:format}}&nbsp;</div>
+    </div>
+</div>

@@ -13,6 +13,7 @@ import { DateEditorModule } from "../../lib/date-editor/date-editor.module";
 import { TimeEditorModule } from "../../lib/time-editor/time-editor.module";
 import { TypeAheadEditorModule } from "../../lib/typeahead-editor/typeahead-editor.module";
 import { NumberEditorModule } from "../../lib/inputnumber-editor/number-editor.module";
+import { DateTimeEditorModule } from "../../lib/datetimepicker-editor/datetimepicker-editor.module";
 
 import { AppComponent } from './app.component';
 
@@ -30,7 +31,8 @@ import { AppComponent } from './app.component';
     DateEditorModule.forRoot(),
     TimeEditorModule.forRoot(),
     TypeAheadEditorModule.forRoot(),
-    NumberEditorModule.forRoot()
+    NumberEditorModule.forRoot(),
+    DateTimeEditorModule.forRoot()
   ],
   declarations: [AppComponent],
   bootstrap: [AppComponent]

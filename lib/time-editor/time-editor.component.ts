@@ -9,21 +9,32 @@ const TIME_EDIT_CONTROL_VALUE_ACCESSOR = {
 
 @Component({
   selector: 'time-editor',
-  template: `<div *ngIf="editing">
+  template:`<div *ngIf="editing">
   <label class="col-form-label">{{label}}</label>
-  <div>
-      <timepicker #timeEditorControl [class.is-invalid]="timeReqflag" [(ngModel)]="value" [hourStep]=1 [minuteStep]=1></timepicker>
-  </div>
-  <div *ngIf="timeReqflag" class="text-danger">
-          {{requiredMessage}}
-      </div>
-  <div class="text-right">
+  <div class="input-group">
+      <input #timeEditorControl type="time" [class.is-invalid]="timeReqflag" [ngModel]="value | date:'shortTime'" (ngModelChange)="value=$event"
+          class="form-control" [id]="id" type="text" [placeholder]="placeholder" (click)="ShowTimePicker()">
+      <span class="input-group-btn">
           <button class="btn btn-sm btn-success" type="button" (click)="onSaveTime()">
               <i class="fa fa-check" aria-hidden="true"></i>
           </button>
           <button class="btn btn-sm btn-danger" type="button" (click)="onCancelTime()">
               <i class="fa fa-times" aria-hidden="true"></i>
           </button>
+      </span>
+     
+  </div>
+  <div *ngIf="timeReqflag" class="text-danger">
+      {{requiredMessage}}
+  </div>
+  <div class="time-picker-container" *ngIf="showTimePicker">
+          <div class="time-picker">
+              <div class="time-picker-body">
+                  <timepicker [(ngModel)]="value" [(ngModel)]="value" [hourStep]=1 [minuteStep]=1></timepicker>
+                  <br/>
+                  <button class="btn btn-block btn-success" (click)="ShowTimePicker()">SET</button>
+              </div>
+          </div>
       </div>
 </div>
 <div *ngIf="!editing">
@@ -40,7 +51,10 @@ const TIME_EDIT_CONTROL_VALUE_ACCESSOR = {
     '.inline-edit { text-decoration: none; border-bottom: #007bff dashed 1px; cursor: pointer; width: auto;}',
     '.inline-no-edit { text-decoration: none; border-bottom: #959596 dashed 1px; cursor: not-allowed; width: auto;}',
     '.inline-edit-empty{ text-decoration: none; border-bottom: red dashed 1px; cursor: pointer; width: auto; color: #b9b8b8;}',
-    '.bs-timepicker-field { width: 50px; }'
+    '.time-picker-container { position: absolute; display: block; top: 70px; left: 75px; z-index: 1080; }',
+    '.time-picker { display: flex; align-items: stretch; flex-flow: row wrap; background: #fff; box-shadow: 0 0 10px 0 #aaa; position: relative; z-index: 1; }',
+    '.time-picker-body { padding: 15px; }',
+    '.bs-timepicker-field { width: 60px !important; }'
   ],
   providers: [TIME_EDIT_CONTROL_VALUE_ACCESSOR]
 })
@@ -67,26 +81,18 @@ export class TimeEditorComponent implements ControlValueAccessor, OnInit {
   public onChange: any = Function.prototype; // Trascend the onChange event
   public onTouched: any = Function.prototype; // Trascend the onTouch event
   private timeReqflag: boolean = false;
+  private showTimePicker:boolean = false;
 
   constructor(element: ElementRef, private _renderer: Renderer) { }
 
   onSaveTime() {
-
-    var inputs = document.getElementsByClassName("form-control text-center bs-timepicker-field");
-    var hh = <HTMLInputElement>inputs.item(0);
-    var mm = <HTMLInputElement>inputs.item(1);
-
     if (this.required == "true") {
-      if (hh.value == null || hh.value == undefined || hh.value == "" || mm.value == null || mm.value == undefined || mm.value == "") {
+      if (this.timeEditorControl.nativeElement.value == null || this.timeEditorControl.nativeElement.value === undefined || this.timeEditorControl.nativeElement.value  == "") {
         this.timeReqflag = true;
-        hh.classList.add('is-invalid');
-        mm.classList.add('is-invalid');
         return;
       }
       else {
         this.timeReqflag = false;
-        hh.classList.remove('is-invalid');
-        mm.classList.remove('is-invalid');
       }
     }
     else {
@@ -161,4 +167,9 @@ export class TimeEditorComponent implements ControlValueAccessor, OnInit {
   ngOnInit() {
 
   }
+
+  ShowTimePicker(){
+    this.showTimePicker = !this.showTimePicker;
+  }
+
 }

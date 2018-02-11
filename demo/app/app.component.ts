@@ -61,6 +61,10 @@ export class AppComponent implements OnInit {
     disnumbers:number=10;
     renumber:number;
 
+    defaultdatetime:Date = new Date();
+    disdatetime:Date = new Date();
+    reqdatetime:Date;
+    
     constructor() { }
 
     ngOnInit() { }  

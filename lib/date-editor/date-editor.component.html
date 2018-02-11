@@ -1,7 +1,8 @@
 <div *ngIf="editing">
     <label class="col-form-label">{{label}}</label>
     <div class="input-group">
-        <input #dateEditorControl #dp="bsDatepicker" bsDatepicker  [class.is-invalid]="dateReqflag" class="form-control" [id]="id" [(ngModel)]="value" type="text" [placeholder]="placeholder">
+        <input #dateEditorControl #dp="bsDatepicker" bsDatepicker  [class.is-invalid]="dateReqflag" class="form-control" [id]="id" type="text" [placeholder]="placeholder" [ngModel]="value | date:'{{format}}'"
+        (ngModelChange)="value=$event">
         <span class="input-group-btn">
             <button class="btn btn-sm btn-success" type="button" (click)="onSaveDate()">
                 <i class="fa fa-check" aria-hidden="true"></i>

@@ -9,3 +9,4 @@ export { DateEditorModule } from './date-editor/date-editor.module';
 export { TimeEditorModule } from './time-editor/time-editor.module';
 export { TypeAheadEditorModule } from './typeahead-editor/typeahead-editor.module';
 export { NumberEditorModule } from './inputnumber-editor/number-editor.module'
+export { DateTimeEditorModule } from './datetimepicker-editor/datetimepicker-editor.module';

@@ -1,0 +1,22 @@
+.time-picker-container {
+    position: absolute;
+    display: block;
+    top: 68px;
+    left: 322px;
+    z-index: 1080;
+}
+
+.time-picker {
+    display: flex;
+    align-items: stretch;
+    flex-flow: row wrap;
+    background: #fff;
+    box-shadow: 0 0 10px 0 #aaa;
+    position: relative;
+    z-index: 1;
+}
+
+.time-picker-body {
+    padding: 15px;
+}
+
