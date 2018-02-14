@@ -9,6 +9,7 @@
         "lib": ["es2016", "dom"],
         "noImplicitAny": true,
         "declaration": true,
+        "types": ["node"],
         "suppressImplicitAnyIndexErrors": true,
         "forceConsistentCasingInFileNames": true
     },
