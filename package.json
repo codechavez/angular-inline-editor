@@ -1,6 +1,6 @@
 {
   "name": "angular-inline-editors",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "private": false,
   "license": "MIT",
   "main": "./dist/index.js",
@@ -8,7 +8,6 @@
   "readme": "README.md",
   "keywords": [
     "angular",
-    "angular 4",
     "inline editor",
     "click to edit"
   ],
@@ -21,7 +20,6 @@
     "url": "https://github.com/codechavez/angular-inline-editor.git"
   },
   "scripts": {
-    "postinstall": "typings install --global --save dt~core-js",
     "compile": "tsc --rootDir lib --outDir dist",
     "html": "XCOPY /S /y .\\lib\\*.html .\\dist",
     "css": "XCOPY /S /y .\\lib\\*.css .\\dist",
@@ -36,7 +34,7 @@
     "@angular/platform-browser": "^5.1.2",
     "@angular/platform-browser-dynamic": "^5.1.2",
     "core-js": "^2.5.3",
-    "ngx-bootstrap": "^2.0.0-rc.0",
+    "ngx-bootstrap": "^2.0.2",
     "reflect-metadata": "^0.1.10",
     "rxjs": "^5.5.6",
     "zone.js": "^0.8.18"
@@ -56,8 +54,7 @@
     "style-loader": "^0.19.1",
     "to-string-loader": "^1.1.5",
     "ts-loader": "^3.2.0",
-    "typescript": "^2.6.2",
-    "typings": "^2.1.1",
+    "typescript": "^2.7.2",
     "uglify-js": "^3.2.2",
     "webpack": "^3.10.0",
     "webpack-dev-server": "^2.9.7"

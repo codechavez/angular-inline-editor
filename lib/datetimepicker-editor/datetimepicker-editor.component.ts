@@ -26,7 +26,7 @@ const DATETIME_EDIT_CONTROL_VALUE_ACCESSOR = {
   <div class="time-picker-container" *ngIf="showTimePicker">
       <div class="time-picker">
           <div class="time-picker-body">
-              <timepicker [(ngModel)]="selectedTime"></timepicker>
+              <timepicker [(ngModel)]="selectedTime" [hourStep]=1 [minuteStep]=1></timepicker>
               <br/>
               <button class="btn btn-block btn-success" (click)="SelectDateTime()">OK</button>
           </div>

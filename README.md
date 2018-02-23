@@ -50,7 +50,7 @@ Also, include this style reference into your index.html header
 NOTE: Working in a solution to remove this dependency.
 
 ## Getting Started
-1. install ***angular-inline-editors*** through [npm](https://www.npmjs.com/search?q=angular-inline-editor) package using the following command:
+1. install ***angular-inline-editors*** through [npm](https://www.npmjs.com/search?q=angular-inline-editors) package using the following command:
 
         `npm install angular-inline-editors --save`
 
@@ -65,7 +65,7 @@ Following the principle of Angular is based on Modules and you use what you want
 ## How to use
 #### Add the module
 ``` typescript
-import {InputEditorModule} from 'angular-inline-editor';
+import {InputEditorModule} from 'angular-inline-editors';
 
 @NgModule({
   imports: [
@@ -76,8 +76,8 @@ import {InputEditorModule} from 'angular-inline-editor';
 
 #### Add more
 ``` typescript
-import {InputEditorModule} from 'angular-inline-editor';
-import { SelectEditorModule } from 'angular-inline-editor';
+import {InputEditorModule} from 'angular-inline-editors';
+import { SelectEditorModule } from 'angular-inline-editors';
 
 @NgModule({
   imports: [

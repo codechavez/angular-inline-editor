@@ -4,4 +4,5 @@ index.d.ts
 /typing/
 /dist/
 /.vscode/
-*.component.d.ts
+*.d.ts
+package-lock.json
