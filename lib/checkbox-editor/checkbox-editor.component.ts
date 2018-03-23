@@ -65,7 +65,9 @@ export class CheckBoxEditorComponent implements ControlValueAccessor, OnInit {
     constructor(element: ElementRef, private _renderer: Renderer) { }
 
     onSaveCheckBox() {
-        this.onSave.emit('clicked save');
+        if (this._originalValue != this._value) {
+            this.onSave.emit('clicked save');
+        }
         this.editing = false;
     }
 
@@ -75,10 +77,10 @@ export class CheckBoxEditorComponent implements ControlValueAccessor, OnInit {
         this.onCancel.emit('clicked cancel');
     }
 
-    
-  onCloseInput(){
-    this.editing=false;
-  }
+
+    onCloseInput() {
+        this.editing = false;
+    }
 
     // Control Value Accessors for ngModel
     get value(): any {

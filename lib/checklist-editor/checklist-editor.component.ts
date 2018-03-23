@@ -59,7 +59,7 @@ export class CheckListEditorComponent implements ControlValueAccessor, OnInit {
   @Input() label: string = '';  // Label value for input element
   @Input() placeholder: string = ''; // Placeholder value ofr input element
   @Input() type: string = 'text'; // The type of input element
-  @Input() required: string = 'false'; 
+  @Input() required: string = 'false';
   @Input() requiredMessage: string = '';
   @Input() disabled: string = 'false'; // Is input disabled?
   @Input() id: string = ''
@@ -70,43 +70,43 @@ export class CheckListEditorComponent implements ControlValueAccessor, OnInit {
   @Output() onCancel: EventEmitter<string> = new EventEmitter();
   @Output() onEditing: EventEmitter<string> = new EventEmitter();
 
-  private _originalValue:any;
+  private _originalValue: any;
   private _value: any[] = []; // Private variable for input value
   private preValue: string = ''; // The value before clicking to edit
   private editing: boolean = false; // Is Component in edit mode?
   public onChange: any = Function.prototype; // Trascend the onChange event
   public onTouched: any = Function.prototype; // Trascend the onTouch event
-  private checklistReqflag:boolean = false;
+  private checklistReqflag: boolean = false;
 
   constructor(element: ElementRef, private _renderer: Renderer) { }
 
   onSaveChecklist() {
-    if(this.required == "true"){
-      if(this.value == null || this.value.length<= 0 || this.value == undefined){
-        this.checklistReqflag = true;        
+    if (this.required == "true") {
+      if (this.value == null || this.value.length <= 0 || this.value == undefined) {
+        this.checklistReqflag = true;
         return;
       }
-      else{
+      else {
         this.checklistReqflag = false;
-      }      
+      }
     }
-    else{
+    else {
       this.checklistReqflag = false;
     }
 
     this.onSave.emit('clicked save');
-    this.editing=false;
+    this.editing = false;
   }
 
   onCancelChecklist() {
-    this.editing=false;
-    this._value=this._originalValue;
+    this.editing = false;
+    this._value = this._originalValue;
     this.checklistReqflag = false;
     this.onCancel.emit('clicked cancel');
   }
 
-  onCloseChecklist(){
-    this.editing=false;
+  onCloseChecklist() {
+    this.editing = false;
     this.checklistReqflag = false;
   }
 
@@ -152,11 +152,11 @@ export class CheckListEditorComponent implements ControlValueAccessor, OnInit {
 
     this.preValue = value;
     this.editing = true;
-    this._originalValue=value;
+    this._originalValue = value;
   }
 
   updateSelectedChecks(event: any) {
-    if(this._value === null || this._value === undefined) this._value=[];
+    if (this._value === null || this._value === undefined) this._value = [];
     if (event.target.checked) {
       if (this._value.indexOf(event.target.value) < 0) {
         this._value.push(event.target.value);

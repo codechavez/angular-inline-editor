@@ -100,7 +100,9 @@ export class TypeAheadEditorComponent implements ControlValueAccessor, OnInit {
       this.typeaheadReqflag = false;
     }
 
-    this.onSave.emit('clicked save');
+    if(this._originalValue != this._value){
+      this.onSave.emit('clicked save');
+    }  
     this.editing = false;
   }
 

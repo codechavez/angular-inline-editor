@@ -83,7 +83,10 @@ export class TextAreaEditorComponent implements ControlValueAccessor, OnInit {
         else {
             this.textareaReqflag = false;
         }
-        this.onSave.emit('clicked save');
+
+        if (this._originalValue != this._value) {
+            this.onSave.emit('clicked save');
+        }
         this.editing = false;
     }
 

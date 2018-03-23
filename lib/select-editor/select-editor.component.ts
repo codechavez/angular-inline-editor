@@ -106,7 +106,9 @@ export class SelectEditorComponent implements ControlValueAccessor, OnInit {
       this.selectReqflag = false;
     }
 
-    this.onSave.emit('clicked save');
+    if(this._originalValue != this._value){
+      this.onSave.emit('clicked save');
+    }  
     this.editing=false;
   }
   onCancelSelect() {

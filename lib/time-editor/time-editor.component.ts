@@ -9,7 +9,7 @@ const TIME_EDIT_CONTROL_VALUE_ACCESSOR = {
 
 @Component({
   selector: 'time-editor',
-  template:`<div *ngIf="editing">
+  template: `<div *ngIf="editing">
   <label class="col-form-label">{{label}}</label>
   <div class="input-group">
       <input #timeEditorControl type="time" [class.is-invalid]="timeReqflag" [ngModel]="value | date:'shortTime'" (ngModelChange)="value=$event"
@@ -81,13 +81,13 @@ export class TimeEditorComponent implements ControlValueAccessor, OnInit {
   public onChange: any = Function.prototype; // Trascend the onChange event
   public onTouched: any = Function.prototype; // Trascend the onTouch event
   private timeReqflag: boolean = false;
-  private showTimePicker:boolean = false;
+  private showTimePicker: boolean = false;
 
   constructor(element: ElementRef, private _renderer: Renderer) { }
 
   onSaveTime() {
     if (this.required == "true") {
-      if (this.timeEditorControl.nativeElement.value == null || this.timeEditorControl.nativeElement.value === undefined || this.timeEditorControl.nativeElement.value  == "") {
+      if (this.timeEditorControl.nativeElement.value == null || this.timeEditorControl.nativeElement.value === undefined || this.timeEditorControl.nativeElement.value == "") {
         this.timeReqflag = true;
         return;
       }
@@ -99,7 +99,9 @@ export class TimeEditorComponent implements ControlValueAccessor, OnInit {
       this.timeReqflag = false;
     }
 
-    this.onSave.emit('clicked save');
+    if (this._originalValue != this._value) {
+      this.onSave.emit('clicked save');
+    }
     this.editing = false;
   }
 
@@ -168,7 +170,7 @@ export class TimeEditorComponent implements ControlValueAccessor, OnInit {
 
   }
 
-  ShowTimePicker(){
+  ShowTimePicker() {
     this.showTimePicker = !this.showTimePicker;
   }
 
