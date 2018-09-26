@@ -11,9 +11,17 @@
         "declaration": true,
         "types": ["node"],
         "suppressImplicitAnyIndexErrors": true,
-        "forceConsistentCasingInFileNames": true
+        "forceConsistentCasingInFileNames": true,
     },
     "exclude": [
-        "demo/**/*"
-    ]
+        "demo/**/*",
+        "dist"
+    ],
+    "angularCompilerOptions": {
+      "genDir": "dist",
+      "debug": false,
+      "skipTemplateCodegen": true,
+      "skipMetadataEmit": false,
+      "strictMetadataEmit": true
+    }
 }

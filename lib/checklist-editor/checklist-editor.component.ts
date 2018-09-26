@@ -70,13 +70,13 @@ export class CheckListEditorComponent implements ControlValueAccessor, OnInit {
   @Output() onCancel: EventEmitter<string> = new EventEmitter();
   @Output() onEditing: EventEmitter<string> = new EventEmitter();
 
-  private _originalValue: any;
-  private _value: any[] = []; // Private variable for input value
-  private preValue: string = ''; // The value before clicking to edit
-  private editing: boolean = false; // Is Component in edit mode?
+  public editing: boolean = false; // Is Component in edit mode?
+  public preValue: string = ''; // The value before clicking to edit
   public onChange: any = Function.prototype; // Trascend the onChange event
   public onTouched: any = Function.prototype; // Trascend the onTouch event
-  private checklistReqflag: boolean = false;
+  public checklistReqflag: boolean = false;
+  private _originalValue: any;
+  private _value: any[] = []; // Private variable for input value
 
   constructor(element: ElementRef, private _renderer: Renderer) { }
 

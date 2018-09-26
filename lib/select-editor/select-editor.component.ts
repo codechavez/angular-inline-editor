@@ -65,14 +65,14 @@ export class SelectEditorComponent implements ControlValueAccessor, OnInit {
   @Output() clickoutside = new EventEmitter<MouseEvent>();
   @Output() onEditing: EventEmitter<string> = new EventEmitter();
 
-  private _value: any = ''; // Private variable for input value
-  private preValue: string = ''; // The value before clicking to edit
-  private editing: boolean = false; // Is Component in edit mode?
+  public editing: boolean = false; // Is Component in edit mode?
+  public preValue: string = ''; // The value before clicking to edit
   public onChange: any = Function.prototype; // Trascend the onChange event
   public onTouched: any = Function.prototype; // Trascend the onTouch event
-  private _originalValue:any;
-  private open:boolean=false;
-  private selectReqflag:boolean=false;
+  public selectReqflag: boolean = false;
+  private _value: any = ''; // Private variable for input value
+  private _originalValue: any;
+  private open: boolean = false;
   
   constructor(private _elementRef: ElementRef, private _renderer: Renderer) { }
 

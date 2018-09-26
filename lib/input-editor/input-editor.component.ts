@@ -58,15 +58,14 @@ export class InputEditorComponent implements ControlValueAccessor, OnInit {
   @Output() onSave: EventEmitter<string> = new EventEmitter();
   @Output() onCancel: EventEmitter<string> = new EventEmitter();
   @Output() onEditing: EventEmitter<string> = new EventEmitter();
-  
 
-  private _originalValue:any;
-  private _value: string = ''; // Private variable for input value
-  private preValue: string = ''; // The value before clicking to edit
-  private editing: boolean = false; // Is Component in edit mode?
+  public editing: boolean = false; // Is Component in edit mode?
+  public preValue: string = ''; // The value before clicking to edit
+  public inputReqflag:boolean = false;
   public onChange: any = Function.prototype; // Trascend the onChange event
   public onTouched: any = Function.prototype; // Trascend the onTouch event
-  private inputReqflag:boolean = false;
+  private _originalValue:any;
+  private _value: string = ''; // Private variable for input value
 
   constructor(element: ElementRef, private _renderer: Renderer) { }
   

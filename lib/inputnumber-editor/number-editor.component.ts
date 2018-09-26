@@ -70,39 +70,24 @@ export class NumberEditorComponent implements ControlValueAccessor, OnInit {
   @Output() onCancel: EventEmitter<string> = new EventEmitter();
   @Output() onEditing: EventEmitter<string> = new EventEmitter();
 
-  private _originalValue: any;
-  private _value: number; // Private variable for input value
-  private preValue: string = ''; // The value before clicking to edit
-  private editing: boolean = false; // Is Component in edit mode?
+  public preValue: string = ''; // The value before clicking to edit
+  public editing: boolean = false; // Is Component in edit mode?
   public onChange: any = Function.prototype; // Trascend the onChange event
   public onTouched: any = Function.prototype; // Trascend the onTouch event
-  private numberReqflag: boolean = false;
-  private numberBigflag: boolean = false;
+  public numberReqflag: boolean = false;
+  public numberBigflag: boolean = false;
+  private _originalValue: any;
+  private _value: number; // Private variable for input value
 
   constructor(element: ElementRef, private _renderer: Renderer) { }
 
   onSaveInputNumber() {
-    if (this.numberEditorControl.nativeElement.value != "" && (this.numberEditorControl.nativeElement.value > this.maxNumber || this.numberEditorControl.nativeElement.value < this.minNumber)) {
-      this.numberBigflag = true;
-      this.numberReqflag = false;
-      return;
-    }
-    else {
-      this.numberBigflag = false;
-    }
+    const enteredValue = this.numberEditorControl.nativeElement.value;
+    
+    this.numberReqflag = this.required === "true" && !enteredValue;
+    this.numberBigflag = enteredValue && (Number(enteredValue) > this.maxNumber || Number(enteredValue) < this.minNumber);
 
-    if (this.required == "true") {
-      if (this.numberEditorControl.nativeElement.value == null || this.numberEditorControl.nativeElement.value === undefined || this.numberEditorControl.nativeElement.value === "") {
-        this.numberReqflag = true;
-        return;
-      }
-      else {
-        this.numberReqflag = false;
-      }
-    }
-    else {
-      this.numberReqflag = false;
-    }
+    if (this.numberBigflag || this.numberReqflag) return;
 
     this.onSave.emit('clicked save');
     this.editing = false;
