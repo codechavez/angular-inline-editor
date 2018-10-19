@@ -74,14 +74,14 @@ export class TimeEditorComponent implements ControlValueAccessor, OnInit {
   @Output() onCancel: EventEmitter<string> = new EventEmitter();
   @Output() onEditing: EventEmitter<string> = new EventEmitter();
 
-  private _originalValue: any;
-  private _value: any; // Private variable for input value
-  private preValue: string = ''; // The value before clicking to edit
-  private editing: boolean = false; // Is Component in edit mode?
+  public preValue: string = ''; // The value before clicking to edit
+  public editing: boolean = false; // Is Component in edit mode?
   public onChange: any = Function.prototype; // Trascend the onChange event
   public onTouched: any = Function.prototype; // Trascend the onTouch event
-  private timeReqflag: boolean = false;
-  private showTimePicker: boolean = false;
+  public timeReqflag: boolean = false;
+  public showTimePicker: boolean = false;
+  private _originalValue: any;
+  private _value: any; // Private variable for input value
 
   constructor(element: ElementRef, private _renderer: Renderer) { }
 

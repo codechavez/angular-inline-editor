@@ -71,18 +71,18 @@ export class TypeAheadEditorComponent implements ControlValueAccessor, OnInit {
   @Output() onEditing: EventEmitter<string> = new EventEmitter();
 
   public open: boolean = false;
-  private displayText: string;
-  private _originalValue: any;
+  public displayText: string;
   public filterArg: any;
-  private _value: string = ''; // Private variable for input value
-  private preValue: string = ''; // The value before clicking to edit
-  private editing: boolean = false; // Is Component in edit mode?
+  public preValue: string = ''; // The value before clicking to edit
+  public editing: boolean = false; // Is Component in edit mode?
   public onChange: any = Function.prototype; // Trascend the onChange event
   public onTouched: any = Function.prototype; // Trascend the onTouch event
-  private typeaheadReqflag: boolean = false;
-  private scrolledIndex: number = -1;
-  private availOptions: any[] = [];
-  private aheadKey: string;
+  public typeaheadReqflag: boolean = false;
+  public scrolledIndex: number = -1;
+  public availOptions: any[] = [];
+  public aheadKey: string;
+  private _originalValue: any;
+  private _value: string = ''; // Private variable for input value
 
   constructor(element: ElementRef, private _renderer: Renderer) { }
 

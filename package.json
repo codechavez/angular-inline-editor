@@ -20,7 +20,7 @@
     "url": "https://github.com/codechavez/angular-inline-editor.git"
   },
   "scripts": {
-    "compile": "tsc --rootDir lib --outDir dist",
+    "compile": "ngc -p tsconfig.json --rootdir lib --outdir dist",
     "html": "XCOPY /S /y .\\lib\\*.html .\\dist",
     "css": "XCOPY /S /y .\\lib\\*.css .\\dist",
     "serve": "webpack-dev-server --host localhost --port 3030 --inline --progress",

@@ -78,17 +78,15 @@ export class TagsEditorComponent implements ControlValueAccessor, OnInit {
   @Output() onCancel: EventEmitter<string> = new EventEmitter();
   @Output() onEditing: EventEmitter<string> = new EventEmitter();
 
-  tags:string[]=[];
-  private _originalValue:any;
-  private _value: string[] = []; // Private variable for input value
-  private preValue: string[] = []; // The value before clicking to edit
-  private editing: boolean = false; // Is Component in edit mode?
+  public tags: string[] = [];
+  public preValue: string[] = []; // The value before clicking to edit
+  public editing: boolean = false; // Is Component in edit mode?
   public onChange: any = Function.prototype; // Trascend the onChange event
   public onTouched: any = Function.prototype; // Trascend the onTouch event
-  isempty:boolean;
-  private tagsReqflag:boolean = false;
-
-
+  public isempty: boolean;
+  public tagsReqflag:boolean = false;
+  private _originalValue:any;
+  private _value: string[] = []; // Private variable for input value
 
   constructor(element: ElementRef, private _renderer: Renderer) { }
 
