@@ -1,6 +1,6 @@
 {
   "name": "angular-inline-editors",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "license": "MIT",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -23,7 +23,11 @@
     "html": "XCOPY /S /y .\\lib\\*.html .\\dist",
     "css": "XCOPY /S /y .\\lib\\*.css .\\dist",
     "serve": "webpack-dev-server --host localhost --port 3030 --inline --progress",
-    "distro": "npm run compile && npm run html && npm run css"
+    "distro": "npm run compile && npm run html && npm run css",
+    "postinstall": "opencollective-postinstall"
+  },
+  "collective":{
+    "url": "https://opencollective.com/webpack"
   },
   "dependencies": {
     "@angular/common": "7.1.4",
@@ -34,6 +38,7 @@
     "@angular/platform-browser-dynamic": "7.1.4",
     "core-js": "2.6.1",
     "ngx-bootstrap": "3.1.4",
+    "opencollective-postinstall": "^2.0.1",
     "reflect-metadata": "0.1.12",
     "rxjs": "6.3.3",
     "zone.js": "0.8.26"
